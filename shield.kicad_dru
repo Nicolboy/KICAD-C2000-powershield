@@ -1,0 +1,22 @@
+(version 1)
+
+# Barriere d'isolement primaire/secondaire (NCM3S1205MC x2, dc.kicad_sch)
+#
+# Clearance datasheet-driven, pas une table generique : 8mm = creepage/
+# clearance recommande par Murata pour le NCM3S1205MC, UL62368-1,
+# isolation renforcee / 2 MOPP a 250Vrms (KDC_NCM3_A01, table "Isolation
+# Characteristics"). Les classes Isole_Primaire / Isole_Secondaire sont
+# assignees par nom de net dans shield.kicad_pro (net_settings.
+# netclass_patterns) : VIN_PWR/GND_PRI cote primaire, le reste (3V3_ISO,
+# 5V_C2000, 5V_ESP32, 5V_ISO, 5V_ISO_SW, 5V_NUM, GND) cote secondaire.
+# Les deux classes gardent la clearance par defaut (0.3mm) : seule la
+# paire primaire/secondaire est contrainte, pas l'interieur d'un domaine.
+#
+# Reutilisation sur un futur projet : copier la regle, changer uniquement
+# la valeur en mm d'apres le datasheet du composant d'isolement utilise -
+# jamais une estimation. Voir KICAD.md.
+
+(rule "isolement_primaire_secondaire"
+	(condition "(A.NetClass == 'Isole_Primaire' && B.NetClass == 'Isole_Secondaire') || (A.NetClass == 'Isole_Secondaire' && B.NetClass == 'Isole_Primaire')")
+	(constraint clearance (min 8mm))
+)

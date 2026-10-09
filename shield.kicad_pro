@@ -518,6 +518,30 @@
         "via_diameter": 2.0,
         "via_drill": 0.8,
         "wire_width": 8
+      },
+      {
+        "clearance": 0.3,
+        "name": "Isole_Primaire",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 2147483647,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 1.0,
+        "tuning_profile": "",
+        "via_diameter": 2.0,
+        "via_drill": 0.8,
+        "wire_width": 8
+      },
+      {
+        "clearance": 0.3,
+        "name": "Isole_Secondaire",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 2147483647,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 1.0,
+        "tuning_profile": "",
+        "via_diameter": 2.0,
+        "via_drill": 0.8,
+        "wire_width": 8
       }
     ],
     "meta": {
@@ -525,7 +549,44 @@
     },
     "net_colors": null,
     "netclass_assignments": null,
-    "netclass_patterns": []
+    "netclass_patterns": [
+      {
+        "netclass": "Isole_Primaire",
+        "pattern": "VIN_PWR"
+      },
+      {
+        "netclass": "Isole_Primaire",
+        "pattern": "GND_PRI"
+      },
+      {
+        "netclass": "Isole_Secondaire",
+        "pattern": "3V3_ISO"
+      },
+      {
+        "netclass": "Isole_Secondaire",
+        "pattern": "5V_C2000"
+      },
+      {
+        "netclass": "Isole_Secondaire",
+        "pattern": "5V_ESP32"
+      },
+      {
+        "netclass": "Isole_Secondaire",
+        "pattern": "5V_ISO"
+      },
+      {
+        "netclass": "Isole_Secondaire",
+        "pattern": "5V_ISO_SW"
+      },
+      {
+        "netclass": "Isole_Secondaire",
+        "pattern": "5V_NUM"
+      },
+      {
+        "netclass": "Isole_Secondaire",
+        "pattern": "GND"
+      }
+    ]
   },
   "pcbnew": {
     "last_paths": {
