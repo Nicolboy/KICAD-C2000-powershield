@@ -386,6 +386,42 @@ labels comme posé.
 
 ---
 
+## 15. Embase OLED en IDC 2 × 8 détrompée, empreintes assignées à tout le projet
+
+**Décision.** Ajout du connecteur `OLED_SPI_2x8` (J10) sur
+`connecteur_devkit.kicad_sch` : IDC 2 × 8 à sertir, détrompeur de série,
+même famille que les nappes DC/DC mais une taille en dessous (16 broches
+contre 20). Brochage repris tel quel du plan constructeur de l'écran
+`ER-OLEDM032-1B` (voir `nappes-shield.md`) ; les labels `OLED_CS/RST/DC/
+SCK/MOSI` existaient déjà sur les broches natives SPI de l'ESP32, seule
+l'embase physique manquait. Broche 7 non étiquetée sur le plan constructeur
+fourni : laissée en `NC` par prudence plutôt que supposée masse — à
+reconfirmer si le datasheet complet devient disponible.
+
+À la même occasion, assignation d'une empreinte à tous les composants du
+projet qui n'en avaient pas (R/C en 0805, BAT54S en SOT-23, connecteurs
+2 broches génériques — cavaliers et alimentation — en PinHeader 1×02,
+zener de protection en SMC), et création de l'empreinte custom
+`lib/NCM3S1205MC.kicad_mod` d'après les cotes du datasheet Murata
+(page « Recommended Footprint Details »), ce module n'ayant pas
+d'empreinte standard dans les bibliothèques KiCad.
+
+**Pourquoi.** L'export vers le PCB échouait sur tous les composants
+(« empreinte non assignée ») : aucune empreinte n'avait encore été choisie
+pour ce premier passage PCB, en dehors des connecteurs devkit/ESP32/nappe
+qui en portaient déjà une par défaut dans leur symbole.
+
+**Ce qui casse.** Les cotes du NCM3S1205MC comportent une ambiguïté : les
+deux sous-cotes horizontales (8,00 / 8,50 mm, barrière d'isolement) ne se
+recoupent pas proprement avec la cote totale de 22,00 mm à partir de
+l'image seule. Le placement des 4 pastilles utilise uniquement la largeur
+totale et la largeur de pastille (valeurs non ambiguës) ; la barrière
+d'isolement n'est qu'une zone de sérigraphie, sans effet électrique. À
+vérifier visuellement dans l'éditeur d'empreinte PCB contre la page 10 du
+datasheet avant fabrication.
+
+---
+
 ## Points ouverts — ne pas combler par une estimation
 
 Ces valeurs manquent. Elles demandent une lecture de datasheet ou une mesure,
@@ -417,3 +453,8 @@ pas une approximation plausible.
   court-circuit du LDO en panne une fois choisi (§13).
 - Référence exacte du connecteur d'alimentation 11-25V (type, tenue en
   courant) — pas encore choisie.
+- Broche 7 de l'embase OLED (J10) : non étiquetée sur le plan constructeur
+  fourni, laissée en NC par prudence (§15). À confirmer avec le datasheet
+  complet de l'ER-OLEDM032-1B.
+- Cotes exactes de l'empreinte NCM3S1205MC (barrière d'isolement) : à
+  vérifier visuellement contre le datasheet avant fabrication (§15).

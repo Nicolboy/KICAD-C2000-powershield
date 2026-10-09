@@ -124,12 +124,41 @@ rail 5V (600mA dispo chacun) — #1 face à 2 devkits + OLED, #2 face au LDO
 3,3V + la consommation réelle des cartes DC/DC côté isolation, encore
 inconnue tant qu'aucune carte fille n'est spécifiée.
 
+### Embase OLED — J10, IDC 2 × 8 détrompée
+
+Écran `ER-OLEDM032-1B` (SPI 4 fils), nappe 16 voies vers une embase IDC
+2 × 8 à sertir, détrompeur de série — même famille de connecteur que les
+quatre nappes DC/DC, taille en dessous (2×8 au lieu de 2×10, le module
+n'a que 16 broches). Alimenté avec l'ESP32 (voir § Alimentation ci-dessus),
+pas sur un rail dédié.
+
+| Broche | Signal OLED | Net / GPIO ESP32 |
+|---|---|---|
+| 1 | VSS | GND |
+| 2 | VCC | 5V_ESP32 |
+| 3 | — | NC (mode I2C/parallèle, inutilisé en SPI) |
+| 4 | CLK | OLED_SCK → GPIO6 (FSPICLK natif) |
+| 5 | MOSI | OLED_MOSI → GPIO7 (FSPID natif) |
+| 6 | — | NC |
+| 7 | — | NC *(zone non étiquetée sur le plan constructeur, laissée non connectée par prudence — à reconfirmer si le datasheet complet ER-OLEDM032-1B devient disponible)* |
+| 8-13 | GND ×6 | GND |
+| 14 | D/C | OLED_DC → GPIO19 |
+| 15 | /RST | OLED_RST → GPIO20 |
+| 16 | /CS | OLED_CS → GPIO18 (FSPICS2 natif) |
+
+Symbole `OLED_SPI_2x8` dans `lib/C2000_Devkit_Connectors.kicad_sym`,
+empreinte `Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical`. Placé sur
+`connecteur_devkit.kicad_sch` (feuille des connecteurs devkit/ESP32), les
+labels `OLED_*` y existaient déjà sur les broches natives de l'ESP32 —
+seule l'embase physique manquait.
+
 ## 2. Répartition des cartes
 
 **Shield** — support mécanique des deux devkits, **alimentation complète**
 (11-25V→5V isolé ×2, 3,3V isolation + protection), adaptation de brochage,
 conditionnement analogique (filtres anti-repliement, suiveur VREF,
-dédoublement des voies shunt), protections, embase nappe OLED. Aucune
+dédoublement des voies shunt), protections, embase nappe OLED (détail
+ci-dessus). Aucune
 isolation propre au shield — elle est désormais portée par les cartes DC/DC
 enfichables, selon leurs besoins propres.
 
