@@ -1,5 +1,10 @@
 # Projet PCB — KiCad 10, Windows
 
+**Lire `../KICAD.md` d'abord** (conventions communes à tous les projets
+KiCad de l'atelier : câblage labels-only, pièges d'axe Y et de cache de
+symbole, réglages de projet par défaut) — ce fichier-ci ne couvre que ce
+qui est spécifique à ce dépôt.
+
 ## Origine
 
 Ce dépôt reprend le projet `shield` de `KICAD-C2000-shield` (dossier

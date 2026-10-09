@@ -31,3 +31,7 @@ fp-info-cache
 Thumbs.db
 *~
 *.lck
+
+# Résidus d'outillage (migration, état intermédiaire)
+migrate_state.pkl
+sheet_uuids.txt

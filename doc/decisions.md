@@ -269,6 +269,123 @@ serait payer un fabricant pour des pistes de 1 mm.
 
 ---
 
+## 13. La conversion isolée migre sur le shield, deux NCM3S1205MC séparés, masses secondaires reliées en un point
+
+**Décision.** La carte de puissance séparée (qui portait toute la
+conversion et toute l'isolation dans `shield-c2000`) disparaît. Le shield
+reçoit directement le 11-25V externe et produit ses propres rails isolés.
+Chaque carte DC/DC enfichable porte désormais l'isolation que *sa* fonction
+exige — plus de point central qui isole pour tout le monde.
+
+**Pourquoi.** Décision de conception de l'utilisateur, pas une optimisation
+de ma part : la carte de puissance figée ne convenait qu'à une seule
+fonction de conversion ; des cartes DC/DC enfichables, chacune avec son
+isolation propre, couvrent plusieurs fonctions sans redessiner le shield à
+chaque fois.
+
+**Composant retenu : NCM3S1205MC-R7** (Murata NCM3 series,
+`composants-datasheets/datasheets/isolation/KDC_NCM3.pdf` p.1) — entrée
+9-36V (couvre 11-25V), sortie 5V/600mA max (3W), isolation 5000VAC
+renforcée. Écarté avant lui : l'OKI-78SR (titre du datasheet : *"Non-Isolated
+Switching Regulator DC-DC"*, masses Vin/Vout communes) — ne fait pas ce
+qu'on lui demandait.
+
+**Deux exemplaires, pas un seul partagé.** Un NCM3S1205MC pour le domaine
+"numérique" (les deux devkits + l'OLED), un second dédié au domaine
+"isolation E/S" (LDO 3,3V vers les nappes). Objectif : ne pas coupler le
+bruit du CPU/de la radio Wi-Fi de l'ESP32 sur l'alimentation de
+l'isolation, et donner à chaque domaine son propre budget de 600mA plutôt
+qu'un budget unique partagé entre tout le monde.
+
+**Coupure par destination — trois cavaliers, pas un.** Cavalier C2000,
+cavalier ESP32, cavalier E/S — chacun 2 points 2,54mm, côté régulé (5V ou
+3,3V), en aval de leur module. Le 11-25V brut reste toujours présent aux
+deux NCM3S1205MC, non coupé : avec le module #1 partagé entre les deux
+devkits, une coupure individuelle n'a de sens que côté régulé.
+
+**Masses secondaires des deux NCM3S1205MC : reliées, en un point unique —
+pas laissées séparées.** Premier réflexe (le mien), corrigé par
+l'utilisateur : séparer les deux masses semblait cohérent avec la
+séparation de bruit visée par les deux modules, mais le 3V3_ISO alimente le
+côté **commande/non-isolé** des isolateurs des cartes DC/DC — c'est ce
+côté-là que le C2000 doit pouvoir lire avec une référence commune, sinon le
+signal de sortie de l'isolateur n'a plus de référence valable une fois relu
+côté numérique. L'isolation galvanique réelle se fait à l'intérieur de
+chaque puce isolatrice (AMC03xx etc.), pas entre les deux domaines du
+shield. Un point unique (étoile), pas deux jonctions séparées : même
+principe que le point de jonction VSS/VSSA unique déjà utilisé sur les
+devkits — deux jonctions créeraient une boucle de masse.
+
+**3V3_ISO reste un LDO fixe simple, pas asservi à VDDA/VREF.** Idée
+soulevée puis écartée : faire porter la précision ADC des cartes DC/DC par
+l'alimentation de l'isolateur plutôt que par sa référence. Un LDO (±1-2%
+typique) n'a pas la stabilité d'une vraie référence — ce n'est pas le bon
+outil. La vraie solution, déjà disponible sans rien ajouter : les
+isolateurs ratiométriques (suffixe "R", type AMC0311R/AMC0302R) ont une
+broche REFIN dédiée, à raccorder sur VREF_ADC (déjà présent sur la nappe
+ADC-2) — pas sur 3V3_ISO. Protection de sortie prévue malgré tout : une
+zener entre 3V3_ISO et masse, en crowbar contre une panne du LDO
+(pass-transistor qui lâche et laisse passer le 5V d'entrée vers la sortie —
+mode de panne déjà vécu), pas de l'ESD générique.
+
+**2×10 IDC, pas 2×8 breakaway.** Les quatre nappes doivent désormais porter
+GND + 3V3_ISO en plus de leurs 16 positions existantes (inchangées). Les
+embases IDC à sertir avec détrompeur existent en tailles standard de nappe
+(10/14/16/20/26/34 voies) ; 2×9 (18 voies, le minimum strict) n'en est pas
+une, 2×10 l'est — et laisse une réserve gratuite, cohérent avec la décision
+#5 déjà actée (marge ADC gratuite).
+
+**Ce qui casse.** Relier les masses des deux NCM3S1205MC en plusieurs
+points (pas un seul) réintroduit une boucle de masse — c'est précisément
+ce que la décision #7 (point de jonction unique) existe pour éviter, ici
+appliqué au même problème à un autre endroit du schéma. Asservir 3V3_ISO à
+VDDA/VREF pour « résoudre » la précision ADC masque le vrai problème
+(REFIN mal câblé sur la carte DC/DC) sans le résoudre, et dégrade la
+stabilité du rail d'alimentation de l'isolation pour tout le monde.
+
+## 14. GND/3V3_ISO des nappes en positions 1/2 (pas 17/18), et correction d'un bug de signe Y sur les labels de connecteur
+
+**Décision.** Sur les 4 nappes, `3V3_ISO` passe en position 1 et `GND` en
+position 2 (au lieu de 17/18, ajoutées en fin par la décision #13). Les 16
+positions signal/masse existantes, inchangées de nom, se décalent
+mécaniquement de 2 crans (ancienne position *n* → nouvelle position *n+2*).
+Les anciennes positions 17/18 disparaissent, leur rôle repris par les
+nouvelles 1/2.
+
+**Pourquoi.** Décision explicite de l'utilisateur, pas une optimisation de
+ma part : il a fourni l'image d'un connecteur de référence (`CpuOut1` /
+`CTRL_C2000_OUT`, dans `alim-flyback-filament/isolation.kicad_sch` — projet
+routé, prêt pour production, lu mais jamais édité) où les deux broches
+d'alimentation (`3V3_CTRL`, `GND_CTRL`) occupent les positions 1 et 2,
+avant tout signal. Convention à reprendre pour les nappes du shield plutôt
+que l'ajout en fin de connecteur retenu dans la décision #13.
+
+**Bug de signe Y trouvé en vérifiant la connexion des labels.** En
+positionnant les labels des broches BAT54S ajoutées aujourd'hui, l'ERC a
+révélé qu'aucun label de connecteur posé plus tôt dans la session
+(nappes, rangées A/B devkit C2000, J1/J3 ESP32) ne touchait réellement sa
+broche. KiCad inverse l'axe Y entre les coordonnées locales d'un symbole
+(bibliothèque, Y vers le haut) et son placement sur le schéma (Y vers le
+bas) : la formule correcte est `monde_y = instance_y − local_y` (le signe
+d'addition que j'utilisais était faux), `monde_x = instance_x + local_x`
+reste correct. Confirmé en comparant mes positions aux coordonnées réelles
+que `kicad-cli sch erc` rapporte pour chaque broche (ex. BAT54S D11 Pin 3,
+réellement à (250.00, 11.11) contre (250.00, 28.89) avant correction).
+Labels régénérés sur `connecteurs_nappe.kicad_sch` et
+`connecteur_devkit.kicad_sch` avec la formule corrigée et le style du
+connecteur de référence (`shape bidirectional`, `rotation 180`,
+`justify right`), uniformément.
+
+**Ce qui casse.** Toute nouvelle génération de labels sur un connecteur
+dans ce dépôt doit utiliser `monde_y = instance_y − local_y`, pas l'inverse
+— le bug est facile à reproduire car `kicad-cli sch erc` ne le signale
+que comme `label_dangling`/`pin_not_connected` (pas une erreur explicite
+de coordonnées), à vérifier systématiquement en croisant quelques broches
+avec les coordonnées réelles du rapport ERC avant de considérer un lot de
+labels comme posé.
+
+---
+
 ## Points ouverts — ne pas combler par une estimation
 
 Ces valeurs manquent. Elles demandent une lecture de datasheet ou une mesure,
@@ -291,3 +408,12 @@ pas une approximation plausible.
 - Répartition exacte des plans sur la version 4 couches : masse pleine en
   couche 2 est acquis, la couche 3 reste à décider (alimentation, ou seconde
   masse sous la zone analogique).
+- Budget de courant des deux rails 5V des NCM3S1205MC (600mA dispo chacun) —
+  #1 face à 2 devkits + OLED, #2 face au LDO 3,3V + la consommation réelle
+  des cartes DC/DC côté isolation, inconnue tant qu'aucune carte fille n'est
+  spécifiée (§13).
+- Modèle de LDO 3,3V exact et valeur de la zener de protection — dépend du
+  courant réel tiré par les cartes DC/DC connectées, et du courant de
+  court-circuit du LDO en panne une fois choisi (§13).
+- Référence exacte du connecteur d'alimentation 11-25V (type, tenue en
+  courant) — pas encore choisie.

@@ -1,31 +1,54 @@
-# Nappes shield ↔ carte de puissance, et répartition des cartes
+# Nappes shield, alimentation, et répartition des cartes
 
-Ce document décrit ce qui relie le shield à la carte de puissance. **Le
-connecteur devkit, le brochage des 64 broches, l'alimentation, le JTAG et la
-mécanique sont dans [`spec-devkit.md`](spec-devkit.md)**, qui fait autorité.
+Ce document décrit les quatre nappes vers les cartes DC/DC enfichables, et la
+chaîne d'alimentation du shield lui-même. **Le connecteur devkit, le brochage
+des 64 broches, le JTAG et la mécanique sont dans
+[`spec-devkit.md`](spec-devkit.md)**, qui fait autorité pour cette partie-là.
+
+**Changement par rapport à `shield-c2000`** : il n'y a plus de carte de
+puissance séparée. Le shield reçoit directement le 11-25V externe et produit
+ses propres rails isolés — voir §1 "Alimentation" et §2. Conséquence directe :
+les quatre nappes, qui ne portaient aucune alimentation, portent désormais
+une masse et un 3,3V dédiés à l'isolation des cartes DC/DC (decision #13,
+`decisions.md`).
 
 ## 1. Les quatre nappes
 
-Quatre connecteurs **2 × 8**, nappes 16 conducteurs, **alternance signal / masse
-stricte 1:1** sur les quatre. Aucune ligne d'alimentation dans les nappes.
+Quatre connecteurs IDC **2 × 10** à sertir, détrompeur de série (taille
+standard de nappe, 20 voies — agrandi depuis le 2×8 breakaway de
+`shield-c2000`, decision #13). **3V3_ISO et GND occupent les positions 1 et
+2** (alimentation du côté commande des isolateurs de chaque carte DC/DC, pas
+un signal — convention reprise du connecteur `CpuOut1`/`CTRL_C2000_OUT`
+d'`alim-flyback-filament`, decision #14), puis **alternance signal / masse
+stricte 1:1 sur les positions 3 à 18** (les 16 signaux, inchangés par
+rapport à avant, décalés de 2 crans).
 
 ### ADC-1 — mesures tension et température
 
 | | | | | | | | |
 |---|---|---|---|---|---|---|---|
-| 1 GND | 2 **Vin** | 3 GND | 4 **Vout** | 5 GND | 6 **V1** | 7 GND | 8 **Temp1** |
-| 9 GND | 10 **Temp2** | 11 GND | 12 **Iin** | 13 GND | 14 **Iout** | 15 GND | 16 **réserve 1** |
+| 1 **3V3_ISO** | 2 **GND** | 3 GND | 4 **Vin** | 5 GND | 6 **Vout** | 7 GND | 8 **V1** |
+| 9 GND | 10 **Temp1** | 11 GND | 12 **Temp2** | 13 GND | 14 **Iin** | 15 GND | 16 **Iout** |
+| 17 **GND** | 18 **réserve 1** | | | | | | |
 
 ### ADC-2 — shunts, référence, réserves
 
 | | | | | | | | |
 |---|---|---|---|---|---|---|---|
-| 1 GND | 2 **I_shunt1** | 3 GND | 4 **I_shunt2** | 5 GND | 6 **VREF_ADC** | 7 **VREFLO_SENSE** | 8 GND |
-| 9 GND | 10 **réserve 2** | 11 GND | 12 **réserve 3** | 13 GND | 14 **réserve 4** | 15 GND | 16 **réserve 5** |
+| 1 **3V3_ISO** | 2 **GND** | 3 GND | 4 **I_shunt1** | 5 GND | 6 **I_shunt2** | 7 GND | 8 **VREF_ADC** |
+| 9 **VREFLO_SENSE** | 10 GND | 11 GND | 12 **réserve 2** | 13 GND | 14 **réserve 3** | 15 GND | 16 **réserve 4** |
+| 17 **GND** | 18 **réserve 5** | | | | | | |
 
-VREF_ADC et VREFLO_SENSE occupent les positions 6 et 7, adjacentes : c'est une
+VREF_ADC et VREFLO_SENSE occupent les positions 8 et 9, adjacentes : c'est une
 paire de référence, pas deux signaux indépendants. Le shield bufferise VREF_ADC
 par un suiveur rail-to-rail avant de l'envoyer.
+
+**C'est cette même paire qui sert de référence aux isolateurs ratiométriques
+(suffixe "R", type AMC0311R/AMC0302R) des cartes DC/DC** — leur broche REFIN
+se raccorde à VREF_ADC, pas à 3V3_ISO. Faire porter la précision ADC par
+l'alimentation de l'isolateur (asservir 3V3_ISO à VDDA) serait le mauvais
+outil : un LDO n'a pas la stabilité d'une vraie référence. 3V3_ISO reste un
+3,3V fixe, simple alimentation logique, pas une référence.
 
 Les cinq réserves correspondent exactement aux cinq voies ADC libres du
 connecteur devkit — A12, A14, A15, A17, A18. Une voie ajoutée plus tard se câble
@@ -35,8 +58,9 @@ de bout en bout sans retoucher aucune carte.
 
 | | | | | | | | |
 |---|---|---|---|---|---|---|---|
-| 1 GND | 2 **PWM1_A** | 3 GND | 4 **PWM1_B** | 5 GND | 6 **PWM2_A** | 7 GND | 8 **PWM2_B** |
-| 9 GND | 10 **PWM3_A** | 11 GND | 12 **PWM3_B** | 13 GND | 14 **PWM4_A** | 15 GND | 16 **PWM4_B** |
+| 1 **3V3_ISO** | 2 **GND** | 3 GND | 4 **PWM1_A** | 5 GND | 6 **PWM1_B** | 7 GND | 8 **PWM2_A** |
+| 9 GND | 10 **PWM2_B** | 11 GND | 12 **PWM3_A** | 13 GND | 14 **PWM3_B** | 15 GND | 16 **PWM4_A** |
+| 17 **GND** | 18 **PWM4_B** | | | | | | |
 
 Seules lignes à fronts rapides de l'ensemble. PWM3 et PWM4 restent en réserve, en
 paires complémentaires HRPWM avec temps mort matériel.
@@ -45,37 +69,75 @@ paires complémentaires HRPWM avec temps mort matériel.
 
 | | | | | | | | |
 |---|---|---|---|---|---|---|---|
-| 1 GND | 2 **Stage1_EN** | 3 GND | 4 **Stage2_EN** | 5 GND | 6 **HV_EN** | 7 GND | 8 **Discharge** |
-| 9 GND | 10 **CMP_OUT** | 11 GND | 12 **nFAULT** | 13 GND | 14 **I2C_SCL** | 15 GND | 16 **I2C_SDA** |
+| 1 **3V3_ISO** | 2 **GND** | 3 GND | 4 **Stage1_EN** | 5 GND | 6 **Stage2_EN** | 7 GND | 8 **HV_EN** |
+| 9 GND | 10 **Discharge** | 11 GND | 12 **CMP_OUT** | 13 GND | 14 **nFAULT** | 15 GND | 16 **I2C_SCL** |
+| 17 **GND** | 18 **I2C_SDA** | | | | | | |
 
-`nFAULT` remonte un défaut de la carte de puissance vers GPIO_1 (B28).
+`nFAULT` remonte un défaut d'une carte DC/DC vers GPIO_1 (B28).
 `CMP_OUT` sort le drapeau de défaut agrégé du C2000. L'I2C reste disponible pour
-un capteur de température ou une EEPROM de calibration sur la carte de puissance.
+un capteur de température ou une EEPROM de calibration sur une carte DC/DC.
 
-### Alimentation — connecteur séparé
+### Alimentation — chaîne complète sur le shield
 
-Les quatre nappes étant saturées par l'alternance 1:1, le **+5V commande n'y a
-pas sa place** — et c'est mieux ainsi. Les 500 mA que consomment les deux
-devkits, l'OLED et le conditionnement analogique ne doivent pas partager leur
-retour avec les masses de référence des voies ADC : c'était précisément le
-mécanisme d'erreur à éviter.
+Plus de carte de puissance séparée : le shield reçoit le **11-25V externe**
+et produit lui-même ses rails isolés, via **deux NCM3S1205MC-R7** distincts
+(Murata, 9-36V→5V/600mA max, isolation 5000VAC — un par domaine, pour ne pas
+coupler le bruit numérique sur l'alimentation de l'isolation) :
 
-Prévoir un **connecteur d'alimentation dédié**, deux ou quatre voies, dimensionné
-pour 1 A — Micro-Fit, KK 396 ou bornier à vis selon vos habitudes. Deux
-conducteurs suffisent, quatre permettent de doubler +5V et retour et de diviser
-la chute par deux.
+```
+J_PWR (11-25V externe, présent aux deux modules en permanence, non coupé)
+   │
+   ├── NCM3S1205MC #1 — domaine "numérique"
+   │        ├── Cavalier C2000 (2 pts, 2,54mm) → +5V connecteur devkit C2000
+   │        └── Cavalier ESP32 (2 pts, 2,54mm) → +5V connecteur devkit ESP32
+   │                   └──→ OLED (alimenté avec l'ESP32)
+   │
+   └── NCM3S1205MC #2 — domaine "isolation E/S"
+            Cavalier E/S (2 pts, 2,54mm)
+            │
+          LDO linéaire 3,3V fixe + zener de protection en sortie
+                └──→ GND + 3V3_ISO sur les 4 nappes (positions 2/1)
+```
+
+**Coupure par destination** : trois cavaliers indépendants (C2000 / ESP32 /
+E/S), chacun côté régulé (5V ou 3,3V), pas un cavalier unique sur le 11-25V
+brut — le module #1 reste partagé entre les deux devkits, c'est le seul
+endroit où une coupure individuelle a un sens.
+
+**Masses secondaires des deux NCM3S1205MC : reliées, en un point unique**
+(étoile). Le 3V3_ISO alimente le côté commande/non-isolé des isolateurs des
+cartes DC/DC — c'est ce côté-là qui doit partager la référence du C2000 qui
+lit leur sortie, sinon le signal n'a pas de référence valable une fois relu.
+L'isolation galvanique réelle se fait à l'intérieur de chaque puce
+isolatrice, pas entre les deux domaines de ce shield. Point unique (pas
+deux jonctions) pour éviter la boucle de masse — même principe que le point
+de jonction VSS/VSSA unique déjà utilisé sur les devkits (`spec-devkit.md`).
+
+**Protection 3,3V — crowbar de sortie contre une panne du LDO**, pas de
+l'ESD générique : une zener entre 3V3_ISO et masse, calibrée juste au-dessus
+de 3,3V, écrête si le pass-transistor du LDO lâche et laisse passer le 5V
+d'entrée vers la sortie (mode de panne déjà vécu). Valeur exacte et tenue en
+courant à calculer une fois le modèle de LDO choisi.
+
+**Point ouvert, à chiffrer avant de sourcer** : budget de courant de chaque
+rail 5V (600mA dispo chacun) — #1 face à 2 devkits + OLED, #2 face au LDO
+3,3V + la consommation réelle des cartes DC/DC côté isolation, encore
+inconnue tant qu'aucune carte fille n'est spécifiée.
 
 ## 2. Répartition des cartes
 
-**Carte de puissance** — conversion, barrière d'isolation, tous les isolateurs
-(AMC0311S, AMC0300R, ISO7710, DPC817), INA293A2 et shunts en connexion Kelvin,
-**NCM3S1205MC**, régulateur 5 V commande depuis l'entrée 10-24 V, régulateur
-3,3 V pour le côté sortie des isolateurs.
+**Shield** — support mécanique des deux devkits, **alimentation complète**
+(11-25V→5V isolé ×2, 3,3V isolation + protection), adaptation de brochage,
+conditionnement analogique (filtres anti-repliement, suiveur VREF,
+dédoublement des voies shunt), protections, embase nappe OLED. Aucune
+isolation propre au shield — elle est désormais portée par les cartes DC/DC
+enfichables, selon leurs besoins propres.
 
-**Shield** — support mécanique des deux devkits, adaptation de brochage,
-conditionnement analogique (filtres anti-repliement, suiveur VREF, dédoublement
-des voies shunt), protections, deux branches d'alimentation séparées, embase
-nappe OLED. Aucun composant isolé.
+**Cartes DC/DC (enfichables, une par fonction)** — portent chacune
+l'isolation galvanique que leur fonction exige (ou aucune, si elle n'en a
+pas besoin). Se raccordent aux 4 nappes 2×10 ; tirent leur alimentation de
+commande sur 3V3_ISO (position 1), référencent leurs isolateurs
+ratiométriques sur VREF_ADC si besoin de précision ADC.
 
 **Devkit C2000** — MCU, deux LDO 3,3 V (VDDIO et VDDA), JTAG, bouton reset, deux
 LED, cavalier de boot.

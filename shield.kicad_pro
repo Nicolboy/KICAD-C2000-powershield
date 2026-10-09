@@ -511,12 +511,13 @@
         "clearance": 0.3,
         "name": "Default",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": -1,
+        "priority": 2147483647,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 1.0,
         "tuning_profile": "",
         "via_diameter": 2.0,
-        "via_drill": 0.8
+        "via_drill": 0.8,
+        "wire_width": 8
       }
     ],
     "meta": {
@@ -640,7 +641,7 @@
       "intersheets_ref_short": false,
       "intersheets_ref_show": false,
       "intersheets_ref_suffix": "",
-      "junction_size_choice": 3,
+      "junction_size_choice": 2,
       "label_size_ratio": 0.375,
       "operating_point_overlay_i_precision": 3,
       "operating_point_overlay_i_range": "~A",
@@ -667,13 +668,37 @@
         "uuid": "3e79b37e-13ed-4a43-b954-3b2f3b716c2c"
       }
     ],
-    "used_designators": "",
+    "used_designators": "C1-23,C101-146,D1-56,R1-23,R101-146,J1-9,J11-12,JP1-3,U1-3",
     "variants": []
   },
   "sheets": [
     [
       "3e79b37e-13ed-4a43-b954-3b2f3b716c2c",
       "shield"
+    ],
+    [
+      "be1ba8f7-426f-488b-9c2e-817721e59350",
+      "Connecteurs_Nappe"
+    ],
+    [
+      "8ca9a22c-ce32-47b8-9bd4-8f1e44cb7b31",
+      "Connecteurs_Devkit"
+    ],
+    [
+      "abe5d1bc-da16-43aa-81b9-daaf0e685605",
+      "DC"
+    ],
+    [
+      "f4905f3b-41b3-4c1f-813f-80bb56cc6d92",
+      "Protections_Devkit"
+    ],
+    [
+      "d2890255-ebcb-4d01-bd32-ae064560d75f",
+      "Protection_Devkit2"
+    ],
+    [
+      "e1effa4f-eedb-4566-b783-5564d1ec12c2",
+      "Protection_Devkit3"
     ]
   ],
   "text_variables": {},
