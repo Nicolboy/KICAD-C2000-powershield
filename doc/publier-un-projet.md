@@ -111,7 +111,7 @@ pas d'office.
 
 Les dépôts publiés suivent `<OUTIL>-<CIBLE>-<sujet>` :
 
-- `KICAD-C2000-shield`
+- `KICAD-C2000-devkit`
 - `CCS-C2000-hv-boost`
 
 Un visiteur du profil voit la paire et comprend que l'un est le matériel et

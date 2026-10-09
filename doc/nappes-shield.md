@@ -5,7 +5,7 @@ chaîne d'alimentation du shield lui-même. **Le connecteur devkit, le brochage
 des 64 broches, le JTAG et la mécanique sont dans
 [`spec-devkit.md`](spec-devkit.md)**, qui fait autorité pour cette partie-là.
 
-**Changement par rapport à `shield-c2000`** : il n'y a plus de carte de
+**Changement par rapport à `KICAD-C2000-devkit`** : il n'y a plus de carte de
 puissance séparée. Le shield reçoit directement le 11-25V externe et produit
 ses propres rails isolés — voir §1 "Alimentation" et §2. Conséquence directe :
 les quatre nappes, qui ne portaient aucune alimentation, portent désormais
@@ -16,7 +16,7 @@ une masse et un 3,3V dédiés à l'isolation des cartes DC/DC (decision #13,
 
 Quatre connecteurs IDC **2 × 10** à sertir, détrompeur de série (taille
 standard de nappe, 20 voies — agrandi depuis le 2×8 breakaway de
-`shield-c2000`, decision #13). **3V3_ISO et GND occupent les positions 1 et
+`KICAD-C2000-devkit`, decision #13). **3V3_ISO et GND occupent les positions 1 et
 2** (alimentation du côté commande des isolateurs de chaque carte DC/DC, pas
 un signal — convention reprise du connecteur `CpuOut1`/`CTRL_C2000_OUT`
 d'`alim-flyback-filament`, decision #14), puis **alternance signal / masse

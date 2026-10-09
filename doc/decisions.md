@@ -272,7 +272,7 @@ serait payer un fabricant pour des pistes de 1 mm.
 ## 13. La conversion isolée migre sur le shield, deux NCM3S1205MC séparés, masses secondaires reliées en un point
 
 **Décision.** La carte de puissance séparée (qui portait toute la
-conversion et toute l'isolation dans `shield-c2000`) disparaît. Le shield
+conversion et toute l'isolation dans `KICAD-C2000-devkit`) disparaît. Le shield
 reçoit directement le 11-25V externe et produit ses propres rails isolés.
 Chaque carte DC/DC enfichable porte désormais l'isolation que *sa* fonction
 exige — plus de point central qui isole pour tout le monde.

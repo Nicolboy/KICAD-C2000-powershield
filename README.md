@@ -3,12 +3,12 @@
 Shield d'isolation, alimentation et interconnexion pour TMS320 C2000, conçu
 sous KiCad 10.
 
-Reprend le projet `shield` de [`KICAD-C2000-shield`](https://github.com/Nicolboy/KICAD-C2000-shield)
+Reprend le projet `shield` de [`KICAD-C2000-devkit`](https://github.com/Nicolboy/KICAD-C2000-devkit)
 au moment où son rôle a dépassé le simple support mécanique des deux
 devkits : il reçoit désormais le 11-25V externe et produit lui-même les
 rails isolés (5V numérique ×2, 3,3V isolation + protection) qu'une carte
 de puissance séparée portait jusque-là. D'où le changement de dépôt plutôt
-qu'une extension sur place — `KICAD-C2000-shield` reste inchangé, c'est
+qu'une extension sur place — `KICAD-C2000-devkit` reste inchangé, c'est
 l'état précédent, pas un doublon à synchroniser.
 
 Cible : une commande numérique de convertisseur de puissance isolé, pilotée
@@ -56,11 +56,11 @@ justification dans [`doc/decisions.md`](doc/decisions.md) (#13).
 ## Le brochage est du code
 
 [`doc/spec-devkit.md`](doc/spec-devkit.md) fait autorité pour le connecteur
-devkit 2 × 28 (hérité de `KICAD-C2000-shield`, toujours valable).
+devkit 2 × 28 (hérité de `KICAD-C2000-devkit`, toujours valable).
 [`doc/nappes-shield.md`](doc/nappes-shield.md) décrit les quatre nappes DC/DC
 et l'embase OLED. Contrairement au dépôt d'origine, **il n'y a pas de
 générateur ici** — `shield.kicad_sch` est édité à la main dès le départ
-(`gen_devkit.py` et consorts restent dans `KICAD-C2000-shield`, hors sujet
+(`gen_devkit.py` et consorts restent dans `KICAD-C2000-devkit`, hors sujet
 pour ce dépôt).
 
 Les schémas ne contiennent aucun fil : toute la connectivité passe par des
@@ -117,7 +117,7 @@ lecture de datasheet ou une mesure, pas une estimation.
 
 Quinze décisions documentées dans [`doc/decisions.md`](doc/decisions.md),
 chacune avec sa raison et ce qui casse si on la défait. Héritées de
-`KICAD-C2000-shield` (#1 à #12) ou propres à ce dépôt (#13 à #15 : migration
+`KICAD-C2000-devkit` (#1 à #12) ou propres à ce dépôt (#13 à #15 : migration
 de la conversion isolée sur le shield, renumérotation des nappes, embase
 OLED et assignation des empreintes).
 
