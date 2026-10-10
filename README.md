@@ -1,4 +1,4 @@
-# KICAD-C2000-power
+# KICAD-C2000-powershield
 
 Shield d'isolation, alimentation et interconnexion pour TMS320 C2000, conçu
 sous KiCad 10.

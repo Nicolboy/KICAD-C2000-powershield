@@ -1,8 +1,8 @@
 # Projet PCB — KiCad 10, Windows
 
-**Lire `../KICAD.md` d'abord** (conventions communes à tous les projets
-KiCad de l'atelier : câblage labels-only, pièges d'axe Y et de cache de
-symbole, réglages de projet par défaut) — ce fichier-ci ne couvre que ce
+**Lire `../KICAD.md` d'abord** (édition manuelle, câblage labels-only,
+pièges d'axe Y et de cache de symbole, réglages de projet, commit avant
+modification, vérification kicad-cli) — ce fichier-ci ne couvre que ce
 qui est spécifique à ce dépôt.
 
 ## Origine
@@ -22,26 +22,11 @@ connecteur devkit, alternance signal/masse des nappes, etc.). Les décisions
 à partir de #13 sont propres à ce dépôt.
 
 ## Environnement
-- KiCad 10 doit être OUVERT avec le projet chargé pour l'API IPC (kipy) —
-  elle ne marche pas en headless sur cette version.
 - venv à créer : `.venv\Scripts\python.exe`, avec `kicad-python` (kipy)
-  installé — pas copié depuis `KICAD-C2000-devkit` (chemins absolus, à refaire).
-- kicad-cli est dans le PATH.
-- Dépôt : à créer sur GitHub (compte Nicolboy) — nom `KICAD-C2000-power`.
-  Clé SSH de compte `~/.ssh/github_nicolboy`, sélectionnée par
-  `~/.ssh/config`. Ne jamais remettre de `core.sshCommand` dans le dépôt :
-  ça contourne cette configuration et fait échouer le push avec
-  « denied to deploy key ».
-
-## Règles
-- Committer avant toute modification (git).
-- PCB: passer par kipy sur l'instance ouverte. Ne jamais éditer
-  le `.kicad_pcb` à la main pendant que KiCad est ouvert.
-- Schéma: éditer `shield.kicad_sch` directement, KiCad FERMÉ, puis relancer.
-  C'est le seul projet du dépôt — pas de version jetable à régénérer.
-- Exports et vérifs: kicad-cli uniquement (pas d'export via l'API en v10).
-- Après chaque lot de modifs: `kicad-cli pcb drc` / `kicad-cli sch erc`,
-  et rapporter les erreurs sans les corriger d'office.
+  installé — pas copié depuis `KICAD-C2000-devkit` (un venv contient des
+  chemins absolus, voir `KICAD-EDITION-GROUPEE-KIPY.md`).
+- Dépôt : https://github.com/Nicolboy/KICAD-C2000-powershield, branche
+  `main`. Clés SSH et procédure de publication : `doc/publier-un-projet.md`.
 
 ## Ce qui fait autorité
 
@@ -62,10 +47,7 @@ par rapport à `KICAD-C2000-devkit` : plus de carte de puissance séparée).
 
 ## Vérification avant tout commit
 
-```
-kicad-cli sch erc --exit-code-violations shield.kicad_sch
-kicad-cli pcb drc --exit-code-violations shield.kicad_pcb
-```
+Un seul projet dans ce dépôt : `shield` (commande dans `KICAD.md`).
 
 ## Décisions de conception et points ouverts
 
