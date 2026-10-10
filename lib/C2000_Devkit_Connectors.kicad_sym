@@ -767,4 +767,17 @@
       )
     )
   )
+  (symbol "ER-OLEDM032-1"
+    (exclude_from_sim no) (in_bom yes) (on_board yes)
+    (property "Reference" "U" (at -18 0 0) (effects (font (size 1.27 1.27)) (justify right)))
+    (property "Value" "ER-OLEDM032-1" (at 18 0 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Footprint" "lib:ER-OLEDM032-1" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Datasheet" "datasheets/display/ER-OLEDM032-1_Series_Datasheet.pdf" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Description" "Ecran OLED SPI ER-OLEDM032-1, 3.2in 256x64, connecte par nappe a J10 (OLED_SPI_2x8). Symbole sans broche - suivi BOM/3D/mecanique uniquement, aucun net." (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (symbol "ER-OLEDM032-1_0_1"
+      (rectangle (start -15 7.62) (end 15 -7.62)
+        (stroke (width 0.254) (type default)) (fill (type background))
+      )
+    )
+  )
 )

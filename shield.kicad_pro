@@ -149,13 +149,13 @@
         "min_microvia_diameter": 0.2,
         "min_microvia_drill": 0.1,
         "min_resolved_spokes": 2,
-        "min_silk_clearance": 0.0,
-        "min_text_height": 0.8,
-        "min_text_thickness": 0.08,
+        "min_silk_clearance": 0.15,
+        "min_text_height": 1.2,
+        "min_text_thickness": 0.1,
         "min_through_hole_diameter": 0.8,
-        "min_track_width": 1.0,
-        "min_via_annular_width": 0.6,
-        "min_via_diameter": 2.0,
+        "min_track_width": 0.15,
+        "min_via_annular_width": 0.15,
+        "min_via_diameter": 0.6,
         "solder_mask_to_copper_clearance": 0.0,
         "use_height_for_length_calcs": true
       },
@@ -508,39 +508,99 @@
   "net_settings": {
     "classes": [
       {
-        "clearance": 0.3,
+        "clearance": 0.2,
         "name": "Default",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": 2147483647,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 1.0,
+        "track_width": 0.25,
         "tuning_profile": "",
-        "via_diameter": 2.0,
-        "via_drill": 0.8,
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
+        "wire_width": 8
+      },
+      {
+        "clearance": 0.2,
+        "name": "Alim",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.5,
+        "tuning_profile": "",
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
         "wire_width": 8
       },
       {
         "clearance": 0.3,
+        "name": "Analogique",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 1,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.25,
+        "tuning_profile": "",
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
+        "wire_width": 8
+      },
+      {
+        "clearance": 3.1,
+        "name": "HT",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 2,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 2.0,
+        "tuning_profile": "",
+        "via_diameter": 1.8,
+        "via_drill": 0.8,
+        "wire_width": 8
+      },
+      {
+        "clearance": 0.2,
         "name": "Isole_Primaire",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 2147483647,
+        "priority": 3,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 1.0,
+        "track_width": 0.5,
         "tuning_profile": "",
-        "via_diameter": 2.0,
-        "via_drill": 0.8,
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
+        "wire_width": 8
+      },
+      {
+        "clearance": 0.2,
+        "name": "Isole_Secondaire",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 4,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.5,
+        "tuning_profile": "",
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
         "wire_width": 8
       },
       {
         "clearance": 0.3,
-        "name": "Isole_Secondaire",
+        "name": "Puissance",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "priority": 2147483647,
+        "priority": 5,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 1.0,
         "tuning_profile": "",
-        "via_diameter": 2.0,
-        "via_drill": 0.8,
+        "via_diameter": 1.0,
+        "via_drill": 0.6,
+        "wire_width": 8
+      },
+      {
+        "clearance": 0.3,
+        "name": "Rapide",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 6,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.25,
+        "tuning_profile": "",
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
         "wire_width": 8
       }
     ],
@@ -585,6 +645,234 @@
       {
         "netclass": "Isole_Secondaire",
         "pattern": "GND"
+      },
+      {
+        "netclass": "Isole_Primaire",
+        "pattern": "U2_VINF"
+      },
+      {
+        "netclass": "Isole_Primaire",
+        "pattern": "U2_GNDF"
+      },
+      {
+        "netclass": "Isole_Primaire",
+        "pattern": "U3_VINF"
+      },
+      {
+        "netclass": "Isole_Primaire",
+        "pattern": "U3_GNDF"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "PWM1_A"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "PWM1_A_MCU"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "PWM1_B"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "PWM1_B_MCU"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "PWM2_A"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "PWM2_A_MCU"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "PWM2_B"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "PWM2_B_MCU"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "PWM3_A"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "PWM3_A_MCU"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "PWM3_B"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "PWM3_B_MCU"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "PWM4_A"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "PWM4_A_MCU"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "PWM4_B"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "PWM4_B_MCU"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "SPI_CLK"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "SPI_SIMO"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "SPI_SOMI"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "SPI_STE"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "OLED_SCK"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "OLED_MOSI"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "OLED_CS"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "ADC_8"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "ADC_9"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "ADC_10"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "ADC_11"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "ADC_12"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "VREF_ADC"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "VREF_ADC_MCU"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "VREFLO_SENSE"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "VREFLO_SENSE_MCU"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "I_shunt1"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "I_shunt1_MCU"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "I_shunt2"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "I_shunt2_MCU"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "I_SHUNT1_CMP"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "I_SHUNT2_CMP"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "Iin"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "Iin_MCU"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "Iout"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "Iout_MCU"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "V1"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "V1_MCU"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "Temp1"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "Temp1_MCU"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "Temp2"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "Temp2_MCU"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "Vin"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "Vin_MCU"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "Vout"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "Vout_MCU"
+      },
+      {
+        "netclass": "Alim",
+        "pattern": "3V3_PROT"
       }
     ]
   },
@@ -729,7 +1017,7 @@
         "uuid": "3e79b37e-13ed-4a43-b954-3b2f3b716c2c"
       }
     ],
-    "used_designators": "C1-23,C101-146,D1-56,R1-23,R101-146,J1-9,J11-12,JP1-3,U1-3",
+    "used_designators": "C1-23,C42,C101-146,D1-56,R1-23,R101-146,J1-9,J11-12,JP1-3,U1-3",
     "variants": []
   },
   "sheets": [

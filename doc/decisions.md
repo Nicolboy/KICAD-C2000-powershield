@@ -422,6 +422,36 @@ datasheet avant fabrication.
 
 ---
 
+## 16. Filtre EMC NCM3S1205MC : étage d'entrée posé, étage de sortie volontairement omis
+
+**Décision.** Sur `dc.kicad_sch`, ajout de l'étage d'entrée du filtre EMC
+recommandé par le datasheet (p.8, « EMC Filtering and Spectra ») pour
+chaque instance : L1/L2 (22 µH, série sur VIN_PWR/retour) + C26/C27
+(22 µF) + C28 (220 pF) pour U2, L3/L4 + C31/C32 + C33 pour U3 — composants
+caractérisés dans `composants-datasheets/data/shield-power/ncm3s1205mc.yaml`
+(`recommended_components`). L'étage de sortie (C4/C5, 470 pF, un par
+instance soit C29/C30 et C34/C35) a été posé puis retiré : ni ces deux
+paires de composants ni leurs labels ne figurent dans le schéma final.
+
+**Pourquoi.** Le NCM3S1205MC est choisi spécifiquement pour sa faible
+capacité d'entrée/sortie — paramètre déterminant pour une alimentation
+isolée destinée à des lignes qui traversent la barrière. Rajouter 470 pF
+en parallèle côté sortie va à l'encontre de ce choix, même si ces deux
+condensateurs ne pontent pas la barrière primaire/secondaire (vérifié par
+coordonnées : C29/C30 sont posés entre `5V_ISO` et `GND`, C34/C35 entre
+`5V_NUM` et `GND`, tous deux cote secondaire uniquement — donc sans effet
+sur la capacité primaire/secondaire proprement dite, mais la décision
+porte sur le principe, pas seulement sur la topologie).
+
+**Ce qui casse.** Le datasheet qualifie ces 470 pF comme faisant partie du
+filtre EMC nécessaire pour la conformité EN 55032 Classe B — leur absence
+n'a pas été compensée par une autre topologie. Si une non-conformité EMC
+apparaît en essai, ce point est le premier candidat à rouvrir, en
+réévaluant alors le compromis capacité/conformité plutôt qu'en les
+rajoutant par défaut.
+
+---
+
 ## Points ouverts — ne pas combler par une estimation
 
 Ces valeurs manquent. Elles demandent une lecture de datasheet ou une mesure,

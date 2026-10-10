@@ -129,13 +129,17 @@ inconnue tant qu'aucune carte fille n'est spécifiée.
 Écran `ER-OLEDM032-1B` (SPI 4 fils), nappe 16 voies vers une embase IDC
 2 × 8 à sertir, détrompeur de série — même famille de connecteur que les
 quatre nappes DC/DC, taille en dessous (2×8 au lieu de 2×10, le module
-n'a que 16 broches). Alimenté avec l'ESP32 (voir § Alimentation ci-dessus),
-pas sur un rail dédié.
+n'a que 16 broches). Alimenté par la sortie 3,3V du LDO de la carte ESP32
+(`3V3_ESP32`, J1 broche 1 — `doc/brochage-esp32.csv` : "ne pas alimenter
+depuis le shield", le shield ne fait que tirer du courant dessus), pas par
+le rail 5V du shield : tous les signaux échangés (SCK/MOSI/CS/DC/RST)
+sont en logique 3,3V, le VCC de l'écran doit être au même niveau pour que
+les seuils d'entrée restent cohérents.
 
 | Broche | Signal OLED | Net / GPIO ESP32 |
 |---|---|---|
 | 1 | VSS | GND |
-| 2 | VCC | 5V_ESP32 |
+| 2 | VCC | 3V3_ESP32 → J1-1 (sortie LDO 3,3V de la carte ESP32) |
 | 3 | — | NC (mode I2C/parallèle, inutilisé en SPI) |
 | 4 | CLK | OLED_SCK → GPIO6 (FSPICLK natif) |
 | 5 | MOSI | OLED_MOSI → GPIO7 (FSPID natif) |

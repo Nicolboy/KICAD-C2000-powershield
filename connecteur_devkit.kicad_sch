@@ -1168,6 +1168,82 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "C2000_Devkit_Connectors:ER-OLEDM032-1"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "U"
+				(at -18 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify right)
+				)
+			)
+			(property "Value" "ER-OLEDM032-1"
+				(at 18 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "lib:ER-OLEDM032-1"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "datasheets/display/ER-OLEDM032-1_Series_Datasheet.pdf"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Ecran OLED SPI ER-OLEDM032-1, 3.2in 256x64, connecte par nappe a J10 (OLED_SPI_2x8). Symbole sans broche - suivi BOM/3D/mecanique uniquement, aucun net."
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "ER-OLEDM032-1_0_1"
+				(rectangle
+					(start -15 7.62)
+					(end 15 -7.62)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "C2000_Devkit_Connectors:OLED_SPI_2x8"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -1522,6 +1598,183 @@
 						)
 					)
 					(number "16"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Device:C_Polarized"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.254)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "C"
+				(at 0.635 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "C_Polarized"
+				(at 0.635 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at 0.9652 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Polarized capacitor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "cap capacitor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "CP_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "C_Polarized_0_1"
+				(rectangle
+					(start -2.286 0.508)
+					(end 2.286 1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.778 2.286) (xy -0.762 2.286)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 2.794) (xy -1.27 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start 2.286 -0.508)
+					(end -2.286 -1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+			)
+			(symbol "C_Polarized_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 2.794)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 2.794)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2537,6 +2790,30 @@
 			)
 		)
 	)
+	(global_label "3V3_ESP32"
+		(shape bidirectional)
+		(at 358.14 22.352 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "2d3465b7-3f37-43ca-9afd-80779f3f437d")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 343.5208 22.352 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
 	(global_label "5V_ESP32"
 		(shape bidirectional)
 		(at 358.14 55.372 180)
@@ -2721,7 +2998,7 @@
 			)
 		)
 	)
-	(global_label "5V_ESP32"
+	(global_label "3V3_ESP32"
 		(shape bidirectional)
 		(at 47.14 232.22 180)
 		(fields_autoplaced yes)
@@ -2733,7 +3010,7 @@
 		)
 		(uuid "4ce8c048-d3a9-4eb7-bfcd-17c7d51972e5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 47.14 232.22 0)
+			(at 32.5208 232.22 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2741,6 +3018,7 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 	)
@@ -3089,6 +3367,30 @@
 			)
 		)
 	)
+	(global_label "5V_ESP32"
+		(shape input)
+		(at 339.852 79.248 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "6be86f3b-2e6c-45cb-ba2e-c6ffda7c30f0")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 339.852 66.9496 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
 	(global_label "GND"
 		(shape bidirectional)
 		(at 358.14 134.112 180)
@@ -3434,6 +3736,30 @@
 			)
 		)
 	)
+	(global_label "GND"
+		(shape input)
+		(at 100.838 114.808 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "927fae96-d9f3-47cf-954f-b91ac1bcdf28")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 100.838 121.6637 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
 	(global_label "OLED_MOSI"
 		(shape bidirectional)
 		(at 47.14 239.84 180)
@@ -3523,6 +3849,30 @@
 				(font
 					(size 1.27 1.27)
 				)
+			)
+		)
+	)
+	(global_label "GND"
+		(shape input)
+		(at 339.852 86.868 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "a6fedbe0-22f3-45b9-839b-f956ebbeba49")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 339.852 93.7237 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 	)
@@ -3963,6 +4313,30 @@
 			)
 		)
 	)
+	(global_label "5V_C2000"
+		(shape input)
+		(at 100.838 107.188 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "e4c25a15-2783-4906-9641-19bda10b5deb")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 100.838 94.8291 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
 	(global_label "UART_RX"
 		(shape bidirectional)
 		(at 45.974 154.94 180)
@@ -4125,6 +4499,168 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C_Polarized")
+		(at 100.838 110.998 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "37c32eed-56ec-4876-af0a-5e07df2393a2")
+		(property "Reference" "C36"
+			(at 98.838 110.998 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "100uF"
+			(at 102.838 110.998 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_1210_3225Metric"
+			(at 100.838 110.998 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 100.838 110.998 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 100.838 110.998 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "f5b35a40-1135-49fd-a8fb-38d4c6180ebf")
+		)
+		(pin "2"
+			(uuid "42b857af-b337-4bfe-bef3-280302d8bc3f")
+		)
+		(instances
+			(project "shield"
+				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/8ca9a22c-ce32-47b8-9bd4-8f1e44cb7b31"
+					(reference "C36")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Polarized")
+		(at 339.852 83.058 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "4228fcee-27ce-4399-8f6e-26fdbda29724")
+		(property "Reference" "C37"
+			(at 337.852 83.058 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "100uF"
+			(at 341.852 83.058 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_1210_3225Metric"
+			(at 339.852 83.058 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 339.852 83.058 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 339.852 83.058 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "05b33f26-6acd-480c-ab4a-551749a4ec1b")
+		)
+		(pin "2"
+			(uuid "2dac140f-f9e6-4dc8-b190-0a65db319b1b")
+		)
+		(instances
+			(project "shield"
+				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/8ca9a22c-ce32-47b8-9bd4-8f1e44cb7b31"
+					(reference "C37")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "C2000_Devkit_Connectors:DEVKIT_C2000_ROW_A")
 		(at 68.326 62.23 0)
 		(unit 1)
@@ -4158,7 +4694,7 @@
 			)
 		)
 		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x28_P2.54mm_Vertical"
-			(at 68.326 62.23 0)
+			(at 61.468 102.362 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4314,7 +4850,7 @@
 			)
 		)
 		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x16_P2.54mm_Vertical"
-			(at 381 42.672 0)
+			(at 374.396 16.51 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4434,7 +4970,7 @@
 			)
 		)
 		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x16_P2.54mm_Vertical"
-			(at 381 118.872 0)
+			(at 374.396 151.384 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4521,6 +5057,81 @@
 		)
 	)
 	(symbol
+		(lib_id "C2000_Devkit_Connectors:ER-OLEDM032-1")
+		(at 133.35 248.666 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "9d580853-b22e-4089-92cd-2100173d2c1c")
+		(property "Reference" "U4"
+			(at 125.35 248.666 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "ER-OLEDM032-1"
+			(at 141.35 248.666 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "lib:ER-OLEDM032-1"
+			(at 133.35 248.666 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "datasheets/display/ER-OLEDM032-1_Series_Datasheet.pdf"
+			(at 133.35 248.666 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Ecran OLED SPI ER-OLEDM032-1, connecte par nappe a J10 - suivi BOM/3D uniquement"
+			(at 133.35 248.666 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(instances
+			(project "shield"
+				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/8ca9a22c-ce32-47b8-9bd4-8f1e44cb7b31"
+					(reference "U4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "C2000_Devkit_Connectors:DEVKIT_C2000_ROW_B")
 		(at 68.834 152.4 0)
 		(unit 1)
@@ -4554,7 +5165,7 @@
 			)
 		)
 		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x28_P2.54mm_Vertical"
-			(at 68.834 152.4 0)
+			(at 70.104 193.04 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4710,7 +5321,7 @@
 			)
 		)
 		(property "Footprint" "Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical"
-			(at 94.488 250.698 0)
+			(at 43.688 218.694 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4732,7 +5343,7 @@
 			)
 		)
 		(property "Description" "Embase nappe ecran OLED SPI (ER-OLEDM032-1B), IDC 2x8 16 broches, detrompee"
-			(at 92.456 265.684 0)
+			(at 27.94 276.606 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
