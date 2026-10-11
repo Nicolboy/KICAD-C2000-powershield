@@ -1017,7 +1017,7 @@
         "uuid": "3e79b37e-13ed-4a43-b954-3b2f3b716c2c"
       }
     ],
-    "used_designators": "C1-23,C42,C101-146,D1-56,R1-23,R101-146,J1-9,J11-12,JP1-3,U1-3",
+    "used_designators": "C1-23,C42,C101-146,D1-56,J1-9,J11-12,R1-23,R101-146,JP1-3,U1-3",
     "variants": []
   },
   "sheets": [

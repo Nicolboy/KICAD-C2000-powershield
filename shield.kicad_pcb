@@ -1205,6 +1205,160 @@
 			)
 		)
 	)
+	(footprint "Inductor_SMD:L_0805_2012Metric"
+		(layer "F.Cu")
+		(uuid "2d5ce59e-e673-445b-a7fa-c017359fe478")
+		(at 263.25 261 180)
+		(descr "Inductor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 80, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
+		(tags "inductor")
+		(property "Reference" "L1"
+			(at 0 -1.55 0)
+			(layer "F.SilkS")
+			(uuid "1bcf3a11-e94e-4e3d-9a9f-f90938e46d5c")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Value" "22uH"
+			(at 0 1.55 0)
+			(layer "F.Fab")
+			(uuid "711b6302-922d-4a0c-b5c6-a1795b5d8671")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "7ace85cb-f92d-4cbf-a3f0-89c5e0885e63")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "5b89a023-bb4f-4c1f-accf-7ed2f77e0152")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "aa85cd76-0b90-44e7-8f94-121221e57bac")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property ki_fp_filters "Choke_* *Coil* Inductor_* L_*")
+		(path "/abe5d1bc-da16-43aa-81b9-daaf0e685605/9ab8ec55-8060-46e8-9ae8-d6d9e5b26880")
+		(sheetname "/DC/")
+		(sheetfile "dc.kicad_sch")
+		(attr smd)
+		(duplicate_pad_numbers_are_jumpers no)
+		(fp_line
+			(start -0.399622 0.56)
+			(end 0.399622 0.56)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "de5e8939-a9eb-4b1b-ae9f-1a39965d9d41")
+		)
+		(fp_line
+			(start -0.399622 -0.56)
+			(end 0.399622 -0.56)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "e3821e6a-8d44-43e9-a3f7-2cd408f76107")
+		)
+		(fp_rect
+			(start -1.75 0.85)
+			(end 1.75 -0.85)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.CrtYd")
+			(uuid "b2be99af-af7f-455a-88e4-d44709428f58")
+		)
+		(fp_rect
+			(start -1 0.45)
+			(end 1 -0.45)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "83f4e78e-d154-441b-b983-5bf2df6df2e2")
+		)
+		(fp_text user "${REFERENCE}"
+			(at 0 0 0)
+			(layer "F.Fab")
+			(uuid "f88cead7-449c-49a2-ade5-008167f63ac7")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+			)
+		)
+		(pad "1" smd roundrect
+			(at -1.0625 0 180)
+			(size 0.875 1.2)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.25)
+			(net "VIN_PWR")
+			(pinfunction "1_1")
+			(pintype "passive")
+			(uuid "9c9e19bc-5fb7-488f-bc14-249a56fba0a1")
+		)
+		(pad "2" smd roundrect
+			(at 1.0625 0 180)
+			(size 0.875 1.2)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.25)
+			(net "U2_VINF")
+			(pinfunction "2_2")
+			(pintype "passive")
+			(uuid "2a8b2581-9021-4ff4-9b4f-1fdf35c0bbde")
+		)
+		(embedded_fonts no)
+		(model "${KICAD10_3DMODEL_DIR}/Inductor_SMD.3dshapes/L_0805_2012Metric.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
+	)
 	(footprint "Capacitor_SMD:C_0805_2012Metric"
 		(layer "F.Cu")
 		(uuid "32e9f4ca-a4ab-4891-83d3-465fdb52c495")
@@ -13014,7 +13168,7 @@
 	(footprint "Capacitor_SMD:C_0805_2012Metric"
 		(layer "B.Cu")
 		(uuid "28fc2467-8c51-41dc-8b93-bb9b3a5205e8")
-		(at 252.0125 88.55)
+		(at 250.95 87.6)
 		(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing)")
 		(tags "capacitor")
 		(property "Reference" "C3"
@@ -13843,166 +13997,6 @@
 			(uuid "ec4ebc2b-193d-4be4-a8e4-976f40d78481")
 		)
 		(embedded_fonts no)
-	)
-	(footprint "Inductor_SMD:L_0805_2012Metric"
-		(layer "B.Cu")
-		(uuid "2d5ce59e-e673-445b-a7fa-c017359fe478")
-		(at 272.9375 263.575)
-		(descr "Inductor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 80, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
-		(tags "inductor")
-		(property "Reference" "L1"
-			(at 0 1.55 0)
-			(layer "B.SilkS")
-			(uuid "1bcf3a11-e94e-4e3d-9a9f-f90938e46d5c")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Value" "22uH"
-			(at 0 -1.55 0)
-			(layer "B.Fab")
-			(uuid "711b6302-922d-4a0c-b5c6-a1795b5d8671")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "7ace85cb-f92d-4cbf-a3f0-89c5e0885e63")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(layer "B.Fab")
-			(hide yes)
-			(uuid "5b89a023-bb4f-4c1f-accf-7ed2f77e0152")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify mirror)
-			)
-		)
-		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 0)
-			(layer "B.SilkS")
-			(hide yes)
-			(uuid "aa85cd76-0b90-44e7-8f94-121221e57bac")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-				(justify mirror)
-			)
-		)
-		(property ki_fp_filters "Choke_* *Coil* Inductor_* L_*")
-		(path "/abe5d1bc-da16-43aa-81b9-daaf0e685605/9ab8ec55-8060-46e8-9ae8-d6d9e5b26880")
-		(sheetname "/DC/")
-		(sheetfile "dc.kicad_sch")
-		(attr smd)
-		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -0.399622 -0.56)
-			(end 0.399622 -0.56)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "B.SilkS")
-			(uuid "de5e8939-a9eb-4b1b-ae9f-1a39965d9d41")
-		)
-		(fp_line
-			(start -0.399622 0.56)
-			(end 0.399622 0.56)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "B.SilkS")
-			(uuid "e3821e6a-8d44-43e9-a3f7-2cd408f76107")
-		)
-		(fp_rect
-			(start -1.75 -0.85)
-			(end 1.75 0.85)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(fill no)
-			(layer "B.CrtYd")
-			(uuid "b2be99af-af7f-455a-88e4-d44709428f58")
-		)
-		(fp_rect
-			(start -1 -0.45)
-			(end 1 0.45)
-			(stroke
-				(width 0.1)
-				(type solid)
-			)
-			(fill no)
-			(layer "B.Fab")
-			(uuid "83f4e78e-d154-441b-b983-5bf2df6df2e2")
-		)
-		(fp_text user "${REFERENCE}"
-			(at 0 0 0)
-			(layer "B.Fab")
-			(uuid "f88cead7-449c-49a2-ade5-008167f63ac7")
-			(effects
-				(font
-					(size 0.5 0.5)
-					(thickness 0.08)
-				)
-				(justify mirror)
-			)
-		)
-		(pad "1" smd roundrect
-			(at -1.0625 0)
-			(size 0.875 1.2)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(roundrect_rratio 0.25)
-			(net "VIN_PWR")
-			(pinfunction "1_1")
-			(pintype "passive")
-			(uuid "9c9e19bc-5fb7-488f-bc14-249a56fba0a1")
-		)
-		(pad "2" smd roundrect
-			(at 1.0625 0)
-			(size 0.875 1.2)
-			(layers "B.Cu" "B.Mask" "B.Paste")
-			(roundrect_rratio 0.25)
-			(net "U2_VINF")
-			(pinfunction "2_2")
-			(pintype "passive")
-			(uuid "2a8b2581-9021-4ff4-9b4f-1fdf35c0bbde")
-		)
-		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Inductor_SMD.3dshapes/L_0805_2012Metric.step"
-			(offset
-				(xyz 0 0 0)
-			)
-			(scale
-				(xyz 1 1 1)
-			)
-			(rotate
-				(xyz 0 0 0)
-			)
-		)
 	)
 	(footprint "Resistor_SMD:R_0805_2012Metric"
 		(layer "B.Cu")
@@ -22090,7 +22084,7 @@
 	(footprint "Package_TO_SOT_SMD:SOT-23"
 		(layer "B.Cu")
 		(uuid "8edf4b1f-7810-48c9-91a8-a7862f98108e")
-		(at 252 85)
+		(at 250.9375 84.05)
 		(descr "SOT, 3 Pin (JEDEC TO-236 Var AB https://www.jedec.org/document_search?search_api_views_fulltext=TO-236)")
 		(tags "SOT TO_SOT_SMD")
 		(property "Reference" "D4"
@@ -22765,7 +22759,7 @@
 	(footprint "Resistor_SMD:R_0805_2012Metric"
 		(layer "B.Cu")
 		(uuid "93b1ae9e-9327-4721-a305-1b7a95185c11")
-		(at 256.0625 85.05 180)
+		(at 255 84.1 180)
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R3"
@@ -26558,8 +26552,8 @@
 		(uuid "55065c33-2a4b-4ce0-b094-8c77201f0f60")
 	)
 	(segment
-		(start 251.0625 85.95)
-		(end 251.0625 88.55)
+		(start 250 85)
+		(end 250 87.6)
 		(width 0.5)
 		(layer "B.Cu")
 		(net "GND")
@@ -26982,32 +26976,32 @@
 		(uuid "f82c65a4-0082-46fa-be45-f57dfd11a788")
 	)
 	(segment
-		(start 255.15 85.05)
-		(end 252.9875 85.05)
+		(start 254.0875 84.1)
+		(end 251.925 84.1)
 		(width 0.25)
 		(layer "B.Cu")
 		(net "Vin_MCU")
 		(uuid "294481c2-7eb9-4c26-9609-cc9631af64f3")
 	)
 	(segment
-		(start 252.9625 88.55)
-		(end 252.9625 85.025)
+		(start 251.9 87.6)
+		(end 251.9 84.075)
 		(width 0.25)
 		(layer "B.Cu")
 		(net "Vin_MCU")
 		(uuid "320f8267-ceb0-42bf-b77d-1cccaa2a6b1d")
 	)
 	(segment
-		(start 252.9625 85.025)
-		(end 252.9375 85)
+		(start 251.9 84.075)
+		(end 251.875 84.05)
 		(width 0.25)
 		(layer "B.Cu")
 		(net "Vin_MCU")
 		(uuid "587d766c-bfcb-42df-a924-e9041bfeb7f2")
 	)
 	(segment
-		(start 252.9875 85.05)
-		(end 252.9625 85.025)
+		(start 251.925 84.1)
+		(end 251.9 84.075)
 		(width 0.25)
 		(layer "B.Cu")
 		(net "Vin_MCU")
