@@ -452,6 +452,104 @@ rajoutant par défaut.
 
 ---
 
+## 17. Routage des quatre nappes, reséquencement signal/masse, et deux nappes supplémentaires (GPIO-2, COM)
+
+**Décision.** Les connecteurs J1-J4 (ADC-1, ADC-2, PWM, GPIO) n'avaient
+jusqu'ici que leurs broches d'alimentation câblées (`3V3_ISO`/`GND` —
+vérifié : exactement 40 `global_label` dans `connecteurs_nappe.kicad_sch`,
+10 par connecteur, zéro signal réel). Cette décision couvre trois choses à
+la fois : (a) le câblage des signaux restés en souffrance depuis la
+decision #9, (b) un changement de convention de position qui gagne une
+broche signal par connecteur sans changer sa taille, (c) l'ajout de deux
+connecteurs pour couvrir les besoins génériques (logique de réserve, bus
+de communication) annoncés par l'utilisateur mais absents des quatre
+nappes d'origine.
+
+**(a) Câblage.** Chaque broche signal de J1-J4 reçoit maintenant le
+`global_label` que la documentation promettait depuis la decision #13
+(`Vin`, `PWM1_A`, `Stage1_EN`, etc.) — toujours aucune ligne de wire,
+uniquement des labels posés aux coordonnées réelles de chaque broche
+(vérifié par `kicad-cli sch erc`, piège d'inversion d'axe Y de la decision
+#14 surveillé).
+
+**(b) Reséquencement signal (impair) / masse (pair), à partir de la
+broche 3.** Avant : position 1 `3V3_ISO`, 2 `GND`, 3 `GND` (deuxième masse
+consécutive), puis alternance à partir de 4 — 8 emplacements signal
+exploitables sur 20 broches, les positions 19/20 jamais définies. Après :
+position 1 `3V3_ISO`, 2 `GND`, puis strictement signal sur les impairs (3,
+5, 7… 19) et masse sur les pairs (4, 6… 20) — 9 emplacements signal, les
+20 broches toutes définies. Exception volontaire, déjà actée (decision
+#3) : la paire de référence `VREF_ADC`/`VREFLO_SENSE` (ADC-2) reste
+adjacente, en 7/8, la position 8 cédant sa masse pour cette seule paire.
+
+**Pourquoi reséquencer plutôt qu'agrandir le connecteur.** Mon premier jet
+proposait un connecteur 2×13 (26 voies, palier standard suivant) pour
+donner de la marge à GPIO et à un nouveau connecteur de bus. Écarté par
+l'utilisateur : pas de 2×13 en stock, tout doit rester en 2×10. Le
+reséquencement donne la même marge (une broche signal de plus par
+connecteur) sans changer de référence de connecteur.
+
+**(c) Deux connecteurs de plus plutôt qu'un connecteur agrandi : GPIO-1 /
+GPIO-2, et COM.** But générique annoncé par l'utilisateur : le devkit+
+shield doit pouvoir piloter n'importe quelle carte fille future (PWM,
+logique, ADC, bus I2C/SPI/UART/CAN/Modbus), pas seulement les deux cartes
+connues aujourd'hui (convertisseur 0-500V, `alim-flyback-filament`). Deux
+besoins non couverts par les quatre nappes d'origine :
+
+- **Logique de réserve.** GPIO (renommé GPIO-1) est désormais plein — 8
+  signaux d'origine + `CLB_OUT` (broche B27 du connecteur devkit,
+  orpheline jusqu'ici, aucune nappe ne l'exportait) = 9 emplacements sur
+  9. Une carte future dont le besoin en E/S logique ne ressemble à rien
+  d'anticipé ici n'a nulle part où se brancher sans **GPIO-2**, un
+  sixième connecteur 2×10 entièrement en réserve.
+- **Bus de communication.** `UART_TX`/`RX`, `SPI_CLK`/`SIMO`/`SOMI`/`STE`,
+  `CAN_TX`/`RX` existent déjà comme `global_label` sur le connecteur
+  devkit (`connecteur_devkit.kicad_sch`) mais n'étaient câblés sur aucune
+  nappe — **COM**, cinquième connecteur neuf, les expose en logique 3,3V
+  brute (8 signaux, 1 réserve). Les transceivers CAN et RS-485/Modbus
+  restent sur la carte fille qui en a besoin (décision de l'utilisateur,
+  cohérente avec la decision #13 : chaque carte porte l'isolation que *sa*
+  fonction exige) — le shield ne route jamais de différentiel.
+
+**Une carte fille ne peuple que les connecteurs dont elle a besoin.**
+Précision explicite de l'utilisateur : les six connecteurs ne sont pas un
+paquet tout-ou-rien. Exemple immédiat : le convertisseur 0-500V utilise
+ADC-1, ADC-2, PWM en entier et seulement GPIO-1 — ni GPIO-2, ni COM. Un
+connecteur non peuplé côté carte fille ne coûte rien côté shield.
+
+**Désignateurs J13/J14, pas J5/J6.** `used_designators` dans
+`shield.kicad_pro` réservait déjà J1-J9 et J11-J12 (connecteurs devkit,
+ESP32, OLED J10, alimentation) avant même de toucher à ce fichier —
+confirmé par une recherche `property "Reference" "J\d+"` sur tous les
+schémas du projet. GPIO-2 et COM prennent J13 et J14 pour ne pas entrer en
+collision avec un composant existant ailleurs dans le projet.
+
+**Bibliothèque externe synchronisée.** `lib/C2000_Devkit_Connectors.kicad_sym`
+mis à jour en parallèle de la copie embarquée dans
+`connecteurs_nappe.kicad_sch` (symboles `NAPPE_ADC1`/`ADC2`/`PWM` avec le
+nouveau séquencement, `NAPPE_GPIO` renommé `NAPPE_GPIO1`, `NAPPE_GPIO2` et
+`NAPPE_COM` ajoutés) — sinon `kicad-cli sch erc` lève `lib_symbol_issues`
+(symbole introuvable en bibliothèque), et toute « Update Symbols from
+Library » future écraserait silencieusement le travail de cette décision.
+
+**Ce qui casse.** Reproduire le reséquencement sur un connecteur qui
+n'existe pas encore sans relire cette décision referait l'erreur
+d'origine (masse en double avant le premier signal). Ajouter un signal à
+GPIO-1 ou à COM sans vérifier qu'une réserve existe déjà (`réserve
+GPIO2-*`/`réserve COM-1`) revalide une nouvelle révision du connecteur au
+lieu de consommer la marge déjà prévue.
+
+**Point relevé, non résolu ici — hors périmètre.** `Stage1_EN`,
+`Stage2_EN`, `HV_EN` et `Discharge` (GPIO-1) ne sont reliés à aucune
+broche du connecteur devkit : ces noms viennent de l'ancien firmware
+TMS320F28027 (GPIO16/17/32/5), et la nouvelle carte de conversion 0-500V
+— nouveau MCU, projet séparé — n'a pas encore choisi ses broches. ERC :
+`isolated_pin_label` sur les quatre, attendu, à lever quand ce choix sera
+fait. De même, les réserves ADC (`ADC_8` à `ADC_12` côté connecteur
+devkit) restent elles aussi isolées, un gap pré-existant à cette session.
+
+---
+
 ## Points ouverts — ne pas combler par une estimation
 
 Ces valeurs manquent. Elles demandent une lecture de datasheet ou une mesure,

@@ -744,6 +744,22 @@
       },
       {
         "netclass": "Rapide",
+        "pattern": "UART_TX"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "UART_RX"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "CAN_TX"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "CAN_RX"
+      },
+      {
+        "netclass": "Rapide",
         "pattern": "OLED_SCK"
       },
       {
