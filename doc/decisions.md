@@ -870,6 +870,27 @@ l'utilisateur à l'ouverture. Taille notable pour un dépôt git (16,6 Mo,
 premier modèle 3D custom de ce projet) : signalé, pas d'action prise sans
 demande explicite.
 
+**(d) Bug trouvé en cherchant pourquoi certains trios n'avaient pas de
+rendu 3D** (signalé par l'utilisateur : groupe D4/R3/C3 visible, groupe
+D9/R7/C7 absent). Vérifié sur les 158 empreintes de `shield.kicad_pcb` :
+**97 en manquaient**, toutes issues des générations en masse par script de
+ce projet (23 trios `protections_devkit*`, 11 trios `protection_nappe`
+decision #19, et même `R35`-`R38` de la decision #20 alors que leurs
+`D36`-`D39`/`C55`-`C58` jumeaux en avaient) — les seules rescapées : `R1`-
+`R3`/`C1`-`C2`/`C24`-`C43`/`D1`-`D4` (posées ou importées avant ces
+scripts). Cause : le nœud `(model ...)` n'était pas systématiquement
+recopié par les scripts de duplication utilisés au fil des sessions
+précédentes. Corrigé en une passe : les 97 empreintes récupèrent le nœud
+standard de leur type (`${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/
+SOT-23.step`, `.../Resistor_SMD.3dshapes/R_0805_2012Metric.step`,
+`.../Capacitor_SMD.3dshapes/C_0805_2012Metric.step`, offset/scale/rotate à
+l'identité, repris des rescapés). `kicad-cli pcb drc` : 412 violations
+avant et après, identique (le modèle 3D ne participe à aucune règle DRC).
+Seule empreinte encore sans modèle : `U4` (`lib:ER-OLEDM032-1`, connecteur
+OLED custom) — même situation que NCM3S1205MC avant le point (c), pas de
+modèle standard disponible ; pas traité ici, hors périmètre de cette
+decision.
+
 ---
 
 ## Points ouverts — ne pas combler par une estimation
