@@ -1375,7 +1375,6 @@
 			)
 		)
 	)
-	
 	(global_label "3V3_ISO"
 		(shape input)
 		(at 68 148.19 90)
@@ -1399,7 +1398,6 @@
 			)
 		)
 	)
-	
 	(global_label "GND_PRI"
 		(shape input)
 		(at 214.122 161.29 90)
@@ -1446,8 +1444,6 @@
 			)
 		)
 	)
-	
-	
 	(global_label "U2_VINF"
 		(shape input)
 		(at 200 53.81 270)
@@ -1566,7 +1562,6 @@
 			)
 		)
 	)
-	
 	(global_label "VIN_PWR"
 		(shape input)
 		(at 59.944 38.608 180)
@@ -1732,7 +1727,6 @@
 			)
 		)
 	)
-	
 	(global_label "U2_GNDF"
 		(shape input)
 		(at 260 53.81 270)
@@ -1943,7 +1937,6 @@
 			)
 		)
 	)
-	
 	(global_label "U3_VINF"
 		(shape input)
 		(at 316.484 125.73 90)
@@ -2038,7 +2031,6 @@
 			)
 		)
 	)
-	
 	(global_label "U3_GNDF"
 		(shape input)
 		(at 230 133.81 270)
@@ -3088,8 +3080,6 @@
 			)
 		)
 	)
-
-
 	(symbol
 		(lib_id "Power_Parts:CONN_2PIN")
 		(at 169.672 107.188 0)
@@ -3491,7 +3481,6 @@
 			)
 		)
 	)
-
 	(symbol
 		(lib_id "Power_Parts:LDO_3PIN")
 		(at 55.88 136.652 0)
@@ -3652,7 +3641,6 @@
 			)
 		)
 	)
-
 	(symbol
 		(lib_id "Device:C")
 		(at 82 152 0)
