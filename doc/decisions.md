@@ -900,6 +900,71 @@ inchangé (412 violations, mêmes catégories).
 
 ---
 
+## 22. 45 footprints B.Cu gardaient leur sérigraphie/fab/courtyard sur la face avant (bug des mêmes scripts de duplication)
+
+**Décision.** Signalé par l'utilisateur (groupe D4/R3/C3 correct en vue 3D,
+groupe D9/R7/C7 — puis généralisé — absent/mal affiché). Vérifié sur les
+158 footprints : **45 montés en B.Cu portaient encore des éléments
+graphiques sur `F.SilkS`/`F.CrtYd`/`F.Fab`** au lieu de leurs équivalents
+`B.*` — mêmes 45 réfs que la decision #20/#19 (`D25`-`D39`, `R24`-`R38`,
+`C44`-`C58`). Deux sous-catégories : 32 avec corps sérigraphie + courtyard
++ contour fab non retournés du tout (copie brute de l'original F.Cu, ni
+couche ni coordonnées changées) ; 13 avec seulement une propriété cachée
+non-standard (`KiLib_Generator`, métadonnée de génération de footprint)
+oubliée sur `F.SilkS` — invisible à l'oeil (propriété masquée) mais
+révélatrice que même les passages "propres" de ce script ratent les
+champs hors de la liste standard Reference/Value/Datasheet/Description.
+Pastilles et modèle 3D déjà corrects dans les deux cas (uniquement
+cosmétique/documentaire, aucun impact électrique).
+
+**Diagnostic.** Comparé un trio cassé (`D25`) à un trio correct (`D36`,
+puis `R3`/`C3`) élément par élément : le transform correct est **négation
+du Y local** (coordonnées propres au footprint, centre = origine) +
+permutation de couche `F.*`→`B.*`, conforme à la recette déjà documentée
+dans `KICAD-EDITION-GROUPEE-KIPY.md` (miroir Y pour les pastilles,
+protobuf absolu pour les formes côté kipy — ici vérifié que la même règle
+de signe s'applique aux coordonnées locales du fichier texte). Script de
+correction + un vérificateur réutilisable
+(`check_mirrored_footprints.py`, racine du workspace) écrits et ajoutés à
+la méthode documentée — voir ce fichier pour le détail et pourquoi
+`lib_footprint_mismatch` seul ne suffit pas à détecter ce bug (bruit
+préexistant, ne dit pas QUEL élément diverge).
+
+**Incident pendant la correction.** KiCad était ouvert avec ce board
+chargé (confirmé via `kipy.KiCad()` connecté) pendant que le fichier était
+édité directement en texte — l'utilisateur travaillait en direct dans
+l'éditeur PCB. Plusieurs passages se sont fait écraser partiellement : les
+éléments de formes (338 éditions) ont fini par tenir, mais les 45
+propriétés cachées (`KiLib_Generator`) sont revenues à leur état
+`F.SilkS` d'origine à répétition, y compris après une correction vérifiée
+immédiatement correcte — cohérent avec la session KiCad live qui
+sauvegarde son état mémoire par-dessus l'édition texte. Résolu seulement
+une fois l'utilisateur confirmé avoir fermé son edition. **Règle retenue,
+ajoutée à `KICAD-EDITION-GROUPEE-KIPY.md`** : vérifier `kipy.KiCad()`
+avant d'éditer le texte d'un `.kicad_pcb` ; si connecté, ne pas s'acharner
+à re-corriger en boucle — demander à l'utilisateur de fermer le board
+avant de repasser, ou traiter via kipy plutôt que par le texte.
+
+**Vérification (une fois KiCad fermé, fichier stable).** `kicad-cli pcb
+drc`, comparé par type à la toute première ligne de base de cette session
+(412 violations hors `unconnected_items`, qui reste 313 inchangé de bout
+en bout) : `lib_footprint_mismatch` 36 → 0 (y compris `R35`-`R38`, qui
+faisaient partie du même bug — pas un bruit sans rapport comme
+supposé un temps pendant l'incident ci-dessus) ; `npth_inside_courtyard`
+2 → 0 et `courtyards_overlap` 2 → 1 (trous/courtyards mal positionnés
+par le miroir manquant, maintenant corrects) ; `silk_over_copper` 80 → 75
+(sérigraphie qui chevauchait du cuivre à sa mauvaise position d'origine) ;
+`silk_overlap` 41 → 55, soit 14 nouvelles entrées, toutes citant des réfs
+du lot corrigé (`D25`-`D35` contre `C44`-`C54`/`R29`/`R34`) —
+chevauchements réels de sérigraphie entre trios voisins, invisibles tant
+que les deux couches ne coïncidaient pas ; point ouvert de layout, pas
+traité ici. `clearance` (93) et `text_height` (158) strictement
+inchangés — confirme qu'aucun autre changement (routage, placement) ne
+s'est glissé dans le fichier final malgré l'incident de sauvegarde
+concurrente.
+
+---
+
 ## Points ouverts — ne pas combler par une estimation
 
 Ces valeurs manquent. Elles demandent une lecture de datasheet ou une mesure,
