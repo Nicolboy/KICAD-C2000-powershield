@@ -38,9 +38,13 @@ Ce reséquencement gagne **un emplacement signal de plus par connecteur** (9
 au lieu de 8) sans changer la taille du connecteur : les positions 19/20,
 jusque-là non définies, sont maintenant pleinement utilisées.
 
-Seule exception volontaire à l'alternance stricte : la paire de référence
-`VREF_ADC`/`VREFLO_SENSE` (ADC-2), qui reste adjacente (decision #3) en
-positions 7/8 — la position 8 cède sa masse pour cette seule paire.
+Aucune exception à l'alternance stricte. La paire de référence
+`VREF_ADC`/`VREFLO_SENSE` (ADC-2) avait initialement reçu une dérogation
+(positions 7/8 adjacentes, decision #3) ; supprimée en decision #19
+(deuxième erratum) — leur lien électrique passe par le suiveur
+rail-to-rail du shield, pas par leur proximité sur la nappe, donc
+l'adjacence n'apportait rien et sacrifiait le blindage masse d'une
+position par ailleurs utilisable par un signal `Rapide`.
 
 ### ADC-1 — mesures tension et température
 
@@ -59,32 +63,44 @@ sorte **deux fois** — un chemin direct, sans filtre, vers le comparateur.
 Les deux signaux manquants prennent la place de deux des six réserves
 (réserves : 6 → 4).
 
-**Erratum (même décision) : positions 9/11 écartées au profit de 11/13.**
-Le premier passage avait placé `I_SHUNT1_CMP` en position 9, juste après
-`VREFLO_SENSE` (position 8) — sans masse entre les deux. Position 8 est
-déjà l'exception à l'alternance stricte (paire de référence), donc la
-position 9 qui la suit hérite du même défaut de blindage, cette fois
-contre un signal `Rapide` (comparateur) non apparenté. Déplacé en
-positions 11/13, pleinement entourées de masse des deux côtés, comme
-`I_shunt1`/`I_shunt2` en 3/5. Position 9 redevient réserve.
+**Deuxième erratum (même décision) : l'exception d'adjacence 7/8
+supprimée, tout le connecteur repasse en alternance stricte.** Le
+premier passage gardait `VREF_ADC`/`VREFLO_SENSE` adjacents en 7/8 (une
+exception à l'alternance, héritée de la decision #3) et plaçait
+`I_SHUNT1_CMP` juste derrière en position 9 — sans masse entre les deux,
+un signal `Rapide` (comparateur, fronts rapides) collé à une référence
+analogique précise. Plutôt que de recaser seulement `I_SHUNT1_CMP`/
+`I_SHUNT2_CMP` ailleurs, la paire de référence elle-même est déplacée en
+positions 3/5 : chaque position impaire du connecteur est maintenant
+entourée de masse des deux côtés, **sans exception**. `VREF_ADC`/
+`VREFLO_SENSE` perdent leur adjacence directe mais gagnent un blindage
+complet — ce qui compte pour une référence qui alimente aussi le REFIN
+des isolateurs ratiométriques (voir plus bas). `I_shunt1`/`I_shunt2`
+cèdent leurs positions 3/5 et reculent en 7/9 (toujours entourées de
+masse, toujours adjacentes entre elles via la masse de la position 8).
+Une réserve est perdue dans l'échange (la position 9, ancien slot libre,
+porte maintenant `I_shunt2`) : réserves 4 → **3**.
 
 | | | | | | | | |
 |---|---|---|---|---|---|---|---|
-| 1 **3V3_ISO** | 2 **GND** | 3 **I_shunt1** | 4 GND | 5 **I_shunt2** | 6 GND | 7 **VREF_ADC** | 8 **VREFLO_SENSE** |
-| 9 **réserve ADC2-1** | 10 GND | 11 **I_SHUNT1_CMP** | 12 GND | 13 **I_SHUNT2_CMP** | 14 GND | 15 **réserve ADC2-2** | 16 GND |
-| 17 **réserve ADC2-3** | 18 GND | 19 **réserve ADC2-4** | 20 **GND** | | | | |
+| 1 **3V3_ISO** | 2 **GND** | 3 **VREFLO_SENSE** | 4 GND | 5 **VREF_ADC** | 6 GND | 7 **I_shunt1** | 8 **GND** |
+| 9 **I_shunt2** | 10 GND | 11 **I_SHUNT1_CMP** | 12 GND | 13 **I_SHUNT2_CMP** | 14 GND | 15 **réserve ADC2-1** | 16 GND |
+| 17 **réserve ADC2-2** | 18 GND | 19 **réserve ADC2-3** | 20 **GND** | | | | |
 
-`I_SHUNT1_CMP`/`I_SHUNT2_CMP` ne sont **pas** placés adjacents à
-`I_shunt1`/`I_shunt2` malgré la parenté de mesure : la decision #4 exige
+`I_SHUNT1_CMP`/`I_SHUNT2_CMP` (positions 11/13) ne sont **pas** placés
+adjacents à `I_shunt1`/`I_shunt2` (positions 7/9, séparées par la masse
+de la position 10) malgré la parenté de mesure : la decision #4 exige
 que les deux chemins restent électriquement indépendants (un défaut sur
 le filtre ne doit pas désarmer la protection), les coller sur le
 connecteur n'aiderait à rien et mélangerait visuellement deux chemins qui
-ne doivent pas se confondre — contrairement à `VREF_ADC`/`VREFLO_SENSE`
-(positions 7/8), qui sont une vraie paire de référence.
+ne doivent pas se confondre.
 
-VREF_ADC et VREFLO_SENSE occupent les positions 7 et 8, adjacentes : c'est une
-paire de référence, pas deux signaux indépendants. Le shield bufferise VREF_ADC
-par un suiveur rail-to-rail avant de l'envoyer.
+VREF_ADC et VREFLO_SENSE (positions 5/3) forment une paire de référence,
+pas deux signaux indépendants — mais contrairement au premier passage,
+elles n'ont plus besoin d'être physiquement adjacentes sur le connecteur
+pour ça : le lien électrique entre les deux se fait par le suiveur
+rail-to-rail du shield, pas par leur proximité sur la nappe. Le shield
+bufferise VREF_ADC par ce suiveur avant de l'envoyer.
 
 **C'est cette même paire qui sert de référence aux isolateurs ratiométriques
 (suffixe "R", type AMC0311R/AMC0302R) des cartes DC/DC** — leur broche REFIN

@@ -556,7 +556,7 @@
 				(pin passive line
 					(at -22.86 15.24 0)
 					(length 5.08)
-					(name "I_shunt1"
+					(name "VREFLO_SENSE"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -592,7 +592,7 @@
 				(pin passive line
 					(at -22.86 10.16 0)
 					(length 5.08)
-					(name "I_shunt2"
+					(name "VREF_ADC"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -628,7 +628,7 @@
 				(pin passive line
 					(at -22.86 5.08 0)
 					(length 5.08)
-					(name "VREF_ADC"
+					(name "I_shunt1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -643,10 +643,10 @@
 						)
 					)
 				)
-				(pin passive line
+				(pin power_in line
 					(at -22.86 2.54 0)
 					(length 5.08)
-					(name "VREFLO_SENSE"
+					(name "GND"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -664,7 +664,7 @@
 				(pin passive line
 					(at -22.86 0 0)
 					(length 5.08)
-					(name "RESERVE_ADC2_1"
+					(name "I_shunt2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -772,7 +772,7 @@
 				(pin passive line
 					(at -22.86 -15.24 0)
 					(length 5.08)
-					(name "RESERVE_ADC2_2"
+					(name "RESERVE_ADC2_1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -808,7 +808,7 @@
 				(pin passive line
 					(at -22.86 -20.32 0)
 					(length 5.08)
-					(name "RESERVE_ADC2_3"
+					(name "RESERVE_ADC2_2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -844,7 +844,7 @@
 				(pin passive line
 					(at -22.86 -25.4 0)
 					(length 5.08)
-					(name "RESERVE_ADC2_4"
+					(name "RESERVE_ADC2_3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3408,7 +3408,7 @@
 	)
 	(global_label "VREF_ADC"
 		(shape bidirectional)
-		(at 108.966 126.492 180)
+		(at 108.966 121.412 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3418,7 +3418,7 @@
 		)
 		(uuid "3fb1090c-f8cd-46d2-9e25-6ef55a52d432")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 108.966 126.492 0)
+			(at 108.966 121.412 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3431,7 +3431,7 @@
 	)
 	(global_label "I_shunt2"
 		(shape bidirectional)
-		(at 108.966 121.412 180)
+		(at 108.966 131.572 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3441,7 +3441,7 @@
 		)
 		(uuid "418bce79-a9dd-4b89-a802-400cca2c996d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 108.966 121.412 0)
+			(at 108.966 131.572 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5026,7 +5026,7 @@
 	)
 	(global_label "VREFLO_SENSE"
 		(shape bidirectional)
-		(at 108.966 129.032 180)
+		(at 108.966 116.332 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5035,6 +5035,29 @@
 			(justify right)
 		)
 		(uuid "dc4c0639-272d-42a5-9a22-dd4e1fee0833")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 108.966 116.332 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "GND"
+		(shape bidirectional)
+		(at 108.966 129.032 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "f8687a0f-517c-46db-b1b5-3c142db61df8")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 108.966 129.032 0)
 			(hide yes)
@@ -5164,7 +5187,7 @@
 	)
 	(global_label "I_shunt1"
 		(shape bidirectional)
-		(at 108.966 116.332 180)
+		(at 108.966 126.492 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5174,7 +5197,7 @@
 		)
 		(uuid "ec83984e-607a-47f4-8132-9073a628b756")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 108.966 116.332 0)
+			(at 108.966 126.492 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)

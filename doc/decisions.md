@@ -648,23 +648,32 @@ pendant que le bug était encore présent, donc le pad concerné du
 connecteur devkit porte encore le mauvais nom de net sur le fichier
 `.kicad_pcb` tant que la resynchronisation n'a pas été refaite.
 
-**Second erratum (même session) : position 9 d'ADC-2 mal choisie pour
-`I_SHUNT1_CMP`.** Le point (a) plaçait `I_SHUNT1_CMP` en position 9,
-juste après `VREFLO_SENSE` (position 8) — sans masse entre les deux.
-Position 8 est déjà l'exception à l'alternance stricte signal/masse
-(paire de référence `VREF_ADC`/`VREFLO_SENSE`, décision explicite) ;
-mettre un signal **actif et indépendant** en position 9 hérite du même
-défaut de blindage, cette fois contre un signal de classe `Rapide`
-(chemin comparateur, edges rapides) qui n'a aucun rapport avec la paire
-de référence — exactement le risque de couplage que ce brochage évite
-partout ailleurs par l'alternance masse. Une position de réserve
-(inutilisée) à cet endroit était inoffensive ; un vrai signal ne l'est
-pas. Corrigé en déplaçant `I_SHUNT1_CMP`/`I_SHUNT2_CMP` en positions
-**11/13** (entourées de masse des deux côtés, comme `I_shunt1`/
-`I_shunt2` en 3/5) ; la position 9 redevient réserve. Table mise à jour
-dans `doc/nappes-shield.md`. Comme pour le premier erratum, nécessite un
-nouveau "Update PCB from Schematic" (le pad devkit concerné changera de
-numéro de broche physique sur le connecteur ADC-2).
+**Second erratum (même session, corrigé deux fois) : l'exception
+d'adjacence 7/8 elle-même était le problème, pas seulement la position
+de `I_SHUNT1_CMP`.** Premier essai de correction (insuffisant) : garder
+`VREF_ADC`/`VREFLO_SENSE` adjacents en 7/8 et seulement déplacer
+`I_SHUNT1_CMP`/`I_SHUNT2_CMP` de 9/11 vers 11/13 pour les éloigner de
+cette zone non blindée. L'utilisateur a corrigé : la position 8 ne doit
+pas être une exception du tout, elle doit porter une masse comme
+n'importe quelle position paire. Correction définitive : la paire de
+référence `VREF_ADC`/`VREFLO_SENSE` est déplacée en positions **3/5**
+(entourées de masse des deux côtés — leur lien électrique passe par le
+suiveur rail-to-rail du shield, pas par leur proximité sur la nappe, donc
+l'adjacence n'apportait rien) ; `I_shunt1`/`I_shunt2`, qui occupaient
+3/5, reculent en **7/9** (toujours entourées de masse, toujours
+adjacentes entre elles via la masse de la position 8) ; `I_SHUNT1_CMP`/
+`I_SHUNT2_CMP` restent en **11/13**. Alternance stricte masse/signal sur
+tout le connecteur, **zéro exception**. Réserves : 4 → **3** (la
+position 9, ancien slot libre, porte maintenant `I_shunt2`) ;
+renumérotées `RESERVE_ADC2_1`-`3` en positions 15/17/19. Table mise à
+jour dans `doc/nappes-shield.md`, y compris le paragraphe général qui
+décrivait l'exception 7/8 comme acceptée. Comme pour le premier erratum,
+nécessite un nouveau "Update PCB from Schematic" — et cette fois les
+tracés déjà routés de `I_shunt1`/`I_shunt2` sur le PCB devront être
+repris physiquement : changer le net d'un pad existant ne déplace pas
+la piste déjà posée vers le nouveau pad, KiCad va signaler un
+désaccord de net sur la piste existante qu'il faudra re-router à la
+main vers les nouvelles broches 7/9.
 
 **Désignateurs** (balayage de tous les `.kicad_sch`, aucun trou en
 dessous du max avant cette décision) : `D25`-`D35`, `R24`-`R34`,
