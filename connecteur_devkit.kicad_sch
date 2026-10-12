@@ -135,10 +135,10 @@
 						)
 					)
 				)
-				(pin power_in line
+				(pin passive line
 					(at -22.86 27.94 0)
 					(length 5.08)
-					(name "GND"
+					(name "Iin"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -156,7 +156,7 @@
 				(pin passive line
 					(at -22.86 25.4 0)
 					(length 5.08)
-					(name "V1"
+					(name "Iout"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -171,10 +171,10 @@
 						)
 					)
 				)
-				(pin passive line
+				(pin power_in line
 					(at -22.86 22.86 0)
 					(length 5.08)
-					(name "Temp1"
+					(name "GND"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -189,10 +189,10 @@
 						)
 					)
 				)
-				(pin power_in line
+				(pin passive line
 					(at -22.86 20.32 0)
 					(length 5.08)
-					(name "GND"
+					(name "V1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -210,7 +210,7 @@
 				(pin passive line
 					(at -22.86 17.78 0)
 					(length 5.08)
-					(name "Temp2"
+					(name "Temp1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -228,7 +228,7 @@
 				(pin passive line
 					(at -22.86 15.24 0)
 					(length 5.08)
-					(name "Iin"
+					(name "Temp2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -243,10 +243,10 @@
 						)
 					)
 				)
-				(pin power_in line
+				(pin passive line
 					(at -22.86 12.7 0)
 					(length 5.08)
-					(name "GND"
+					(name "ADC_8"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -261,10 +261,10 @@
 						)
 					)
 				)
-				(pin passive line
+				(pin power_in line
 					(at -22.86 10.16 0)
 					(length 5.08)
-					(name "Iout"
+					(name "GND"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -282,7 +282,7 @@
 				(pin passive line
 					(at -22.86 7.62 0)
 					(length 5.08)
-					(name "ADC_8"
+					(name "ADC_9"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -297,10 +297,10 @@
 						)
 					)
 				)
-				(pin power_in line
+				(pin passive line
 					(at -22.86 5.08 0)
 					(length 5.08)
-					(name "GND"
+					(name "ADC_10"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -318,7 +318,7 @@
 				(pin passive line
 					(at -22.86 2.54 0)
 					(length 5.08)
-					(name "ADC_9"
+					(name "ADC_11"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -336,7 +336,7 @@
 				(pin passive line
 					(at -22.86 0 0)
 					(length 5.08)
-					(name "ADC_10"
+					(name "ADC_12"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -372,7 +372,7 @@
 				(pin passive line
 					(at -22.86 -5.08 0)
 					(length 5.08)
-					(name "ADC_11"
+					(name "I_SHUNT1_CMP"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -390,7 +390,7 @@
 				(pin passive line
 					(at -22.86 -7.62 0)
 					(length 5.08)
-					(name "ADC_12"
+					(name "I_SHUNT1_MES"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -426,7 +426,7 @@
 				(pin passive line
 					(at -22.86 -12.7 0)
 					(length 5.08)
-					(name "I_SHUNT1_MES"
+					(name "I_SHUNT2_CMP"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -441,10 +441,10 @@
 						)
 					)
 				)
-				(pin power_in line
+				(pin passive line
 					(at -22.86 -15.24 0)
 					(length 5.08)
-					(name "GND"
+					(name "I_SHUNT2_MES"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -459,10 +459,10 @@
 						)
 					)
 				)
-				(pin passive line
+				(pin power_in line
 					(at -22.86 -17.78 0)
 					(length 5.08)
-					(name "I_SHUNT1_CMP"
+					(name "GND"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -477,10 +477,10 @@
 						)
 					)
 				)
-				(pin power_in line
+				(pin passive line
 					(at -22.86 -20.32 0)
 					(length 5.08)
-					(name "GND"
+					(name "Stage1_EN"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -498,7 +498,7 @@
 				(pin passive line
 					(at -22.86 -22.86 0)
 					(length 5.08)
-					(name "I_SHUNT2_MES"
+					(name "Stage2_EN"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -513,10 +513,10 @@
 						)
 					)
 				)
-				(pin power_in line
+				(pin passive line
 					(at -22.86 -25.4 0)
 					(length 5.08)
-					(name "GND"
+					(name "HV_EN"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -534,7 +534,7 @@
 				(pin passive line
 					(at -22.86 -27.94 0)
 					(length 5.08)
-					(name "I_SHUNT2_CMP"
+					(name "Discharge"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -700,7 +700,7 @@
 				(pin passive line
 					(at -22.86 30.48 0)
 					(length 5.08)
-					(name "~{nRESET}"
+					(name "~{RESET}"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1150,7 +1150,7 @@
 				(pin bidirectional line
 					(at -22.86 -33.02 0)
 					(length 5.08)
-					(name "GPIO_1"
+					(name "~{FAULT_MCU}"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2514,7 +2514,7 @@
 			(embedded_fonts no)
 		)
 	)
-	(global_label "GND"
+	(global_label "HV_EN_MCU"
 		(shape bidirectional)
 		(at 45.466 87.63 180)
 		(fields_autoplaced yes)
@@ -2583,7 +2583,7 @@
 			)
 		)
 	)
-	(global_label "Iin_MCU"
+	(global_label "Temp2_MCU"
 		(shape bidirectional)
 		(at 45.466 46.99 180)
 		(fields_autoplaced yes)
@@ -2606,7 +2606,7 @@
 			)
 		)
 	)
-	(global_label "V1_MCU"
+	(global_label "Iout_MCU"
 		(shape bidirectional)
 		(at 45.466 36.83 180)
 		(fields_autoplaced yes)
@@ -2698,7 +2698,7 @@
 			)
 		)
 	)
-	(global_label "ADC_12"
+	(global_label "I_shunt1_MCU"
 		(shape bidirectional)
 		(at 45.466 69.85 180)
 		(fields_autoplaced yes)
@@ -2837,7 +2837,7 @@
 			)
 		)
 	)
-	(global_label "ADC_8"
+	(global_label "ADC_9"
 		(shape bidirectional)
 		(at 45.466 54.61 180)
 		(fields_autoplaced yes)
@@ -2906,7 +2906,7 @@
 			)
 		)
 	)
-	(global_label "ADC_11"
+	(global_label "I_SHUNT1_CMP_MCU"
 		(shape bidirectional)
 		(at 45.466 67.31 180)
 		(fields_autoplaced yes)
@@ -2929,7 +2929,7 @@
 			)
 		)
 	)
-	(global_label "I_shunt2_MCU"
+	(global_label "Stage2_EN_MCU"
 		(shape bidirectional)
 		(at 45.466 85.09 180)
 		(fields_autoplaced yes)
@@ -2952,7 +2952,7 @@
 			)
 		)
 	)
-	(global_label "GND"
+	(global_label "Iin_MCU"
 		(shape bidirectional)
 		(at 45.466 34.29 180)
 		(fields_autoplaced yes)
@@ -2975,7 +2975,7 @@
 			)
 		)
 	)
-	(global_label "GND"
+	(global_label "ADC_10"
 		(shape bidirectional)
 		(at 45.466 57.15 180)
 		(fields_autoplaced yes)
@@ -3022,7 +3022,7 @@
 			)
 		)
 	)
-	(global_label "GND"
+	(global_label "ADC_8"
 		(shape bidirectional)
 		(at 45.466 49.53 180)
 		(fields_autoplaced yes)
@@ -3045,7 +3045,7 @@
 			)
 		)
 	)
-	(global_label "GND"
+	(global_label "V1_MCU"
 		(shape bidirectional)
 		(at 45.466 41.91 180)
 		(fields_autoplaced yes)
@@ -3321,7 +3321,7 @@
 			)
 		)
 	)
-	(global_label "I_SHUNT2_CMP_MCU"
+	(global_label "Discharge_MCU"
 		(shape bidirectional)
 		(at 45.466 90.17 180)
 		(fields_autoplaced yes)
@@ -3437,7 +3437,7 @@
 			)
 		)
 	)
-	(global_label "ADC_9"
+	(global_label "ADC_11"
 		(shape bidirectional)
 		(at 45.466 59.69 180)
 		(fields_autoplaced yes)
@@ -3483,7 +3483,7 @@
 			)
 		)
 	)
-	(global_label "ADC_10"
+	(global_label "ADC_12"
 		(shape bidirectional)
 		(at 45.466 62.23 180)
 		(fields_autoplaced yes)
@@ -3575,7 +3575,7 @@
 			)
 		)
 	)
-	(global_label "GND"
+	(global_label "Stage1_EN_MCU"
 		(shape bidirectional)
 		(at 45.466 82.55 180)
 		(fields_autoplaced yes)
@@ -3644,7 +3644,7 @@
 			)
 		)
 	)
-	(global_label "I_shunt1_MCU"
+	(global_label "I_SHUNT2_CMP_MCU"
 		(shape bidirectional)
 		(at 45.466 74.93 180)
 		(fields_autoplaced yes)
@@ -3667,7 +3667,7 @@
 			)
 		)
 	)
-	(global_label "Temp2_MCU"
+	(global_label "Temp1_MCU"
 		(shape bidirectional)
 		(at 45.466 44.45 180)
 		(fields_autoplaced yes)
@@ -3899,7 +3899,7 @@
 			)
 		)
 	)
-	(global_label "Iout_MCU"
+	(global_label "GND"
 		(shape bidirectional)
 		(at 45.466 52.07 180)
 		(fields_autoplaced yes)
@@ -3922,7 +3922,7 @@
 			)
 		)
 	)
-	(global_label "Temp1_MCU"
+	(global_label "GND"
 		(shape bidirectional)
 		(at 45.466 39.37 180)
 		(fields_autoplaced yes)
@@ -3991,7 +3991,7 @@
 			)
 		)
 	)
-	(global_label "I_SHUNT1_CMP_MCU"
+	(global_label "GND"
 		(shape bidirectional)
 		(at 45.466 80.01 180)
 		(fields_autoplaced yes)
@@ -4083,7 +4083,7 @@
 			)
 		)
 	)
-	(global_label "nFAULT_MCU"
+	(global_label "~{FAULT_MCU}"
 		(shape bidirectional)
 		(at 45.974 185.42 180)
 		(fields_autoplaced yes)
@@ -4095,7 +4095,7 @@
 		)
 		(uuid "c95c02b2-6f2b-44cc-83f6-d8afaaafce7a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 45.974 185.42 0)
+			(at 31.3546 185.42 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4103,6 +4103,7 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 	)
@@ -4221,7 +4222,7 @@
 			)
 		)
 	)
-	(global_label "GND"
+	(global_label "I_shunt2_MCU"
 		(shape bidirectional)
 		(at 45.466 77.47 180)
 		(fields_autoplaced yes)
@@ -4383,7 +4384,7 @@
 			)
 		)
 	)
-	(global_label "nRESET"
+	(global_label "~{RESET}"
 		(shape bidirectional)
 		(at 358.14 52.832 180)
 		(fields_autoplaced yes)
@@ -4395,7 +4396,7 @@
 		)
 		(uuid "eccb55c6-1306-4756-af89-aaa587e7fc40")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 358.14 52.832 0)
+			(at 348.2984 52.832 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4403,6 +4404,7 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 	)
@@ -4429,7 +4431,7 @@
 			)
 		)
 	)
-	(global_label "nRESET"
+	(global_label "~{RESET}"
 		(shape bidirectional)
 		(at 45.974 121.92 180)
 		(fields_autoplaced yes)
@@ -4441,7 +4443,7 @@
 		)
 		(uuid "f4ad8edb-527d-4176-b2a3-e7a5ef4a9a70")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 45.974 121.92 0)
+			(at 36.1324 121.92 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4449,6 +4451,7 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 	)

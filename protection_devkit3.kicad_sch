@@ -647,7 +647,7 @@
 			)
 		)
 	)
-	(global_label "nFAULT_MCU"
+	(global_label "~{FAULT_MCU}"
 		(shape input)
 		(at 64.33 55.306 180)
 		(fields_autoplaced yes)
@@ -695,7 +695,7 @@
 			)
 		)
 	)
-	(global_label "nFAULT_MCU"
+	(global_label "~{FAULT_MCU}"
 		(shape input)
 		(at 54.864 47.498 0)
 		(fields_autoplaced yes)
@@ -743,7 +743,7 @@
 			)
 		)
 	)
-	(global_label "nFAULT_MCU"
+	(global_label "~{FAULT_MCU}"
 		(shape input)
 		(at 50.546 73.152 90)
 		(fields_autoplaced yes)

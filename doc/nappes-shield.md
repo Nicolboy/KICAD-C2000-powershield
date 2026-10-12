@@ -24,7 +24,8 @@ bus) ; un connecteur non peuplé côté carte fille ne coûte rien côté shield
 Six connecteurs IDC **2 × 10** identiques (20 voies, même référence pour
 toutes — contrainte de stock : pas de taille plus grande), détrompeur de
 série : **ADC-1** (J1), **ADC-2** (J2), **PWM** (J3), **GPIO-1** (J4),
-**GPIO-2** (J13, nouveau), **COM** (J14, nouveau). Désignateurs J5/J6/J7-J12
+**logic/CLB** (J13, nouveau — ex "GPIO-2", renommée en decision #20),
+**COM** (J14, nouveau). Désignateurs J5/J6/J7-J12
 déjà pris ailleurs dans le projet (devkit, OLED, alimentation) — J13/J14
 choisis pour ne pas entrer en collision.
 
@@ -134,31 +135,49 @@ paires complémentaires HRPWM avec temps mort matériel.
 | 9 **Discharge** | 10 GND | 11 **CMP_OUT** | 12 GND | 13 **nFAULT** | 14 GND | 15 **I2C_SCL** | 16 GND |
 | 17 **I2C_SDA** | 18 GND | 19 **CLB_OUT** | 20 **GND** | | | | |
 
-`nFAULT` remonte un défaut d'une carte DC/DC vers GPIO_1 (B28).
-`CMP_OUT` sort le drapeau de défaut agrégé du C2000. L'I2C reste disponible pour
-un capteur de température ou une EEPROM de calibration sur une carte DC/DC.
-`CLB_OUT` (B27 du connecteur devkit) était orphelin — exporté sur aucune nappe
-avant cette révision — et retrouve ici un foyer.
+`nFAULT` remonte un défaut d'une carte DC/DC vers `~{FAULT_MCU}` (B28, nom en
+logique négative depuis la decision #20). `CMP_OUT` sort le drapeau de défaut
+agrégé du C2000. L'I2C reste disponible pour un capteur de température ou une
+EEPROM de calibration sur une carte DC/DC. `CLB_OUT` (B27 du connecteur devkit)
+était orphelin — exporté sur aucune nappe avant la decision #19 — et retrouve
+ici un foyer.
 
-⚠️ **`Stage1_EN`, `Stage2_EN`, `HV_EN` et `Discharge` ne sont reliés à aucune
-broche du connecteur devkit à ce jour** (ERC : `isolated_pin_label` sur les
-quatre). Ces noms viennent de l'ancien firmware TMS320F28027 (GPIO16, GPIO17,
-GPIO32, GPIO5) ; la nouvelle carte de conversion 0-500V aura un nouveau MCU et
-choisira ses propres broches — tant que ce choix n'est pas fait, ces quatre
-signaux restent à un seul bout. Pas un défaut de cette révision : la carte
-elle-même est un projet séparé (voir `decisions.md` #17).
+**`Stage1_EN`, `Stage2_EN`, `HV_EN` et `Discharge` sont maintenant reliés**
+(decision #20) : devkit modifié pour sortir GPIO9/GPIO20/GPIO21/GPIO41 sur le
+connecteur A (4 masses sacrifiées, voir decision #20), protégés par un trio
+chacun (`protection_nappe.kicad_sch`, R = 10 Ω, signaux classés `Rapide`), et
+présents **à la fois** ici et sur la nappe logic/CLB ci-dessous — un seul des
+deux points d'accès est réellement utilisé selon la carte fille branchée.
 
-### GPIO-2 — réserve, extension logique future
+### GPIO-2 → nappe logic — entrées/sorties du bloc CLB
 
 | | | | | | | | |
 |---|---|---|---|---|---|---|---|
-| 1 **3V3_ISO** | 2 **GND** | 3 **réserve GPIO2-1** | 4 GND | 5 **réserve GPIO2-2** | 6 GND | 7 **réserve GPIO2-3** | 8 GND |
-| 9 **réserve GPIO2-4** | 10 GND | 11 **réserve GPIO2-5** | 12 GND | 13 **réserve GPIO2-6** | 14 GND | 15 **réserve GPIO2-7** | 16 GND |
-| 17 **réserve GPIO2-8** | 18 GND | 19 **réserve GPIO2-9** | 20 **GND** | | | | |
+| 1 **3V3_ISO** | 2 **GND** | 3 **CLB_Out_1** | 4 GND | 5 **CLB_Out_2** | 6 GND | 7 **CLB_Out_3** | 8 GND |
+| 9 **CLB_Out_4** | 10 GND | 11 **CLB_In_1** | 12 GND | 13 **CLB_In_2** | 14 GND | 15 **CLB_In_3** | 16 GND |
+| 17 **CLB_In_4** | 18 GND | 19 **CLB_In_5** | 20 **GND** | | | | |
 
-Connecteur entièrement en réserve — aucun signal câblé aujourd'hui. Pour une
-carte future dont le besoin en E/S logique ne ressemble à rien d'anticipé ici
-(relais, capteurs tout-ou-rien, etc.).
+Renommée en decision #20 : le CLB (Configurable Logic Block) du F28P551, utilisé
+comme un mini CPLD, a besoin d'E/S physiques. `CLB_Out_1`-`4` et `CLB_In_1`-`5`
+sont des **noms de broche cosmétiques** sur le connecteur (même principe que
+`GPIOxx/fonction` côté devkit) — le net électrique réel reste le vrai nom de
+signal, pour qu'il fusionne avec les autres nappes :
+
+| Broche | Nom cosmétique | Net réel | Origine |
+|---|---|---|---|
+| 3 | `CLB_Out_1` | `Stage1_EN` | neuf (GPIO9, pilotable aussi par le CLB en matériel) |
+| 5 | `CLB_Out_2` | `Stage2_EN` | neuf (GPIO20, logiciel seul) |
+| 7 | `CLB_Out_3` | `HV_EN` | neuf (GPIO21, logiciel seul) |
+| 9 | `CLB_Out_4` | `Discharge` | neuf (GPIO41, logiciel seul) |
+| 11 | `CLB_In_1` | `CAN_RX` | lu en plus de la nappe COM, CAN continue de fonctionner |
+| 13 | `CLB_In_2` | `CAN_TX` | idem |
+| 15 | `CLB_In_3` | `PWM2_B` | lu en plus de la nappe PWM, le canal garde son rôle complémentaire |
+| 17 | `CLB_In_4` | `PWM3_B` | idem |
+| 19 | `CLB_In_5` | `PWM4_B` | idem |
+
+Les 4 sorties sont neuves côté MCU (voir decision #20) ; les 5 entrées sont de
+simples lectures supplémentaires de signaux déjà câblés ailleurs — aucune
+d'elles ne perd sa fonction d'origine.
 
 ### COM — bus de communication (UART, SPI, CAN)
 
@@ -273,7 +292,7 @@ besoin de précision ADC.
 
 *Exemple — convertisseur 0-500V (refonte de `TMS320F28027-dualboost`)* :
 peuple ADC-1, ADC-2 et PWM en entier, et seulement GPIO-1 côté logique — ni
-GPIO-2 (aucun besoin logique connu au-delà de GPIO-1), ni COM (aucun bus
+logic/CLB (pas de besoin de glue logic sur cette carte), ni COM (aucun bus
 dans cette conception).
 
 **Devkit C2000** — MCU, deux LDO 3,3 V (VDDIO et VDDA), JTAG, bouton reset, deux

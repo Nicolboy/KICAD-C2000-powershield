@@ -701,6 +701,95 @@ sur les 23 trios existants, pas une régression propre à cette décision.
 
 ---
 
+## 20. Bloc CLB du F28P551 utilisé comme mini-CPLD : 4 sorties neuves, nappe GPIO-2 renommée "logic", 5 entrées partagées
+
+**Décision.** Le CLB (Configurable Logic Block) du F28P551 est utilisé comme
+un bloc de logique programmable généraliste (mini CPLD), pas uniquement pour
+le chemin `CLB_OUT` existant. Ça demande des broches MCU neuves, un devkit
+déjà routé modifié en conséquence, et une nappe entièrement repensée.
+
+**(a) Modification de `devkit_B_F28P551`** (carte figée, production-ready —
+modifiée malgré la règle habituelle, décision explicite de l'utilisateur,
+voir mémoire `kicad_frozen_production_boards`). Quatre masses du connecteur A
+sacrifiées pour sortir quatre GPIO jusque-là non câblés sur le connecteur
+56 broches : A4→`Stage2_EN` (GPIO20), A10→`HV_EN` (GPIO21), A13→`Stage1_EN`
+(GPIO9), A16→`Discharge` (GPIO41). Choix des positions : les deux broches
+pleinement isolées (masse des deux côtés, A13/A16) reçoivent les signaux
+les plus sensibles côté vitesse — `Stage1_EN` (le seul des quatre pilotable
+en matériel par le CLB, voir point (c)) et `Discharge` (coupure de sécurité) ;
+`Stage2_EN`/`HV_EN` (commandes d'activation, bascule rare) héritent des
+positions plus modestement blindées A4/A10, voisines de mesures ADC-1 lentes
+plutôt que du cluster shunt/comparateur. Vérifié via `pin_map.h` : des 4
+GPIO, un seul (GPIO9, `OUTPUTXBAR6`) a un chemin X-bar de sortie en
+silicium — les trois autres (`GPIO20`, `GPIO21`, `GPIO41`) n'en ont
+structurellement aucun, dans aucune configuration. Ce n'est pas un défaut :
+les 4 signaux sont de simples sorties GPIO pilotées par le logiciel (le CLB
+peut influencer la décision via le registre `CLB_GP_REG` et une bascule
+matérielle sur `Stage1_EN` seulement, sans avoir besoin de driver les 3
+autres). Report obligatoire sur `connecteur_devkit.kicad_sch` (symboles
+ET labels réels, les deux copies — bibliothèque externe
+`lib/C2000_Devkit_Connectors.kicad_sym` incluse) : même reséquencement que
+le devkit, pour que les deux connecteurs mâle/femelle restent en accord.
+
+**(b) Renommage en logique négative, `nRESET`→`~{RESET}`,
+`GPIO_1`/`nFAULT_MCU`→`~{FAULT_MCU}`** (fait par l'utilisateur sur le devkit
+et `connecteur_devkit.kicad_sch`). **Erratum découvert en vérifiant** :
+`protection_devkit3.kicad_sch` gardait l'ancien nom `nFAULT_MCU` sur les 3
+étiquettes du trio existant (D23/R22/C22) — le renommage du connecteur avait
+silencieusement coupé ce trio du reste du circuit (`isolated_pin_label` sur
+`~{FAULT_MCU}`, invisible autrement, même catégorie de bug que l'erratum
+ADC-2 de la decision #19). Corrigé en renommant les 3 étiquettes du trio en
+`~{FAULT_MCU}`.
+
+**(c) Quatre trios de protection neufs**, `D36`/`R35`/`C55` (`Stage1_EN`),
+`D37`/`R36`/`C56` (`Stage2_EN`), `D38`/`R37`/`C57` (`HV_EN`),
+`D39`/`R38`/`C58` (`Discharge`) — gabarit identique aux 23+11 trios
+existants (BAT54S + R + 100 pF), mais **R = 10 Ω** au lieu de 100 Ω : les
+quatre signaux sont classés `Rapide`, décision explicite de l'utilisateur
+plutôt qu'une optimisation de ma part. Pôle RC du 100 pF à 159 MHz (au lieu
+de 15,9 MHz avec 100 Ω) — filtrage minimal, cohérent avec des commandes de
+sécurité où le délai de la protection elle-même ne doit pas dominer le temps
+de réponse.
+
+**(d) Nappe GPIO-2 renommée nappe "logic"** (`NAPPE_GPIO2`→`NAPPE_LOGIC`,
+symbole + bibliothèque externe + instance `J13`). Les 9 réserves
+(`RESERVE_GPIO2_1`-`9`) devenues `CLB_Out_1`-`4` / `CLB_In_1`-`5` — noms
+**cosmétiques sur le symbole connecteur uniquement**, même principe que
+`GPIOxx/fonction` côté devkit : l'étiquette électrique réelle reste le vrai
+nom de signal, pour qu'il fusionne avec les autres nappes qui le portent
+déjà. Répartition : les 4 sorties neuves du point (c) sur `CLB_Out_1`-`4`
+(déjà présentes aussi sur la nappe GPIO-1, positions 3/5/7/9, en attente
+depuis la decision #17 — **un signal peut vivre sur deux nappes à la fois**,
+un seul point d'accès réellement utilisé selon la carte fille branchée) ;
+cinq signaux déjà protégés ailleurs tapés en entrée sur `CLB_In_1`-`5` :
+`CAN_RX`/`CAN_TX` (nappe COM) et `PWM2_B`/`PWM3_B`/`PWM4_B` (nappe PWM) —
+piqués côté nom brut (avant leur trio d'origine), donc le même trio protège
+les deux nappes à la fois, sans sacrifice : CAN continue de fonctionner,
+les trois canaux PWM gardent leur voie complémentaire intacte. `CMP_OUT`
+(6e candidat identifié en cours de route) écarté pour tenir le compte à 5
+entrées exactement.
+
+**Désignateurs** : `D36`-`D39`, `R35`-`R38`, `C55`-`C58` (aucun trou en
+dessous du max avant cette décision). `netclass_patterns` étendu : les 4
+signaux neufs (bruts et `_MCU`) rejoignent `Rapide`. `used_designators`
+mis à jour (`C42-58`, `R1-38`).
+
+**Ce qui casse.** Oublier de reporter le reséquencement du devkit sur
+`connecteur_devkit.kicad_sch` referait exactement l'erratum (b) : un nom de
+label qui ne correspond plus des deux côtés du même connecteur, invisible
+tant qu'on ne compare pas net par net. Ajouter une future sortie CLB sur
+`GPIO20`/`GPIO21`/`GPIO41` est impossible en silicium — relire le point (a)
+avant d'essayer.
+
+**Vérification.** `kicad-cli sch erc` par type : `isolated_pin_label` 9 → 5
+(disparition de `Stage1_EN`/`Stage2_EN`/`HV_EN`/`Discharge`, qui restaient
+les 9 signaux déjà connus en pas encore reliés — 5 subsistent, les réserves
+ADC libres `ADC_8`-`ADC_12`, hors périmètre) ; `pin_not_connected` baisse de
+9 (les 9 broches de la nappe logic désormais câblées) ; aucune nouvelle
+catégorie de violation.
+
+---
+
 ## Points ouverts — ne pas combler par une estimation
 
 Ces valeurs manquent. Elles demandent une lecture de datasheet ou une mesure,
