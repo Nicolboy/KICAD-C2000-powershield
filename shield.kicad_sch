@@ -286,6 +286,52 @@
 			)
 		)
 	)
+	(sheet
+		(at 20 160)
+		(size 80 50)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "46540622-1b70-455b-aec4-750805a44ee0")
+		(property "Sheetname" "Protection_Nappe"
+			(at 20 159.5 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "protection_nappe.kicad_sch"
+			(at 20 210.5 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "shield"
+				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c"
+					(page "8")
+				)
+			)
+		)
+	)
 	(sheet_instances
 		(path "/"
 			(page "1")

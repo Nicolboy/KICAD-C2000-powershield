@@ -2629,7 +2629,7 @@
 			)
 		)
 	)
-	(global_label "UART_TX"
+	(global_label "UART_TX_MCU"
 		(shape bidirectional)
 		(at 45.974 152.4 180)
 		(fields_autoplaced yes)
@@ -3229,7 +3229,7 @@
 			)
 		)
 	)
-	(global_label "SPI_SOMI"
+	(global_label "SPI_SOMI_MCU"
 		(shape bidirectional)
 		(at 45.974 167.64 180)
 		(fields_autoplaced yes)
@@ -3552,7 +3552,7 @@
 			)
 		)
 	)
-	(global_label "SPI_CLK"
+	(global_label "SPI_CLK_MCU"
 		(shape bidirectional)
 		(at 45.974 162.56 180)
 		(fields_autoplaced yes)
@@ -3806,7 +3806,7 @@
 			)
 		)
 	)
-	(global_label "CAN_RX"
+	(global_label "CAN_RX_MCU"
 		(shape bidirectional)
 		(at 45.974 177.8 180)
 		(fields_autoplaced yes)
@@ -4060,7 +4060,7 @@
 			)
 		)
 	)
-	(global_label "CLB_OUT"
+	(global_label "CLB_OUT_MCU"
 		(shape bidirectional)
 		(at 45.974 182.88 180)
 		(fields_autoplaced yes)
@@ -4198,7 +4198,7 @@
 			)
 		)
 	)
-	(global_label "CAN_TX"
+	(global_label "CAN_TX_MCU"
 		(shape bidirectional)
 		(at 45.974 175.26 180)
 		(fields_autoplaced yes)
@@ -4267,7 +4267,7 @@
 			)
 		)
 	)
-	(global_label "SPI_STE"
+	(global_label "SPI_STE_MCU"
 		(shape bidirectional)
 		(at 45.974 170.18 180)
 		(fields_autoplaced yes)
@@ -4337,7 +4337,7 @@
 			)
 		)
 	)
-	(global_label "UART_RX"
+	(global_label "UART_RX_MCU"
 		(shape bidirectional)
 		(at 45.974 154.94 180)
 		(fields_autoplaced yes)
@@ -4452,7 +4452,7 @@
 			)
 		)
 	)
-	(global_label "SPI_SIMO"
+	(global_label "SPI_SIMO_MCU"
 		(shape bidirectional)
 		(at 45.974 165.1 180)
 		(fields_autoplaced yes)

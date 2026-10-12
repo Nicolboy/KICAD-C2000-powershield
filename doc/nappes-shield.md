@@ -52,11 +52,26 @@ positions 7/8 — la position 8 cède sa masse pour cette seule paire.
 
 ### ADC-2 — shunts, référence, réserves
 
+**Corrigé (decision #19) : le brochage omettait `I_SHUNT1_CMP`/
+`I_SHUNT2_CMP`.** Seule la voie filtrée (`I_shunt1`/`I_shunt2`, chemin
+`_MES`) était câblée ; la decision #4 impose pourtant que chaque shunt
+sorte **deux fois** — un chemin direct, sans filtre, vers le comparateur.
+Les deux signaux manquants prennent la place de deux des six réserves
+(réserves : 6 → 4).
+
 | | | | | | | | |
 |---|---|---|---|---|---|---|---|
 | 1 **3V3_ISO** | 2 **GND** | 3 **I_shunt1** | 4 GND | 5 **I_shunt2** | 6 GND | 7 **VREF_ADC** | 8 **VREFLO_SENSE** |
-| 9 **réserve ADC2-1** | 10 GND | 11 **réserve ADC2-2** | 12 GND | 13 **réserve ADC2-3** | 14 GND | 15 **réserve ADC2-4** | 16 GND |
-| 17 **réserve ADC2-5** | 18 GND | 19 **réserve ADC2-6** | 20 **GND** | | | | |
+| 9 **I_SHUNT1_CMP** | 10 GND | 11 **I_SHUNT2_CMP** | 12 GND | 13 **réserve ADC2-1** | 14 GND | 15 **réserve ADC2-2** | 16 GND |
+| 17 **réserve ADC2-3** | 18 GND | 19 **réserve ADC2-4** | 20 **GND** | | | | |
+
+`I_SHUNT1_CMP`/`I_SHUNT2_CMP` ne sont **pas** placés adjacents à
+`I_shunt1`/`I_shunt2` malgré la parenté de mesure : la decision #4 exige
+que les deux chemins restent électriquement indépendants (un défaut sur
+le filtre ne doit pas désarmer la protection), les coller sur le
+connecteur n'aiderait à rien et mélangerait visuellement deux chemins qui
+ne doivent pas se confondre — contrairement à `VREF_ADC`/`VREFLO_SENSE`
+(positions 7/8), qui sont une vraie paire de référence.
 
 VREF_ADC et VREFLO_SENSE occupent les positions 7 et 8, adjacentes : c'est une
 paire de référence, pas deux signaux indépendants. Le shield bufferise VREF_ADC

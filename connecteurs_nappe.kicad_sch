@@ -664,7 +664,7 @@
 				(pin passive line
 					(at -22.86 0 0)
 					(length 5.08)
-					(name "RESERVE_ADC2_1"
+					(name "I_SHUNT1_CMP"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -700,7 +700,7 @@
 				(pin passive line
 					(at -22.86 -5.08 0)
 					(length 5.08)
-					(name "RESERVE_ADC2_2"
+					(name "I_SHUNT2_CMP"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -736,7 +736,7 @@
 				(pin passive line
 					(at -22.86 -10.16 0)
 					(length 5.08)
-					(name "RESERVE_ADC2_3"
+					(name "RESERVE_ADC2_1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -772,7 +772,7 @@
 				(pin passive line
 					(at -22.86 -15.24 0)
 					(length 5.08)
-					(name "RESERVE_ADC2_4"
+					(name "RESERVE_ADC2_2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -808,7 +808,7 @@
 				(pin passive line
 					(at -22.86 -20.32 0)
 					(length 5.08)
-					(name "RESERVE_ADC2_5"
+					(name "RESERVE_ADC2_3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -844,7 +844,7 @@
 				(pin passive line
 					(at -22.86 -25.4 0)
 					(length 5.08)
-					(name "RESERVE_ADC2_6"
+					(name "RESERVE_ADC2_4"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -877,6 +877,7 @@
 						)
 					)
 				)
+
 			)
 			(embedded_fonts no)
 		)
@@ -6665,6 +6666,52 @@
 				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/be1ba8f7-426f-488b-9c2e-817721e59350"
 					(reference "J14")
 					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "I_SHUNT1_CMP"
+		(shape bidirectional)
+		(at 108.966 131.572 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "660ef572-23f6-4c21-9562-e330b8a9b90a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 108.966 131.572 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+	)
+	(global_label "I_SHUNT2_CMP"
+		(shape bidirectional)
+		(at 108.966 136.652 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "f2ed59e3-d3ca-4e47-bedd-ad1009975aea")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 108.966 136.652 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
 			)
 		)

@@ -550,6 +550,114 @@ devkit) restent elles aussi isolées, un gap pré-existant à cette session.
 
 ---
 
+## 18. Découplage 100 nF sur chacune des six nappes
+
+**Décision.** Un condensateur 100 nF entre `3V3_ISO` et `GND`, posé au
+plus près de chaque connecteur de nappe (`C29`/`C30`/`C34`/`C35`/`C42`/
+`C43` pour J1/J2/J3/J4/J13/J14) — en plus du découplage par IC déjà en
+place, pas à sa place.
+
+**Pourquoi un découplage aux deux bouts.** Chaque carte fille découple
+déjà ses propres IC (règle déjà en place dans cet atelier). Côté shield,
+un bypass à chaque sortie de nappe — plutôt qu'un seul point au LDO —
+limite qu'une carte bruyante sur une nappe (ex. un transceiver CAN sur
+COM) ne remonte sur `3V3_ISO` et ne perturbe une carte sensible sur une
+autre nappe (ADC-1/ADC-2) : même logique que la séparation déjà faite en
+decision #13 entre les deux domaines d'alimentation (numérique vs
+isolation E/S).
+
+**Valeur.** 100 nF, pas 1 µF ni 10 µF : `3V3_ISO` n'alimente que le côté
+commande/non-isolé des isolateurs des cartes filles (decision #13), pas
+un étage de puissance — dizaines de mA par carte, pas d'ampères. Un bulk
+plus généreux côté carte fille (hors périmètre du shield) reste
+pertinent si une carte précise tire plus que ça ; pas justifié par
+défaut ici.
+
+**Ce qui casse.** Centraliser le découplage à un seul point (LDO
+uniquement) réintroduit le risque de couplage inter-cartes que ce choix
+évite. Monter à 1 µF ou plus sans carte fille connue identifiant un
+besoin réel serait du surdimensionnement sans raison.
+
+---
+
+## 19. Correction du brochage ADC-2, et protection des 11 signaux nappe nouvellement câblés
+
+**Décision.** Deux problèmes trouvés en relisant le travail de la
+decision #17 après coup.
+
+**(a) ADC-2 oubliait `I_SHUNT1_CMP`/`I_SHUNT2_CMP`.** Seule la voie
+filtrée (`I_shunt1`/`I_shunt2`, chemin `_MES`) avait été câblée ; la
+decision #4 impose pourtant que chaque shunt sorte **deux fois** — un
+second chemin, direct et sans filtre, vers le comparateur CMPSS. Les deux
+signaux manquants existaient déjà, isolés, au connecteur devkit (ERC :
+`isolated_pin_label`). Corrigé en consommant 2 des 6 réserves d'ADC-2
+(réserves : 6 → 4), sans les coller à `I_shunt1`/`I_shunt2` : les deux
+chemins doivent rester électriquement indépendants, l'adjacence sur le
+connecteur n'aide à rien et mélange visuellement ce qui ne doit pas se
+confondre — contrairement à l'exception `VREF_ADC`/`VREFLO_SENSE`, qui
+est une vraie paire de référence.
+
+**(b) 11 signaux câblés en decision #17 n'avaient aucune protection**,
+alors que tout le reste du connecteur devkit en a une. Vérifié en
+comparant chaque signal de nappe à son équivalent `_MCU` dans les trois
+feuilles de protection existantes (23 trios BAT54S + R + 100 pF, un par
+signal, déjà en place avant la decision #17) : `CLB_OUT`, `UART_TX`,
+`UART_RX`, `SPI_CLK`, `SPI_SIMO`, `SPI_SOMI`, `SPI_STE`, `CAN_TX`,
+`CAN_RX` n'avaient aucun trio, et les deux signaux du point (a) non plus
+une fois ajoutés.
+
+**Nouvelle feuille `protection_nappe.kicad_sch`**, 11 trios, copiés
+composant par composant et label par label depuis un trio réel
+(`protection_devkit3.kicad_sch`, le plus petit des trois feuilles
+existantes) plutôt que redessinés — même principe que
+`KICAD-EDITION-GROUPEE-KIPY.md` §1 (extraire le gabarit, pas le
+re-deviner). Topologie identique partout : BAT54S (clamp vers `GND`/
+`3V3_PROT`) + R série + C 100 pF shunt vers `GND`, entre le nom brut
+côté nappe et son équivalent `_MCU` côté connecteur devkit — **9 des 11
+avec R = 100 Ω** (identique aux 23 trios déjà posés), **`I_SHUNT1_CMP`/
+`I_SHUNT2_CMP` avec R = 22 Ω** : la decision #4 impose Rs ≤ 50 Ω sur ce
+chemin, que 100 Ω dépasserait. Le condensateur est conservé malgré la
+contrainte « sans filtre » de la decision #4 — décision explicite de
+l'utilisateur, pas une optimisation de ma part : avec R = 22 Ω, le pôle
+RC du 100 pF tombe à 2,2 ns (au lieu de 10 ns avec 100 Ω), soit ~7 % du
+budget Trip Zone de 30 ns, jugé acceptable plutôt que de retirer le C.
+
+**Chaque connecteur devkit protégé doit porter le nom `_MCU`, pas le nom
+brut.** Conséquence directe de la convention déjà en place sur les 23
+trios existants (`Vin` côté nappe → trio → `Vin_MCU` côté connecteur
+devkit, jamais l'inverse) : avant d'ajouter un trio pour un signal,
+son label au connecteur devkit (`connecteur_devkit.kicad_sch`) doit
+d'abord passer du nom brut au nom `_MCU` — sinon le trio protège un
+signal qui ne va nulle part. Fait pour les 9 signaux du point (b)
+(`CLB_OUT_MCU`, `UART_TX_MCU`, etc.) ; `I_SHUNT1_CMP`/`I_SHUNT2_CMP`
+portaient déjà leur propre label isolé, renommé de la même façon.
+
+**Désignateurs** (balayage de tous les `.kicad_sch`, aucun trou en
+dessous du max avant cette décision) : `D25`-`D35`, `R24`-`R34`,
+`C44`-`C54`. `netclass_patterns` étendu : les 9 nets `_MCU` standards et
+`CLB_OUT` (bare, oublié lors de la classification précédente) rejoignent
+`Rapide` ; `I_SHUNT1_CMP_MCU`/`I_SHUNT2_CMP_MCU` rejoignent `Analogique`
+(cohérent avec leurs homologues bruts, déjà classés).
+
+**Ce qui casse.** Ajouter un trio pour un signal sans renommer le label
+du connecteur devkit en `_MCU` laisse le trio protéger un nœud qui ne
+va nulle part — invisible à l'œil, détecté seulement par
+`kicad-cli sch erc` (`isolated_pin_label` qui persiste). Copier un trio
+standard (R = 100 Ω) pour un futur chemin comparateur direct
+reproduirait l'erreur que `I_SHUNT1_CMP`/`I_SHUNT2_CMP` viennent de
+corriger — relire la decision #4 avant toute nouvelle protection sur un
+chemin Trip Zone.
+
+**Vérification.** `kicad-cli sch erc` par type de violation (méthode
+`KICAD-EDITION-GROUPEE-KIPY.md` §6) : les 11 `isolated_pin_label`
+corrigés par cette décision ont disparu (restent les 9 déjà connus,
+hors périmètre — point (a) de la decision #17) ; `pin_not_connected`
+baisse de 2 (réserves ADC-2 consommées) ; `endpoint_off_grid` augmente
+de 33 (un par composant neuf), cohérent avec le même défaut déjà présent
+sur les 23 trios existants, pas une régression propre à cette décision.
+
+---
+
 ## Points ouverts — ne pas combler par une estimation
 
 Ces valeurs manquent. Elles demandent une lecture de datasheet ou une mesure,
