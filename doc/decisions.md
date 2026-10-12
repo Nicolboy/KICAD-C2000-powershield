@@ -854,6 +854,22 @@ correspondance exacte. Le point ouvert hérité de la decision #15 est
 clos : c'est désormais ce footprint, vérifié, qui fait référence pour
 NCM3S1205MC dans ce dépôt.
 
+**(c) Modèle 3D.** Absent du téléchargement SnapEDA (ni fichier `.step`
+dans `composants-datasheets/datasheets/NCM3S1205MC/`, ni nœud `(model ...)`
+dans `CONV_NCM3S1205MC-R7.kicad_mod`). Récupéré directement chez Murata :
+page officielle `murata.com/en-us/products/power/3d`, fichier
+`mps_dcdc_nmc3s_mc_a.step` (SolidWorks 2023, STEP AP214, ~16,6 Mo) — un
+seul modèle couvrant toute la famille de boîtier NCM3S-MC (cohérent avec
+le datasheet, qui ne publie qu'un seul plan d'empreinte pour toute la
+série). Stocké dans `lib/NCM3S1205MC.step`, référencé depuis
+`lib/NCM3S1205MC.kicad_mod` et les deux copies figées U2/U3 dans
+`shield.kicad_pcb` via `${KIPRJMOD}/lib/NCM3S1205MC.step`, offset/scale/
+rotate à l'identité. Alignement visuel dans l'éditeur 3D de KiCad non
+vérifié par Claude (pas de rendu 3D disponible en CLI) — à confirmer par
+l'utilisateur à l'ouverture. Taille notable pour un dépôt git (16,6 Mo,
+premier modèle 3D custom de ce projet) : signalé, pas d'action prise sans
+demande explicite.
+
 ---
 
 ## Points ouverts — ne pas combler par une estimation

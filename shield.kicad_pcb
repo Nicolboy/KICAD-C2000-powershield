@@ -2662,6 +2662,17 @@
 			(pintype "power_out")
 			(uuid "a96f45c2-7c9e-4322-b9f4-e8c2bcb90cd7")
 		)
+		(model "${KIPRJMOD}/lib/NCM3S1205MC.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 		(embedded_fonts no)
 	)
 	(footprint "Connector_PinHeader_2.54mm:PinHeader_1x28_P2.54mm_Vertical"
@@ -10613,6 +10624,17 @@
 			(pinfunction "-VOUT_4")
 			(pintype "power_out")
 			(uuid "a950a0e0-d22f-499f-8329-e481cc44276e")
+		)
+		(model "${KIPRJMOD}/lib/NCM3S1205MC.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
 		)
 		(embedded_fonts no)
 	)
