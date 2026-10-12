@@ -3321,7 +3321,7 @@
 			)
 		)
 	)
-	(global_label "I_SHUNT2_CMP"
+	(global_label "I_SHUNT2_CMP_MCU"
 		(shape bidirectional)
 		(at 45.466 90.17 180)
 		(fields_autoplaced yes)
@@ -3991,7 +3991,7 @@
 			)
 		)
 	)
-	(global_label "I_SHUNT1_CMP"
+	(global_label "I_SHUNT1_CMP_MCU"
 		(shape bidirectional)
 		(at 45.466 80.01 180)
 		(fields_autoplaced yes)

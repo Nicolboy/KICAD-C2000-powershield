@@ -629,8 +629,24 @@ devkit, jamais l'inverse) : avant d'ajouter un trio pour un signal,
 son label au connecteur devkit (`connecteur_devkit.kicad_sch`) doit
 d'abord passer du nom brut au nom `_MCU` — sinon le trio protège un
 signal qui ne va nulle part. Fait pour les 9 signaux du point (b)
-(`CLB_OUT_MCU`, `UART_TX_MCU`, etc.) ; `I_SHUNT1_CMP`/`I_SHUNT2_CMP`
-portaient déjà leur propre label isolé, renommé de la même façon.
+(`CLB_OUT_MCU`, `UART_TX_MCU`, etc.).
+
+**Erratum (même session) : le renommage ci-dessus avait été oublié pour
+`I_SHUNT1_CMP`/`I_SHUNT2_CMP`** — leur label isolé au connecteur devkit
+était resté sous son nom brut après la création du trio. Conséquence :
+le nom brut étant partagé par un `global_label` KiCad entre la feuille
+nappe et la feuille connecteur devkit, les deux bouts du trio
+(`I_SHUNT1_CMP` côté nappe, `I_SHUNT1_CMP_MCU` théorique côté MCU)
+pointaient en fait vers le **même nœud électrique** que l'entrée brute —
+le trio BAT54S/R/C existait sur le PCB mais était court-circuité par ce
+doublon de nom, invisible à l'ERC (fusionner deux labels de même nom
+n'est pas une erreur de connectivité, juste un mauvais choix de nom).
+Corrigé en renommant les deux labels du connecteur devkit en
+`I_SHUNT1_CMP_MCU`/`I_SHUNT2_CMP_MCU`. **Nécessite un nouveau "Update
+PCB from Schematic"** : la mise à jour précédente du PCB a eu lieu
+pendant que le bug était encore présent, donc le pad concerné du
+connecteur devkit porte encore le mauvais nom de net sur le fichier
+`.kicad_pcb` tant que la resynchronisation n'a pas été refaite.
 
 **Désignateurs** (balayage de tous les `.kicad_sch`, aucun trou en
 dessous du max avant cette décision) : `D25`-`D35`, `R24`-`R34`,
