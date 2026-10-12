@@ -7648,6 +7648,17 @@
 			(layers "*.Cu" "*.Mask")
 			(uuid "c549eeff-5f40-40a9-889b-e69274e68c44")
 		)
+		(model "${KIPRJMOD}/lib/ER-OLEDM032-1.STEP"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 		(embedded_fonts no)
 	)
 	(footprint "Connector_IDC:IDC-Header_2x10_P2.54mm_Vertical"

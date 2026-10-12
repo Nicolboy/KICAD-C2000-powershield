@@ -58,4 +58,9 @@
     (effects (font (size 0.8 0.8) (thickness 0.12)))
     (uuid 8e2c1a10-000b-4b1a-9c1a-oledtxt000003)
   )
+  (model "${KIPRJMOD}/lib/ER-OLEDM032-1.STEP"
+    (offset (xyz 0 0 0))
+    (scale (xyz 1 1 1))
+    (rotate (xyz 0 0 0))
+  )
 )

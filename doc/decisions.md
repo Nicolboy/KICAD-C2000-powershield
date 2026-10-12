@@ -886,10 +886,17 @@ SOT-23.step`, `.../Resistor_SMD.3dshapes/R_0805_2012Metric.step`,
 `.../Capacitor_SMD.3dshapes/C_0805_2012Metric.step`, offset/scale/rotate à
 l'identité, repris des rescapés). `kicad-cli pcb drc` : 412 violations
 avant et après, identique (le modèle 3D ne participe à aucune règle DRC).
-Seule empreinte encore sans modèle : `U4` (`lib:ER-OLEDM032-1`, connecteur
-OLED custom) — même situation que NCM3S1205MC avant le point (c), pas de
-modèle standard disponible ; pas traité ici, hors périmètre de cette
-decision.
+Seule empreinte encore sans modèle à ce stade : `U4` (`lib:ER-OLEDM032-1`,
+connecteur OLED custom) — même situation que NCM3S1205MC avant le point
+(c), pas de modèle standard disponible.
+
+**(e) Modèle 3D ER-OLEDM032-1.** Fourni directement par l'utilisateur
+(`lib/ER-OLEDM032-1.STEP`, SolidWorks 2023, STEP AP214, ~4,4 Mo). Référencé
+depuis `lib/ER-OLEDM032-1.kicad_mod` et la copie figée U4 dans
+`shield.kicad_pcb`, offset/scale/rotate à l'identité (comme pour
+NCM3S1205MC, alignement non vérifié visuellement par Claude). Les 158
+empreintes du board ont désormais toutes un modèle 3D. `kicad-cli pcb drc`
+inchangé (412 violations, mêmes catégories).
 
 ---
 
