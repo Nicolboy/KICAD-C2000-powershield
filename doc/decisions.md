@@ -790,6 +790,72 @@ catégorie de violation.
 
 ---
 
+## 21. Empreinte NCM3S1205MC remplacée par le modèle téléchargé SnapEDA (symbole + footprint), broches inchangées
+
+**Décision.** L'utilisateur a téléchargé le modèle KiCad du Murata
+NCM3S1205MC-R7 publié par SnapEDA
+(`composants-datasheets/datasheets/NCM3S1205MC/`, symbole
+`NCM3S1205MC-R7.kicad_sym` + empreinte `CONV_NCM3S1205MC-R7.kicad_mod`,
+Murata via Mouser). Décision explicite (question posée, réponse
+« remplacer symbole + footprint ») plutôt qu'une estimation : les deux
+géométries disponibles pour ce composant divergent et aucune des deux
+n'est vérifiée par une capture d'empreinte physique (R15 de
+`composants-datasheets/.claude/rules/data-yaml.md`) — l'ambiguïté n'est
+donc pas résolue, seulement déplacée vers une source différente.
+
+**(a) Footprint** (`lib/NCM3S1205MC.kicad_mod`, et copie figée dans
+`shield.kicad_pcb` pour U2 et U3, dual-copy comme pour les symboles de
+connecteur). Géométrie remplacée par celle du modèle SnapEDA : pastilles
+à `x=±11.0mm` (au lieu de `±9.9mm`), pas vertical de 6,75mm inchangé,
+numérotation 1-4 préservée (même correspondance pin-fonction qu'avant :
+1=`-VIN`, 2=`+VIN`, 3=`+VOUT`, 4=`-VOUT`). Contour sérigraphie à 8
+segments (encoches au droit de chaque pastille, le style SnapEDA) plutôt
+que l'ancien contour à une seule encoche coin. Nom de l'empreinte
+conservé (`NCM3S1205MC`, pas `CONV_NCM3S1205MC-R7`) pour ne pas toucher
+la propriété `Footprint` des instances U2/U3. Les deux zones de garde
+(keepout anti-coulée) du modèle SnapEDA n'ont **pas** été reportées :
+aucune zone n'existe ailleurs dans ce board, les reproduire à la main
+sans exemple local à valider aurait été un risque de syntaxe gratuit pour
+un gain cosmétique (anti-coulée de cuivre sous le boîtier). Vérifié : U2
+et U3 sont posés mais **non routés** (zéro segment sur `U2_VINF`,
+`U2_GNDF`, `U3_VINF`, `U3_GNDF`, `5V_ISO`, `5V_NUM` à proximité de ces
+deux footprints) — le changement de position des pastilles ne casse donc
+aucune piste existante. `kicad-cli pcb drc` : 412 violations avant et
+après, catégories identiques.
+
+**(b) Symbole** (`lib/Power_Parts.kicad_sym`, et copie embarquée dans
+`dc.kicad_sch`). Seuls les **noms** de broches sont repris du modèle
+téléchargé (`-Vin`→`-VIN`, `+Vin`→`+VIN`, `+Vout`→`+VOUT`,
+`-Vout`→`-VOUT`) — **position, longueur et type électrique des broches
+inchangés**. Deux raisons, vérifiées toutes les deux avant de trancher,
+pas supposées :
+- `dc.kicad_sch` n'est **pas** en labels-only comme les nappes : des
+  fils réels relient U2/U3 au filtre EMC local (L1-4/C26-33/C40-41).
+  Reprendre aussi les coordonnées de broches du modèle SnapEDA (qui
+  élargit le symbole de 5,08mm de chaque côté) aurait désaligné ces fils
+  de leur point de connexion sans qu'aucun outil ne le signale avant
+  ouverture dans KiCad.
+- Le modèle SnapEDA type ses broches d'alimentation en `input`/`output`
+  simples plutôt qu'en `power_in`/`power_out`. Testé : adopter ce typage
+  fait disparaître 3 `power_pin_not_driven` (U2/U3 broches 1/2, attendu)
+  mais en fait apparaître un nouveau sur `J1 Pin 2 [GND]` — `+VOUT` (U2
+  ET U3, broche 3) sert de driver implicite du net `GND` entier via son
+  type `power_out` ; le repasser en `output` simple retire ce rôle de
+  driver à l'échelle du projet. Ce n'est pas un artefact du modèle
+  téléchargé, c'est un choix électrique déjà en place dans ce dépôt
+  (sortie flottante, référence de masse choisie côté secondaire) —
+  revert complet des 4 types de broche. `kicad-cli sch erc` : 200
+  violations avant et après l'édition finale, catégories et comptes
+  identiques (vérifié par diff).
+
+**Vérification physique.** Cotes et pastilles du modèle SnapEDA confirmées
+par l'utilisateur contre la page 10 du datasheet Murata (KDC_NCM3_A01) —
+correspondance exacte. Le point ouvert hérité de la decision #15 est
+clos : c'est désormais ce footprint, vérifié, qui fait référence pour
+NCM3S1205MC dans ce dépôt.
+
+---
+
 ## Points ouverts — ne pas combler par une estimation
 
 Ces valeurs manquent. Elles demandent une lecture de datasheet ou une mesure,
@@ -824,5 +890,3 @@ pas une approximation plausible.
 - Broche 7 de l'embase OLED (J10) : non étiquetée sur le plan constructeur
   fourni, laissée en NC par prudence (§15). À confirmer avec le datasheet
   complet de l'ER-OLEDM032-1B.
-- Cotes exactes de l'empreinte NCM3S1205MC (barrière d'isolement) : à
-  vérifier visuellement contre le datasheet avant fabrication (§15).
