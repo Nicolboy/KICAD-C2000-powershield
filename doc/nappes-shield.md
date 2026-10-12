@@ -59,10 +59,19 @@ sorte **deux fois** — un chemin direct, sans filtre, vers le comparateur.
 Les deux signaux manquants prennent la place de deux des six réserves
 (réserves : 6 → 4).
 
+**Erratum (même décision) : positions 9/11 écartées au profit de 11/13.**
+Le premier passage avait placé `I_SHUNT1_CMP` en position 9, juste après
+`VREFLO_SENSE` (position 8) — sans masse entre les deux. Position 8 est
+déjà l'exception à l'alternance stricte (paire de référence), donc la
+position 9 qui la suit hérite du même défaut de blindage, cette fois
+contre un signal `Rapide` (comparateur) non apparenté. Déplacé en
+positions 11/13, pleinement entourées de masse des deux côtés, comme
+`I_shunt1`/`I_shunt2` en 3/5. Position 9 redevient réserve.
+
 | | | | | | | | |
 |---|---|---|---|---|---|---|---|
 | 1 **3V3_ISO** | 2 **GND** | 3 **I_shunt1** | 4 GND | 5 **I_shunt2** | 6 GND | 7 **VREF_ADC** | 8 **VREFLO_SENSE** |
-| 9 **I_SHUNT1_CMP** | 10 GND | 11 **I_SHUNT2_CMP** | 12 GND | 13 **réserve ADC2-1** | 14 GND | 15 **réserve ADC2-2** | 16 GND |
+| 9 **réserve ADC2-1** | 10 GND | 11 **I_SHUNT1_CMP** | 12 GND | 13 **I_SHUNT2_CMP** | 14 GND | 15 **réserve ADC2-2** | 16 GND |
 | 17 **réserve ADC2-3** | 18 GND | 19 **réserve ADC2-4** | 20 **GND** | | | | |
 
 `I_SHUNT1_CMP`/`I_SHUNT2_CMP` ne sont **pas** placés adjacents à

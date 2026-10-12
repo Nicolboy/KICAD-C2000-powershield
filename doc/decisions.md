@@ -648,6 +648,24 @@ pendant que le bug était encore présent, donc le pad concerné du
 connecteur devkit porte encore le mauvais nom de net sur le fichier
 `.kicad_pcb` tant que la resynchronisation n'a pas été refaite.
 
+**Second erratum (même session) : position 9 d'ADC-2 mal choisie pour
+`I_SHUNT1_CMP`.** Le point (a) plaçait `I_SHUNT1_CMP` en position 9,
+juste après `VREFLO_SENSE` (position 8) — sans masse entre les deux.
+Position 8 est déjà l'exception à l'alternance stricte signal/masse
+(paire de référence `VREF_ADC`/`VREFLO_SENSE`, décision explicite) ;
+mettre un signal **actif et indépendant** en position 9 hérite du même
+défaut de blindage, cette fois contre un signal de classe `Rapide`
+(chemin comparateur, edges rapides) qui n'a aucun rapport avec la paire
+de référence — exactement le risque de couplage que ce brochage évite
+partout ailleurs par l'alternance masse. Une position de réserve
+(inutilisée) à cet endroit était inoffensive ; un vrai signal ne l'est
+pas. Corrigé en déplaçant `I_SHUNT1_CMP`/`I_SHUNT2_CMP` en positions
+**11/13** (entourées de masse des deux côtés, comme `I_shunt1`/
+`I_shunt2` en 3/5) ; la position 9 redevient réserve. Table mise à jour
+dans `doc/nappes-shield.md`. Comme pour le premier erratum, nécessite un
+nouveau "Update PCB from Schematic" (le pad devkit concerné changera de
+numéro de broche physique sur le connecteur ADC-2).
+
 **Désignateurs** (balayage de tous les `.kicad_sch`, aucun trou en
 dessous du max avant cette décision) : `D25`-`D35`, `R24`-`R34`,
 `C44`-`C54`. `netclass_patterns` étendu : les 9 nets `_MCU` standards et

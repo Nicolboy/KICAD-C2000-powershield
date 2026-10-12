@@ -664,7 +664,7 @@
 				(pin passive line
 					(at -22.86 0 0)
 					(length 5.08)
-					(name "I_SHUNT1_CMP"
+					(name "RESERVE_ADC2_1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -700,7 +700,7 @@
 				(pin passive line
 					(at -22.86 -5.08 0)
 					(length 5.08)
-					(name "I_SHUNT2_CMP"
+					(name "I_SHUNT1_CMP"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -736,7 +736,7 @@
 				(pin passive line
 					(at -22.86 -10.16 0)
 					(length 5.08)
-					(name "RESERVE_ADC2_1"
+					(name "I_SHUNT2_CMP"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -6672,7 +6672,7 @@
 	)
 	(global_label "I_SHUNT1_CMP"
 		(shape bidirectional)
-		(at 108.966 131.572 180)
+		(at 108.966 136.652 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6682,7 +6682,7 @@
 		)
 		(uuid "660ef572-23f6-4c21-9562-e330b8a9b90a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 108.966 131.572 0)
+			(at 108.966 136.652 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6695,7 +6695,7 @@
 	)
 	(global_label "I_SHUNT2_CMP"
 		(shape bidirectional)
-		(at 108.966 136.652 180)
+		(at 108.966 141.732 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6705,7 +6705,7 @@
 		)
 		(uuid "f2ed59e3-d3ca-4e47-bedd-ad1009975aea")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 108.966 136.652 0)
+			(at 108.966 141.732 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
