@@ -35737,6 +35737,30 @@
 		(uuid "03aa6477-e185-45f7-ad0b-964205fc1463")
 	)
 	(segment
+		(start 133.3125 149.7)
+		(end 133.31 152.3)
+		(width 0.5)
+		(layer "B.Cu")
+		(net "GND")
+		(uuid "03baaeed-d3f6-4a51-bc68-5bcd0f741820")
+	)
+	(segment
+		(start 125.3125 143.7)
+		(end 125.31 146.3)
+		(width 0.5)
+		(layer "B.Cu")
+		(net "GND")
+		(uuid "0ccfd969-b004-43d2-b7f7-b8377fa5d45a")
+	)
+	(segment
+		(start 117.3125 149.7)
+		(end 117.31 152.3)
+		(width 0.5)
+		(layer "B.Cu")
+		(net "GND")
+		(uuid "199e29ff-7ea1-461f-9e70-e95eacb2b46c")
+	)
+	(segment
 		(start 225.5875 159.4)
 		(end 225.5875 162)
 		(width 0.5)
@@ -35785,6 +35809,22 @@
 		(uuid "3ec4399d-ef48-465f-904c-c5fb54697b26")
 	)
 	(segment
+		(start 113.3125 41.7)
+		(end 113.31 44.3)
+		(width 0.5)
+		(layer "B.Cu")
+		(net "GND")
+		(uuid "441c4a64-6153-45dc-8575-286be4b60146")
+	)
+	(segment
+		(start 113.3125 51.7)
+		(end 113.31 54.3)
+		(width 0.5)
+		(layer "B.Cu")
+		(net "GND")
+		(uuid "45864533-69bf-4e78-bb43-55ee0f32b08c")
+	)
+	(segment
 		(start 129.0625 10.95)
 		(end 129.062499 13.55)
 		(width 0.5)
@@ -35801,12 +35841,36 @@
 		(uuid "55065c33-2a4b-4ce0-b094-8c77201f0f60")
 	)
 	(segment
+		(start 125.3125 133.7)
+		(end 125.31 136.3)
+		(width 0.5)
+		(layer "B.Cu")
+		(net "GND")
+		(uuid "59fc0496-7230-4311-b58a-358d7d582794")
+	)
+	(segment
 		(start 189.75 72.4)
 		(end 189.75 75)
 		(width 0.5)
 		(layer "B.Cu")
 		(net "GND")
 		(uuid "5ff6ed01-20b1-4673-96ef-c3232cab2d76")
+	)
+	(segment
+		(start 238.2225 75.07)
+		(end 238.22 77.67)
+		(width 0.5)
+		(layer "B.Cu")
+		(net "GND")
+		(uuid "63cab79d-fe65-4be3-a362-0b193924f5be")
+	)
+	(segment
+		(start 115.3125 139.7)
+		(end 115.31 142.3)
+		(width 0.5)
+		(layer "B.Cu")
+		(net "GND")
+		(uuid "65951ad2-abd8-4887-8308-2af8c9159893")
 	)
 	(segment
 		(start 183.8 96.15)
@@ -35839,6 +35903,14 @@
 		(layer "B.Cu")
 		(net "GND")
 		(uuid "8cb67c79-5145-4589-8516-4120543d03da")
+	)
+	(segment
+		(start 163.4825 133.52)
+		(end 163.479999 136.12)
+		(width 0.5)
+		(layer "B.Cu")
+		(net "GND")
+		(uuid "8d0db858-aa1f-4f90-9d61-7e6196c8bca5")
 	)
 	(segment
 		(start 212.1 143.65)
@@ -35905,6 +35977,14 @@
 		(uuid "d9639f8e-3b0b-441b-bde4-ef908691c6fc")
 	)
 	(segment
+		(start 238.7625 113.14)
+		(end 238.759999 115.74)
+		(width 0.5)
+		(layer "B.Cu")
+		(net "GND")
+		(uuid "db53e1c4-5529-4fe5-a398-2ad08b571993")
+	)
+	(segment
 		(start 212.625 130.675)
 		(end 212.625 133.275)
 		(width 0.5)
@@ -35919,6 +35999,78 @@
 		(layer "B.Cu")
 		(net "GND")
 		(uuid "ea691c8a-0378-40dd-99a7-e3eb15a20759")
+	)
+	(segment
+		(start 123.3125 53.7)
+		(end 123.31 56.3)
+		(width 0.5)
+		(layer "B.Cu")
+		(net "GND")
+		(uuid "f390f2a5-05fe-4bd3-9982-75edf88ea473")
+	)
+	(segment
+		(start 240.0975 74.12)
+		(end 242.3075 74.17)
+		(width 0.25)
+		(layer "B.Cu")
+		(net "I_SHUNT2_CMP_MCU")
+		(uuid "91ecdf98-8b46-4cf5-ba24-674905ff23ab")
+	)
+	(segment
+		(start 240.0975 74.12)
+		(end 240.12 77.67)
+		(width 0.25)
+		(layer "B.Cu")
+		(net "I_SHUNT2_CMP_MCU")
+		(uuid "c9b071d4-74ea-49df-add0-7fb30f857da6")
+	)
+	(segment
+		(start 125.1875 52.75)
+		(end 127.3975 52.8)
+		(width 0.25)
+		(layer "B.Cu")
+		(net "CAN_RX_MCU")
+		(uuid "6cd601ae-95da-444c-b72f-a9f5774d196a")
+	)
+	(segment
+		(start 125.1875 52.75)
+		(end 125.21 56.3)
+		(width 0.25)
+		(layer "B.Cu")
+		(net "CAN_RX_MCU")
+		(uuid "7ada51ea-8d37-43b5-9c6a-dcbbbef6976e")
+	)
+	(segment
+		(start 115.1875 50.75)
+		(end 115.21 54.3)
+		(width 0.25)
+		(layer "B.Cu")
+		(net "SPI_CLK_MCU")
+		(uuid "749a5c74-7c98-4915-802c-0ab027d9d4cc")
+	)
+	(segment
+		(start 115.1875 50.75)
+		(end 117.3975 50.8)
+		(width 0.25)
+		(layer "B.Cu")
+		(net "SPI_CLK_MCU")
+		(uuid "9d45d8f0-c9bc-46fa-95da-29b6f2c9b640")
+	)
+	(segment
+		(start 127.1875 132.75)
+		(end 127.21 136.3)
+		(width 0.25)
+		(layer "B.Cu")
+		(net "SPI_STE_MCU")
+		(uuid "71d959d6-0dff-4dc6-9258-fd08cceadcc1")
+	)
+	(segment
+		(start 127.1875 132.75)
+		(end 129.3975 132.8)
+		(width 0.25)
+		(layer "B.Cu")
+		(net "SPI_STE_MCU")
+		(uuid "ec3ab37d-f7ec-4b66-af6d-8e88363c62ef")
 	)
 	(segment
 		(start 214.3375 115.7)
@@ -36049,6 +36201,38 @@
 		(uuid "b3d9ede8-cd47-4957-a177-0cc0ffc57a9e")
 	)
 	(segment
+		(start 119.1875 148.75)
+		(end 119.21 152.3)
+		(width 0.25)
+		(layer "B.Cu")
+		(net "UART_TX_MCU")
+		(uuid "14a90eaf-26a0-4832-a06b-a5642b76a88d")
+	)
+	(segment
+		(start 119.1875 148.75)
+		(end 121.3975 148.8)
+		(width 0.25)
+		(layer "B.Cu")
+		(net "UART_TX_MCU")
+		(uuid "3d719018-89f0-4f33-acad-1a408b412f21")
+	)
+	(segment
+		(start 127.1875 142.75)
+		(end 127.21 146.3)
+		(width 0.25)
+		(layer "B.Cu")
+		(net "UART_RX_MCU")
+		(uuid "828becab-a1a3-4e4b-87c5-a604d895138b")
+	)
+	(segment
+		(start 127.1875 142.75)
+		(end 129.3975 142.8)
+		(width 0.25)
+		(layer "B.Cu")
+		(net "UART_RX_MCU")
+		(uuid "ecf12dbd-8234-40fc-8a7b-77ff4b209880")
+	)
+	(segment
 		(start 145.9375 10)
 		(end 145.9625 13.55)
 		(width 0.25)
@@ -36081,6 +36265,54 @@
 		(uuid "d63d5548-48ad-4136-9fc4-20537993a473")
 	)
 	(segment
+		(start 117.1875 138.75)
+		(end 119.3975 138.8)
+		(width 0.25)
+		(layer "B.Cu")
+		(net "SPI_SIMO_MCU")
+		(uuid "0a06699a-3b6a-4bd4-b4c3-505fe4011d81")
+	)
+	(segment
+		(start 117.1875 138.75)
+		(end 117.21 142.3)
+		(width 0.25)
+		(layer "B.Cu")
+		(net "SPI_SIMO_MCU")
+		(uuid "e422f88e-fedf-44fa-9dbd-e2ab67a9f897")
+	)
+	(segment
+		(start 115.1875 40.75)
+		(end 117.3975 40.8)
+		(width 0.25)
+		(layer "B.Cu")
+		(net "SPI_SOMI_MCU")
+		(uuid "62d55bcd-816a-4f8e-8e1b-27ff7b226aa9")
+	)
+	(segment
+		(start 115.1875 40.75)
+		(end 115.21 44.3)
+		(width 0.25)
+		(layer "B.Cu")
+		(net "SPI_SOMI_MCU")
+		(uuid "b02cd5e9-89f6-4b99-82bd-f302e8898bef")
+	)
+	(segment
+		(start 135.1875 148.75)
+		(end 137.3975 148.8)
+		(width 0.25)
+		(layer "B.Cu")
+		(net "CAN_TX_MCU")
+		(uuid "18cfa492-26f6-4f8b-ad37-88301d604fd2")
+	)
+	(segment
+		(start 135.1875 148.75)
+		(end 135.21 152.3)
+		(width 0.25)
+		(layer "B.Cu")
+		(net "CAN_TX_MCU")
+		(uuid "6137e7e9-51d4-4d98-a3a3-c97d2192c2f3")
+	)
+	(segment
 		(start 130.9375 10)
 		(end 133.15 10.05)
 		(width 0.25)
@@ -36097,6 +36329,22 @@
 		(uuid "c3674727-41d0-4eb7-8ab6-086e61c69475")
 	)
 	(segment
+		(start 165.3575 132.57)
+		(end 167.5675 132.62)
+		(width 0.25)
+		(layer "B.Cu")
+		(net "CLB_OUT_MCU")
+		(uuid "062d8fe5-ff35-4f4f-b4e7-e05e18d9cf35")
+	)
+	(segment
+		(start 165.3575 132.57)
+		(end 165.379999 136.12)
+		(width 0.25)
+		(layer "B.Cu")
+		(net "CLB_OUT_MCU")
+		(uuid "9d3ae6a2-74b5-49bf-8af3-a447f37547e1")
+	)
+	(segment
 		(start 185.725 137.45)
 		(end 187.9375 137.5)
 		(width 0.25)
@@ -36111,6 +36359,22 @@
 		(layer "B.Cu")
 		(net "nFAULT_MCU")
 		(uuid "f7e344f4-9338-4781-bc2e-d05a0433125c")
+	)
+	(segment
+		(start 240.6375 112.19)
+		(end 240.659999 115.74)
+		(width 0.25)
+		(layer "B.Cu")
+		(net "I_SHUNT1_CMP_MCU")
+		(uuid "57559a7b-964d-4a18-b43f-54c10dc54e18")
+	)
+	(segment
+		(start 240.6375 112.19)
+		(end 242.8475 112.24)
+		(width 0.25)
+		(layer "B.Cu")
+		(net "I_SHUNT1_CMP_MCU")
+		(uuid "fc021866-2ff0-4d10-8c33-945f3bf24dc3")
 	)
 	(segment
 		(start 193.8375 71.5)
@@ -36322,13 +36586,15 @@
 	(group "PROT_I_SHUNT2_CMP_MCU"
 		(uuid "151be705-22fc-4f84-b2b5-820a7fea11e4")
 		(members "09ed2e2c-8be2-4bd1-981c-71cc1fbc18d0" "1f183d3b-dbcc-4461-ad7d-3ecce3d72675"
-			"a2841b60-e208-4270-801a-352e1346f622"
+			"63cab79d-fe65-4be3-a362-0b193924f5be" "91ecdf98-8b46-4cf5-ba24-674905ff23ab"
+			"a2841b60-e208-4270-801a-352e1346f622" "c9b071d4-74ea-49df-add0-7fb30f857da6"
 		)
 	)
 	(group "PROT_SPI_SOMI_MCU"
 		(uuid "1baadfd6-09d7-4ba7-b7eb-f8c9e81488cf")
-		(members "562bbae5-8485-4f20-9cb8-2c74bca35f35" "693ee503-ebf8-4c95-91b1-6f3e8b38c11a"
-			"d31e3773-e123-421a-8cb5-d6749590ccc2"
+		(members "441c4a64-6153-45dc-8575-286be4b60146" "562bbae5-8485-4f20-9cb8-2c74bca35f35"
+			"62d55bcd-816a-4f8e-8e1b-27ff7b226aa9" "693ee503-ebf8-4c95-91b1-6f3e8b38c11a"
+			"b02cd5e9-89f6-4b99-82bd-f302e8898bef" "d31e3773-e123-421a-8cb5-d6749590ccc2"
 		)
 	)
 	(group "PROT_PWM3_A_MCU"
@@ -36340,8 +36606,9 @@
 	)
 	(group "PROT_SPI_CLK_MCU"
 		(uuid "20bfc91f-1d5d-480d-82fc-5d4061322b40")
-		(members "1217583d-c717-4ad8-b6ac-f5d6bed7435d" "54ae9a4c-e660-4a57-9a84-ba213de9dc5e"
-			"ef874c69-9e52-4065-a185-06fcb7d2e64f"
+		(members "1217583d-c717-4ad8-b6ac-f5d6bed7435d" "45864533-69bf-4e78-bb43-55ee0f32b08c"
+			"54ae9a4c-e660-4a57-9a84-ba213de9dc5e" "749a5c74-7c98-4915-802c-0ab027d9d4cc"
+			"9d45d8f0-c9bc-46fa-95da-29b6f2c9b640" "ef874c69-9e52-4065-a185-06fcb7d2e64f"
 		)
 	)
 	(group "PROT_I_shunt1_MCU"
@@ -36361,7 +36628,8 @@
 	(group "PROT_CAN_RX_MCU"
 		(uuid "307ad789-333a-44db-a268-96979a86fca8")
 		(members "10715ee3-34b3-498e-aa9c-1145f900626f" "13f31da5-6fb5-4dae-a9a7-37ea070e11c6"
-			"ad266831-2e43-4826-a785-b17961489675"
+			"6cd601ae-95da-444c-b72f-a9f5774d196a" "7ada51ea-8d37-43b5-9c6a-dcbbbef6976e"
+			"ad266831-2e43-4826-a785-b17961489675" "f390f2a5-05fe-4bd3-9982-75edf88ea473"
 		)
 	)
 	(group "PROT_Iout_MCU"
@@ -36380,8 +36648,9 @@
 	)
 	(group "PROT_I_SHUNT1_CMP_MCU"
 		(uuid "46776642-c87b-40f4-8341-f420b5f71d4c")
-		(members "5e67ec65-60f1-45f3-888c-b72399dc9f14" "aa6c760f-4d49-4455-af05-0d0b8b9b9062"
-			"d143c8be-48d2-4ef0-a360-9d1c52d59b84"
+		(members "57559a7b-964d-4a18-b43f-54c10dc54e18" "5e67ec65-60f1-45f3-888c-b72399dc9f14"
+			"aa6c760f-4d49-4455-af05-0d0b8b9b9062" "d143c8be-48d2-4ef0-a360-9d1c52d59b84"
+			"db53e1c4-5529-4fe5-a398-2ad08b571993" "fc021866-2ff0-4d10-8c33-945f3bf24dc3"
 		)
 	)
 	(group "PROT_Temp2_MCU"
@@ -36393,8 +36662,9 @@
 	)
 	(group "PROT_SPI_SIMO_MCU"
 		(uuid "63e5d38b-2538-4650-8574-c8bf8bdfc0e7")
-		(members "7a46f22d-3bd7-402c-aabd-0e8be71d4385" "9bc78c21-4cc7-4e5f-acf7-8112ee7232a2"
-			"d9b20999-89a2-40eb-a589-2b0ded200e8e"
+		(members "0a06699a-3b6a-4bd4-b4c3-505fe4011d81" "65951ad2-abd8-4887-8308-2af8c9159893"
+			"7a46f22d-3bd7-402c-aabd-0e8be71d4385" "9bc78c21-4cc7-4e5f-acf7-8112ee7232a2"
+			"d9b20999-89a2-40eb-a589-2b0ded200e8e" "e422f88e-fedf-44fa-9dbd-e2ab67a9f897"
 		)
 	)
 	(group "PROT_nFAULT_MCU"
@@ -36434,14 +36704,16 @@
 	)
 	(group "PROT_UART_TX_MCU"
 		(uuid "9c935fda-7926-4ac9-8a26-780b3c3e47f1")
-		(members "790c2a17-5f4d-4ac2-a414-60dd3de4bf16" "ba2540f6-dd0c-4482-8d92-8d0895b6d7ce"
-			"fad1b2f1-9bd5-45ca-9c91-5d1db28c6b32"
+		(members "14a90eaf-26a0-4832-a06b-a5642b76a88d" "199e29ff-7ea1-461f-9e70-e95eacb2b46c"
+			"3d719018-89f0-4f33-acad-1a408b412f21" "790c2a17-5f4d-4ac2-a414-60dd3de4bf16"
+			"ba2540f6-dd0c-4482-8d92-8d0895b6d7ce" "fad1b2f1-9bd5-45ca-9c91-5d1db28c6b32"
 		)
 	)
 	(group "PROT_SPI_STE_MCU"
 		(uuid "a80e00c6-6724-4890-ac6b-976d00c18dda")
-		(members "3c9f911f-ce71-44a4-9549-a03b41a13e50" "d735c779-f515-40e6-8df8-088944eedc74"
-			"e3f333cc-4fd5-42cb-a1fd-f926c4ea8a94"
+		(members "3c9f911f-ce71-44a4-9549-a03b41a13e50" "59fc0496-7230-4311-b58a-358d7d582794"
+			"71d959d6-0dff-4dc6-9258-fd08cceadcc1" "d735c779-f515-40e6-8df8-088944eedc74"
+			"e3f333cc-4fd5-42cb-a1fd-f926c4ea8a94" "ec3ab37d-f7ec-4b66-af6d-8e88363c62ef"
 		)
 	)
 	(group "PROT_I2C_SCL_MCU"
@@ -36467,8 +36739,9 @@
 	)
 	(group "PROT_UART_RX_MCU"
 		(uuid "d9ce8576-21ae-4b28-8dcb-337901bc7d54")
-		(members "5f953f37-8355-4cf0-8181-a659ca21ed0d" "626a8954-1d5b-457b-b94f-959e794afc87"
-			"a4915bae-926e-45e6-8e7c-eca40f79a27b"
+		(members "0ccfd969-b004-43d2-b7f7-b8377fa5d45a" "5f953f37-8355-4cf0-8181-a659ca21ed0d"
+			"626a8954-1d5b-457b-b94f-959e794afc87" "828becab-a1a3-4e4b-87c5-a604d895138b"
+			"a4915bae-926e-45e6-8e7c-eca40f79a27b" "ecf12dbd-8234-40fc-8a7b-77ff4b209880"
 		)
 	)
 	(group "PROT_Vin_MCU"
@@ -36495,14 +36768,16 @@
 	)
 	(group "PROT_CAN_TX_MCU"
 		(uuid "e5f35cd4-2fd4-4630-a6b7-603f3232f65c")
-		(members "8f24658f-0de2-49fa-a8b1-2ecec120de31" "8fa2e167-af20-4dac-b04b-ad8eea4c3156"
-			"e0c5c869-5883-474b-8b1c-adfef4ba0335"
+		(members "03baaeed-d3f6-4a51-bc68-5bcd0f741820" "18cfa492-26f6-4f8b-ad37-88301d604fd2"
+			"6137e7e9-51d4-4d98-a3a3-c97d2192c2f3" "8f24658f-0de2-49fa-a8b1-2ecec120de31"
+			"8fa2e167-af20-4dac-b04b-ad8eea4c3156" "e0c5c869-5883-474b-8b1c-adfef4ba0335"
 		)
 	)
 	(group "PROT_CLB_OUT_MCU"
 		(uuid "e6f230e8-5080-4f75-87d4-8b6585e33b07")
-		(members "4b50fdbd-15e4-4a3a-9953-cf0a7127709c" "c19deede-7249-4b7d-abe6-85257187ba1f"
-			"d75d28fe-6f6a-4620-b220-7dd8a23b1d0d"
+		(members "062d8fe5-ff35-4f4f-b4e7-e05e18d9cf35" "4b50fdbd-15e4-4a3a-9953-cf0a7127709c"
+			"8d0db858-aa1f-4f90-9d61-7e6196c8bca5" "9d3ae6a2-74b5-49bf-8af3-a447f37547e1"
+			"c19deede-7249-4b7d-abe6-85257187ba1f" "d75d28fe-6f6a-4620-b220-7dd8a23b1d0d"
 		)
 	)
 	(group "PROT_I2C_SDA_MCU"
