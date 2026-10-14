@@ -1096,6 +1096,59 @@ documentés ici pour ne pas les refaire :
 
 ---
 
+## 24. Trois bugs de labels sur `usb_pd.kicad_sch` (placement, rotation, justify) — même cause que le #14, cette fois avec un vérificateur
+
+**Constat.** Après la decision #23, l'utilisateur a signalé trois défauts
+visuels successifs sur les labels de `usb_pd.kicad_sch`, aucun détecté par
+`kicad-cli sch erc` (la connectivité électrique restait correcte à chaque
+fois — seul le placement/l'orientation visuelle était faux) :
+
+1. **Reference/Value empilés au-dessus/en-dessous** du corps au lieu de
+   gauche/droite — l'anti-motif déjà documenté par la mémoire
+   `kicad-component-label-placement` (établie sur `alim-flyback-filament`,
+   un *autre* dépôt), reproduit ici en écrivant un nouveau générateur sans
+   relire cette mémoire d'abord.
+2. **Rotation des `global_label` = angle local de la broche tel quel**
+   au lieu de **angle + 180** — la broche pointe vers le corps depuis son
+   point de connexion, le label doit pointer vers l'extérieur, sens
+   opposé. Une édition manuelle de correction par l'utilisateur a même été
+   **écrasée** par une régénération complète du fichier avant que la
+   vraie formule soit trouvée (voir decision précédente sur le risque
+   d'édition concurrente, ici côté schéma et non PCB — pas de `kipy`
+   équivalent pour détecter une feuille ouverte).
+3. **Rotation posée sans la propriété `justify` assortie** — convention
+   déjà établie par la **decision #14** (rotation 0/90 → `justify left`,
+   180/270 → `justify right`), vérifiable sur 90+ labels réels de
+   `protection_nappe.kicad_sch`, que je n'avais pas relue avant d'écrire
+   le générateur de la decision #23.
+
+**Ce qui casse, si ignoré à nouveau.** Les trois bugs sont du même type
+que celui déjà vécu en decision #14 (signe Y) et en decision #22
+(footprints mal recopiés) : **un script de génération qui réinvente une
+règle de placement déjà établie, au lieu de relire la décision qui la
+documente.** `kicad-cli sch erc` ne signale aucun des trois — seule une
+relecture à l'oeil dans KiCad, ou un vérificateur dédié, les attrape.
+
+**Prévention — vérificateur ajouté, pas juste une note.**
+[`check_schematic_labels.py`](../../check_schematic_labels.py) (racine du
+workspace, même principe que `check_mirrored_footprints.py` pour le PCB)
+vérifie sur un `.kicad_sch` donné : (a) Reference/Value à gauche/droite du
+corps, jamais au-dessus/en-dessous ; (b) rotation d'un `global_label` =
+angle local de la broche + 180 ; (c) `justify` assorti à cette rotation
+(0/90 → left, 180/270 → right). Limite connue : ne couvre que les
+instances à rotation 0 sans mirror (générateur neuf) — formule du cas
+général pas encore re-dérivée pour les labels. Détail complet et recette
+de génération dans `KICAD-EDITION-GROUPEE-KIPY.md` (racine du workspace,
+section « Génération programmatique d'un `.kicad_sch` »).
+
+**Règle retenue pour tout futur générateur de schéma dans cet atelier** :
+relire `doc/decisions.md` (decisions #14, #22, celle-ci) *avant* d'écrire
+un script qui place des composants ou des labels — ne pas re-dériver une
+formule de géométrie KiCad par essai-erreur quand elle est déjà
+documentée.
+
+---
+
 ## Points ouverts — ne pas combler par une estimation
 
 Ces valeurs manquent. Elles demandent une lecture de datasheet ou une mesure,
