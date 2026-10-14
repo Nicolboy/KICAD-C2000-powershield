@@ -59,8 +59,8 @@
     (uuid 8e2c1a10-000b-4b1a-9c1a-oledtxt000003)
   )
   (model "${KIPRJMOD}/lib/ER-OLEDM032-1.STEP"
-    (offset (xyz 0 0 0))
+    (offset (xyz -3 3 15))
     (scale (xyz 1 1 1))
-    (rotate (xyz 0 0 0))
+    (rotate (xyz 180 0 0))
   )
 )

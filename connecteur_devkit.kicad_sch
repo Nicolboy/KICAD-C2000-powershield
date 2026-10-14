@@ -4511,8 +4511,8 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "37c32eed-56ec-4876-af0a-5e07df2393a2")
-		(property "Reference" "C36"
+		(uuid "137be544-f64b-4148-803b-0070c8d1de36")
+		(property "Reference" "C60"
 			(at 98.838 110.998 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4523,7 +4523,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "100uF"
+		(property "Value" "100uF 50V"
 			(at 102.838 110.998 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4534,7 +4534,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_1210_3225Metric"
+		(property "Footprint" "Capacitor_SMD:CP_Elec_8x10.5"
 			(at 100.838 110.998 0)
 			(hide yes)
 			(show_name no)
@@ -4568,15 +4568,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "f5b35a40-1135-49fd-a8fb-38d4c6180ebf")
+			(uuid "ef69dc1e-2af7-4cd7-b225-3701a68c25de")
 		)
 		(pin "2"
-			(uuid "42b857af-b337-4bfe-bef3-280302d8bc3f")
+			(uuid "bb341e06-5813-4efb-84a1-e769bcdce92f")
 		)
 		(instances
 			(project "shield"
 				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/8ca9a22c-ce32-47b8-9bd4-8f1e44cb7b31"
-					(reference "C36")
+					(reference "C60")
 					(unit 1)
 				)
 			)
@@ -4592,8 +4592,8 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "4228fcee-27ce-4399-8f6e-26fdbda29724")
-		(property "Reference" "C37"
+		(uuid "3ece800c-c5d1-43ec-a1b3-91e6638d2699")
+		(property "Reference" "C59"
 			(at 337.852 83.058 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4604,7 +4604,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "100uF"
+		(property "Value" "100uF 50V"
 			(at 341.852 83.058 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4615,7 +4615,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_1210_3225Metric"
+		(property "Footprint" "Capacitor_SMD:CP_Elec_8x10.5"
 			(at 339.852 83.058 0)
 			(hide yes)
 			(show_name no)
@@ -4649,15 +4649,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "05b33f26-6acd-480c-ab4a-551749a4ec1b")
+			(uuid "54260ed7-4553-4070-aba5-ab4b35238b5b")
 		)
 		(pin "2"
-			(uuid "2dac140f-f9e6-4dc8-b190-0a65db319b1b")
+			(uuid "791694b6-3fee-4d06-b845-a4bb0ca2eee3")
 		)
 		(instances
 			(project "shield"
 				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/8ca9a22c-ce32-47b8-9bd4-8f1e44cb7b31"
-					(reference "C37")
+					(reference "C59")
 					(unit 1)
 				)
 			)
@@ -4696,7 +4696,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x28_P2.54mm_Vertical"
+		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x28_P2.54mm_Vertical"
 			(at 61.468 102.362 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4852,7 +4852,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x16_P2.54mm_Vertical"
+		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x16_P2.54mm_Vertical"
 			(at 374.396 16.51 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4972,7 +4972,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x16_P2.54mm_Vertical"
+		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x16_P2.54mm_Vertical"
 			(at 374.396 151.384 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5167,7 +5167,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x28_P2.54mm_Vertical"
+		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x28_P2.54mm_Vertical"
 			(at 70.104 193.04 0)
 			(show_name no)
 			(do_not_autoplace no)

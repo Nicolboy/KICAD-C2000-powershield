@@ -15,6 +15,11 @@ Cible : une commande numérique de convertisseur de puissance isolé, pilotée
 par un C2000 et supervisée par un ESP32-C6 pour le Wi-Fi, la mise à jour
 FOTA et un écran OLED d'état.
 
+<p align="center">
+  <img src="doc/shield.png" alt="Rendu 3D de la carte powersheild-C2000" width="700px">
+</p>
+
+
 ---
 
 ## Architecture
