@@ -240,6 +240,39 @@ rail 5V (600mA dispo chacun) — #1 face à 2 devkits + OLED, #2 face au LDO
 3,3V + la consommation réelle des cartes DC/DC côté isolation, encore
 inconnue tant qu'aucune carte fille n'est spécifiée.
 
+### Alimentation cartes filles — USB-C Power Delivery (feuille `USB_PD`)
+
+Deuxième entrée d'alimentation, séparée du 11-25V ci-dessus (confirmé par
+l'utilisateur — pas une fusion) : un récepteur USB-C (Würth 632722100213,
+6 broches CC1/CC2/VBUS×2/GND×2, pas de D+/D-/SBU) négocie jusqu'à 100W
+(20V/5A) via un STUSB4531QTR, et alimente **en daisy chain** les cartes
+filles via un connecteur dédié — convention d'interface, la propagation
+carte-à-carte est hors périmètre de ce dépôt.
+
+```
+USB-C (Würth 632722100213) — VBUS_IN, CC1, CC2, GND
+   │
+STUSB4531QTR — négociation PD autonome (dead battery), alimenté sur VBUS_IN
+   │  VBUS_EN_SNK → réseau R (100k/22k) → grille T1 (filtrage 100R/100nF)
+   │  DISCH/VBUS_VS_DISCH → décharge autonome système/réceptacle
+   │  SCL/SDA/ALERT → bus I2C dédié ESP32 (GPIO22/23/21, PAS celui des
+   │       nappes qui reste au C2000) — supervision seulement, l'autorun
+   │       négocie sans lui
+   │
+   ▼
+T1 (SQJ459EP-T2_GE3, PMOS) — unique interrupteur de puissance, pas d'eFuse
+   │
+   ▼
+VBUS_OUT → connecteur de sortie puissance cartes filles (daisy chain)
+```
+
+`HV_EN`/`Discharge` (nappe GPIO-1, decision #17/#20) **ne sont pas
+mêlés à ce circuit** — signaux distincts, à ne pas confondre : le
+STUSB4531QTR gère sa propre coupure/décharge en autonome.
+
+Détail complet (BOM, choix de composants, justification) :
+`doc/decisions.md` (nouvelle décision, référencée depuis le sommaire).
+
 ### Embase OLED — J10, IDC 2 × 8 détrompée
 
 Écran `ER-OLEDM032-1B` (SPI 4 fils), nappe 16 voies vers une embase IDC

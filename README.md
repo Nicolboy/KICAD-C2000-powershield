@@ -26,7 +26,7 @@ FOTA et un écran OLED d'état.
 
 | Carte | Rôle |
 |---|---|
-| **Shield** | Alimentation complète (11-25V→5V isolé ×2, 3,3V isolation + protection), support mécanique des deux devkits, adaptation de brochage, conditionnement analogique, protections, embase OLED |
+| **Shield** | Alimentation complète (11-25V→5V isolé ×2, 3,3V isolation + protection), **alimentation des cartes filles en USB-C Power Delivery** (STUSB4531QTR, 100W/20V/5A, daisy chain), support mécanique des deux devkits, adaptation de brochage, conditionnement analogique, protections, embase OLED |
 | **Cartes DC/DC enfichables** | Une par fonction de puissance, portent chacune l'isolation galvanique qu'elle exige (ou aucune), raccordées au shield par les 4 nappes |
 | **Devkit C2000** | MCU, deux LDO 3,3V, JTAG, bouton reset, LED, cavalier de boot |
 | **Devkit ESP32** | Wi-Fi, hôte FOTA, écran OLED SPI (`ER-OLEDM032-1B`) |
@@ -99,9 +99,10 @@ kicad-cli pcb drc --exit-code-violations shield.kicad_pcb
 
 Travail en cours, et le dire plutôt que de le masquer :
 
-- **Schéma** — six feuilles (connecteurs devkit/ESP32/OLED, nappes DC/DC,
-  alimentation, trois feuilles de chaînes de protection). Toutes les
-  broches réelles portent une empreinte. L'ERC reste à ~190 violations, de
+- **Schéma** — huit feuilles (connecteurs devkit/ESP32/OLED, nappes DC/DC,
+  alimentation, alimentation USB-C PD des cartes filles, quatre feuilles
+  de chaînes de protection). Toutes les broches réelles portent une
+  empreinte. L'ERC reste à ~190 violations, de
   la même famille que le reste de l'atelier (`pin_not_connected`,
   `isolated_pin_label` sur des réserves non pilotées) — pas corrigées
   d'office, voir `doc/decisions.md`.

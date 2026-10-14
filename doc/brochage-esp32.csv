@@ -19,9 +19,9 @@ J3-1,GND,masse,
 J3-2,GPIO16 / U0TXD,console,occupe par le pont USB-UART
 J3-3,GPIO17 / U0RXD,console,occupe par le pont USB-UART
 J3-4,GPIO15,libre,broche de strapping
-J3-5,GPIO23,reserve,
-J3-6,GPIO22,reserve,
-J3-7,GPIO21,reserve,
+J3-5,GPIO23,STUSB_SDA,I2C vers STUSB4531QTR (feuille USB_PD)
+J3-6,GPIO22,STUSB_SCL,I2C vers STUSB4531QTR (feuille USB_PD)
+J3-7,GPIO21,STUSB_ALERT,interruption STUSB4531QTR (feuille USB_PD)
 J3-8,GPIO20,OLED_RST,
 J3-9,GPIO19,OLED_DC,
 J3-10,GPIO18,OLED_CS,FSPICS2

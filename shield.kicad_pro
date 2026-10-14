@@ -639,6 +639,14 @@
     "netclass_assignments": null,
     "netclass_patterns": [
       {
+        "netclass": "Puissance",
+        "pattern": "VBUS_IN"
+      },
+      {
+        "netclass": "Puissance",
+        "pattern": "VBUS_OUT"
+      },
+      {
         "netclass": "Isole_Primaire",
         "pattern": "VIN_PWR"
       },

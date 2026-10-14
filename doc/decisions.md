@@ -965,6 +965,137 @@ concurrente.
 
 ---
 
+## 23. Alimentation des cartes filles en USB-C Power Delivery (STUSB4531QTR), deuxième entrée séparée du 11-25V
+
+**Décision.** Le shield devient aussi la source de puissance des cartes
+DC/DC enfichables (jusqu'ici, elles tiraient leur étage de puissance
+d'une source externe, le shield ne leur fournissant que `3V3_ISO`,
+commande des isolateurs). Un port USB-C négocie jusqu'à 100W (20V/5A) via
+un STUSB4531QTR, et cette puissance est transmise **en daisy chain**
+d'une carte fille à la suivante — budget 100W/5A partagé sur la chaîne,
+le connecteur de sortie n'est qu'une convention d'interface, la
+propagation carte-à-carte restant un circuit à concevoir sur chaque carte
+fille (hors périmètre de ce dépôt).
+
+**Pourquoi une deuxième entrée, pas une fusion avec le 11-25V.** Confirmé
+explicitement par l'utilisateur : le `J_PWR` 11-25V existant ne sert et
+ne servira qu'aux deux NCM3S1205MC du shield (6W au total) ; le port
+USB-C est une entrée séparée, dédiée à la puissance des cartes filles.
+
+**Pourquoi `HV_EN`/`Discharge` (nappe GPIO-1, decision #17/#20) ne sont
+pas réutilisés ici.** Ces deux signaux existent déjà, pilotés par le
+C2000, protégés par trio (`protection_nappe.kicad_sch`), et leur nom
+évoque un usage proche (activer/décharger un bus de puissance vers les
+cartes filles). Ce sont pourtant des signaux **distincts** : le
+STUSB4531QTR gère sa propre coupure (`VBUS_EN_SNK`, autonome, basée sur
+le contrat PD négocié) et sa propre décharge (`DISCH`/`VBUS_VS_DISCH`,
+automatique au retrait du câble ou à une transition de PDO), sans
+intervention du C2000 ni de l'ESP32. Mélanger les deux aurait inventé un
+lien que l'utilisateur n'a pas demandé ; `HV_EN`/`Discharge` restent
+intacts, pour l'usage non encore défini de la decision #17 (future carte
+de conversion 0-500V, projet séparé).
+
+**Composant retenu : STUSB4531QTR** (ST, QFN-16 3×3mm, variante "dead
+battery" — se négocie seule même système éteint, alimentée directement
+sur VBUS). Topologie reprise d'`EVAL-SCS006V1`
+(`composants-datasheets/datasheets/eval-scs006v1-schematics.pdf`),
+recoupée avec `DS_stusb4531.pdf` : **aucun eFuse externe** — le
+STUSB4531QTR pilote directement un unique MOSFET P (T1) via un réseau
+R (100kΩ pull-up vers VBUS_IN + 22kΩ vers `VBUS_EN_SNK` + 100Ω/100nF de
+filtrage à la grille), et gère la décharge en interne (`DISCH` draine le
+côté système/VBUS_OUT, `VBUS_VS_DISCH` le côté réceptacle/VBUS_IN,
+chacun via sa résistance série dédiée — 1kΩ, limite le courant bien en
+dessous des maximums datasheet : 100mA pour `DISCH`, 50mA pour
+`VBUS_VS_DISCH`, soit 20mA réels sous 20V dans les deux cas).
+
+**Pas de SnapEDA pour le STUSB4531QTR** (référence trop récente,
+sortie 10-2025) : symbole + empreinte faits à la main depuis le
+datasheet (QFN-16, pitch 0,5mm, **pas de pastille thermique** — absente
+de la Table 26, contrairement à tous les gabarits QFN-16 stock de
+KiCad qui supposent une pastille centrale), même méthode que
+`NCM3S1205MC`. Empreinte dérivée des cotes explicites de la Figure 13
+(pitch 0,5 / largeur pastille 0,3 / longueur 1,0, recoupées avec
+l'enveloppe totale 4,0mm et le groupe de 4 pastilles 1,8mm — tout
+retombe juste, aucune cote devinée).
+
+**Composants confirmés par l'utilisateur, adaptant la BOM de l'eval
+board** :
+- **T1 : SQJ459EP-T2_GE3** (Vishay, PowerPAK SO-8 single, confirmé
+  simple — pas un dual) au lieu du STL6P3LLH6 de l'eval board — 60V/52A
+  continu/18mΩ, très large marge sur nos 5A (≈0,45W dissipés), contre
+  une marge plus juste côté eval board (6A@25°C/3,8A@100°C). Empreinte
+  stock KiCad `Package_SO:PowerPAK_SO-8_Single` (pin1=Gate,
+  pins2/3/4=Source, pin5=Drain+broches6/7/8+pastille thermique
+  fusionnées — convention Vishay standard pour ce boîtier, à confirmer
+  visuellement avant commit).
+- **2 LED 3mm rouge/vert** (traversant) au lieu du LD20 (RGB SMT) + LD21
+  de l'eval board — branchées sur 2 des 3 flags `GPOD`/`HVO1`/`HVO2`
+  (POWER_OK par palier de PDO négocié, config NVM par défaut conf3),
+  tirées depuis `VBUS_OUT` (ces broches sont "HV open drain", prévues
+  pour un tirage haute tension, pas depuis `VREG_2V7`).
+- **Connecteur USB-C : Würth 632722100213** ("WR-COM USB PD Horizontal
+  Receptacle SMT") — 6 broches seulement (CC1/CC2/VBUS×2/GND×2, pas de
+  D+/D-/SBU, pas de rôle data dans cette intégration), **5A/48V par
+  voie**, exactement dimensionné pour l'usage. Fichiers KiCad fournis
+  par Würth (SamacSys) dans
+  `composants-datasheets/datasheets/mecanique/usbc/` — portés dans
+  `lib/632722100213.kicad_mod`/`Power_Parts.kicad_sym` en reformatant au
+  style KiCad 10 du projet (le fichier `.kicad_mod` brut de Würth est en
+  syntaxe KiCad 5 legacy). **Bug corrigé au passage** : le `.kicad_mod`
+  brut de Würth numérotait ses 4 pattes mécaniques `1`/`2`/`3`/`4`, en
+  contradiction avec son propre `.kicad_sym` qui les nomme
+  `MH1`-`MH4` — renumérotées `MH1`-`MH4` des deux côtés pour que
+  l'association pastille/broche reste cohérente.
+- **TVS** : `ESDA25W` (SOT-323, 25V/400W, 2 voies — protège CC1 **et**
+  CC2 dans un seul boîtier, symbole custom 3 broches façon `BAT54S`) +
+  **2× `ESDA25P35`** (QFN1610, Vrwm 22V/1,4kW peak pulse — un sur
+  VBUS_IN près du connecteur, un sur VBUS_OUT près de la sortie cartes
+  filles), tous deux confirmés avec marge de tension confortable sur
+  notre bus 20V. `ESDA25P35` utilise le symbole générique
+  `Device:D_TVS` + empreinte stock `Diode_SMD:ST_QFN-2L_1.6x1.0mm` — pas
+  besoin d'un symbole custom, boîtier déjà couvert par KiCad.
+- **`PWR_FLAG`** posé sur `VBUS_IN` (pas sur `GND`, qui a déjà un
+  pilote `power_out` ailleurs dans le projet — en poser un deuxième
+  dessus aurait créé un conflit `pin_to_pin`, détecté et corrigé pendant
+  la vérification ERC ci-dessous) : `VBUS_IN` est un net neuf sans
+  régulateur on-board pour le "piloter" au sens ERC, strictement
+  nécessaire ici contrairement aux rails déjà établis du shield.
+
+**Bus I2C ESP32 dédié** (supervision/statut seulement — l'autorun du
+STUSB4531QTR négocie sans lui) : **PAS** le bus I2C des nappes (celui-là
+reste au C2000, réservé aux cartes filles). Nouveau, sur
+`GPIO22`/`GPIO23`/`GPIO21` (`doc/brochage-esp32.csv`, J3-6/J3-5/J3-7,
+tous trois "réserve", aucun n'est une broche de strapping) pour
+`STUSB_SCL`/`STUSB_SDA`/`STUSB_ALERT`. Pull-ups I2C (3× 4,7kΩ, valeur
+neuve — aucune des valeurs de la BOM initiale n'était disponible pour ce
+rôle) tirées vers `3V3_ESP32` (label déjà existant, réutilisé — pas un
+nouveau rail).
+
+**Vérification.** `kicad-cli sch erc` comparé par type de violation,
+feuille par feuille (`sheets[].violations` du rapport JSON, pas
+seulement le total projet) : la feuille `USB_PD` neuve ferme à **zéro**
+violation. Aucune catégorie pré-existante n'a augmenté ailleurs ;
+`Connecteurs_Devkit` a même vu son `pin_not_connected` baisser de 17 à
+14 (GPIO21/22/23, jusque-là "réserve" sans étiquette, désormais
+connectées). Deux bugs trouvés et corrigés pendant cette vérification,
+documentés ici pour ne pas les refaire :
+1. Un script de génération interne avait renommé par erreur les
+   sous-symboles graphiques (`NOM_0_1`/`NOM_1_1`) avec le préfixe de
+   bibliothèque — seul le nom du symbole racine doit le porter, les
+   sous-unités restent nommées sans préfixe, sans quoi KiCad refuse de
+   charger le fichier (`Échec du chargement de la schématique`, aucun
+   message d'erreur plus précis).
+2. Confirmation **empirique**, par comparaison des UUID de broches entre
+   le rapport ERC JSON et le fichier source, que dans ce format
+   `.kicad_sch`, la position monde d'une broche se calcule
+   **Y_monde = Y_instance − Y_local** (soustraction), pas addition —
+   contrairement à une supposition antérieure validée (à tort, par
+   coïncidence) sur un autre fichier plus tôt dans l'atelier. Toute
+   future génération programmatique d'étiquettes globales sur une broche
+   doit utiliser cette règle.
+
+---
+
 ## Points ouverts — ne pas combler par une estimation
 
 Ces valeurs manquent. Elles demandent une lecture de datasheet ou une mesure,
