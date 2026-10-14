@@ -61,7 +61,10 @@ justification dans [`doc/decisions.md`](doc/decisions.md) (#13).
 ## Le brochage est du code
 
 [`doc/spec-devkit.md`](doc/spec-devkit.md) fait autorité pour le connecteur
-devkit 2 × 28 (hérité de `KICAD-C2000-devkit`, toujours valable).
+devkit — 2 × 28 pour devkit_A (hérité de `KICAD-C2000-devkit`, toujours
+valable), **deux embases 2 × 24 à masse en vis-à-vis pour devkit_B**
+depuis la decision #25 (`doc/decisions.md`) — les deux devkits ne sont
+plus compatibles avec le même shield.
 [`doc/nappes-shield.md`](doc/nappes-shield.md) décrit les quatre nappes DC/DC
 et l'embase OLED. Contrairement au dépôt d'origine, **il n'y a pas de
 générateur ici** — `shield.kicad_sch` est édité à la main dès le départ

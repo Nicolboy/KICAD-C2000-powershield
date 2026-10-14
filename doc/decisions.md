@@ -1149,6 +1149,83 @@ documentée.
 
 ---
 
+## 25. Connecteur devkit_B remplacé : deux embases 2×24 (masse en vis-à-vis), devkit_A n'est plus compatible avec ce shield
+
+**Décision.** L'utilisateur a construit, côté `KICAD-C2000-devkit`, le
+« plan v2 » du connecteur devkit (`doc/connecteur-v2-plan.md` là-bas,
+proposition écrite lors d'une session précédente suite à la decision #13
+de ce même dépôt — rangée A réduite à 6 masses pour 22 signaux après le
+routage CLB). Deux nouveaux symboles, `DEVKIT_C2000_A`/`DEVKIT_C2000_B`
+(48 broches chacun, boîtier `PinHeader_2x24_P2.54mm_Vertical`),
+remplacent les anciens `DEVKIT_C2000_ROW_A`/`ROW_B` (1×28 chacun) sur
+`devkit_B_F28P551` — `devkit_A_F280037` n'a pas été touché, reste sur
+l'ancien connecteur.
+
+**Choix tranché avec l'utilisateur** (question posée, réponse obtenue) :
+le shield adopte le nouveau connecteur de devkit_B — pas de double
+connecteur pour rester compatible avec les deux devkits. Connecteurs côté
+shield en **femelle** (`Connector_PinSocket_2.54mm:
+PinSocket_2x24_P2.54mm_Vertical`), comme c'était déjà le cas pour
+l'ancien 1×28 — le devkit garde le mâle.
+
+**Ce qui casse.** `devkit_A_F280037` n'est plus compatible mécaniquement
+avec ce shield (connecteur différent, pas seulement un brochage
+différent comme la decision #13 côté devkit l'avait déjà accepté pour le
+CLB). Limitation acceptée tant que devkit_A n'a pas reçu la même mise à
+jour — même logique que la decision #13 du dépôt devkit.
+
+**Migration réalisée** (`connecteur_devkit.kicad_sch`, `lib/
+C2000_Devkit_Connectors.kicad_sym`) : remplacement pur, aucun renommage
+de net. Le style labels-only de ce dépôt fait que la connectivité réelle
+(nappes, protections) ne dépend que des noms de net, jamais de la
+position physique de broche — confirmé en comparant, pin par pin, le
+texte réellement affiché sur chacune des 56 anciennes broches
+(`DEVKIT_C2000_ROW_A`/`ROW_B`) au nom propre de la broche dans le
+symbole : **38 des 56 différaient** (le nom de net réel porte presque
+toujours un suffixe `_MCU`, ex. `Vin`→`Vin_MCU`, et deux renommages
+cosmétiques, `+5V`→`5V_C2000` et `I_SHUNT1/2_MES`→`I_shunt1/2_MCU`) —
+tous les 96 noms de broche des deux nouveaux symboles retombent dans
+cette table déjà construite, confirmant que c'est un pur réarrangement,
+aucun nouveau signal. **Script ponctuel plutôt qu'à la main**, nouveaux
+désignateurs `J17`/`J18` (prochains libres, vérifiés sur tout le projet —
+`J16` était le dernier pris, par `usb_pd.kicad_sch`).
+
+**Deux bugs trouvés pendant la génération, corrigés avant de considérer
+le fichier posé** — à ajouter à la liste des pièges déjà documentés
+(decision #24, `KICAD-EDITION-GROUPEE-KIPY.md`) :
+1. Utiliser le nom de broche du symbole tel quel comme nom de net, sans
+   vérifier contre ce que l'ancien connecteur affichait réellement à cet
+   endroit — aurait rendu `+5V`/`I_SHUNT1_MES`/`I_SHUNT2_MES` isolés
+   (`isolated_pin_label`, +3 par rapport à la référence) au lieu de se
+   raccorder à `5V_C2000`/`I_shunt1_MCU`/`I_shunt2_MCU`.
+2. Poser un `global_label` texte `"~"` sur une broche de type électrique
+   `no_connect` au lieu d'un marqueur `(no_connect ...)` — déclenche
+   `label_dangling` **et** `no_connect_connected` (la broche se déclare
+   non connectée alors qu'un label y est posé).
+
+**Vérification.** `check_schematic_labels.py` sur `connecteur_devkit.
+kicad_sch` : 0 problème de rotation/justify sur les 96 labels neufs (les
+3 Reference/Value encore empilées haut/bas, `J7`/`J8`/`J10`, sont
+pré-existantes, pas introduites ici). `kicad-cli sch erc` sur
+`shield.kicad_sch`, comparé **feuille par feuille** à l'état précédent :
+`isolated_pin_label` revient exactement à 5 (les réserves ADC
+pré-existantes, non câblées, déjà connues) ; `pin_not_connected`/
+`power_pin_not_driven`/`pin_not_driven` sur `/Connecteurs_Devkit/`
+strictement inchangés ; aucune catégorie nouvelle, aucun des 96 nouveaux
+éléments n'apparaît dans l'augmentation pré-existante d'`endpoint_off_grid`
+(vérifié par contenu, pas seulement par total — les entrées en plus
+citent des réfs d'autres feuilles, sans rapport avec cette migration).
+
+**Points ouverts, hérités du plan d'origine côté devkit, non résolus
+ici** : rien ne détrompe mécaniquement les deux embases 2×24 d'un même
+devkit l'une par rapport à l'autre (domaine A vs domaine B) — à trancher
+avant tout routage de la zone connecteur du shield. `doc/spec-devkit.md`
+de ce dépôt a été mis à jour (§2bis) pour devkit_B ; la source amont
+`KICAD-C2000-devkit/doc/spec-devkit.md` ne l'est pas encore — signalé,
+pas corrigé, hors périmètre.
+
+---
+
 ## Points ouverts — ne pas combler par une estimation
 
 Ces valeurs manquent. Elles demandent une lecture de datasheet ou une mesure,

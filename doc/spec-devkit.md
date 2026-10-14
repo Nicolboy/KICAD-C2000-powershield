@@ -6,6 +6,25 @@ F28P551SG5PM. Connecteur 2 × 28, entraxe 25,4 mm.
 
 Les 64 broches sont attribuées et vérifiées sur les deux variantes.
 
+**Divergence depuis le 2026-10-14 : ce document ne décrit plus que
+`devkit_A_F280037`.** `devkit_B_F28P551` est passé à un connecteur
+physiquement différent — deux embases 2×24 (une par domaine A/B), masse
+quasi systématique en vis-à-vis de chaque signal, au lieu des deux
+rangées 1×28 ci-dessous. Voir §2bis pour son brochage. Ce shield a
+adopté le nouveau connecteur de devkit_B (`doc/decisions.md`, nouvelle
+décision) : **devkit_A_F280037 n'est plus compatible avec ce shield**
+tant qu'il n'aura pas reçu la même mise à jour — même logique de
+divergence acceptée que celle déjà actée côté dépôt devkit
+(`KICAD-C2000-devkit/doc/decisions.md` #13). Tout ce qui suit en §1 et §2
+(hors §2bis) décrit l'ancien connecteur, toujours valable pour
+devkit_A uniquement ; §3 à §8 (alimentation, JTAG, boot, LED,
+mécanique) ne changent pas et s'appliquent aux deux cartes.
+
+**Source amont pas encore mise à jour.** `KICAD-C2000-devkit/doc/
+spec-devkit.md` (le dépôt d'origine) décrit encore l'ancien connecteur
+2×28 pour les deux devkits — signalé ici, pas corrigé : hors périmètre
+de ce dépôt.
+
 ---
 
 ## 1. Ce qui a changé depuis les premières versions
@@ -121,6 +140,35 @@ et une sortie CLB suffit à l'observation.
 
 Bilan : 41 broches au connecteur, 4 en JTAG, 4 en pastilles de test, plus
 alimentations et LED.
+
+---
+
+## 2bis. `devkit_B_F28P551` seulement — nouveau connecteur, 2×24/2×24
+
+Remplace §2 pour `devkit_B_F28P551` uniquement. Deux embases distinctes,
+une par domaine, chacune 2×24 au pas 2,54 mm (entraxe 2,54 mm entre les
+deux rangées d'une même embase) : **`J17` domaine A** (analogique),
+**`J18` domaine B** (numérique) côté shield — mâles côté devkit, femelles
+côté shield comme pour l'ancien connecteur. Même principe que les quatre
+nappes shield↔cartes filles (`doc/nappes-shield.md`) : masse en
+vis-à-vis de (quasiment) chaque signal, pour réduire l'inductance de
+boucle — point de départ de ce changement, la rangée A ne portant plus
+que six masses pour vingt-deux signaux après le routage CLB
+(`KICAD-C2000-devkit/doc/decisions.md` #13).
+
+Noms de net **identiques** à la rangée 1×28 qu'ils remplacent (`Vin_MCU`,
+`PWM1_A_MCU`, `I_shunt1_MCU`, `5V_C2000`, etc.) — seules la position
+physique et la répartition masse/signal changent, aucun renommage de
+signal. Brochage complet et numérotation des broches KiCad :
+`KICAD-C2000-devkit/doc/connecteur-v2-plan.md` (le plan d'origine) et
+`lib/C2000_Devkit_Connectors.kicad_sym` (symboles `DEVKIT_C2000_A`/
+`DEVKIT_C2000_B`, qui font autorité — ce `.md` ne les reproduit pas pour
+éviter une troisième copie à tenir synchronisée).
+
+**Risque non résolu, hérité du plan d'origine.** Rien n'empêche
+mécaniquement d'intervertir les deux embases 2×24 d'un même domaine par
+rapport à l'autre domaine (A ↔ B) — à vérifier/trancher avant tout
+routage de la zone connecteur du shield.
 
 ---
 
