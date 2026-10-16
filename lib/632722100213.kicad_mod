@@ -81,7 +81,7 @@
     (uuid 9c3d1e20-0115-6322-9b1a-usbcpadb1201)
   )
   (model "${KIPRJMOD}/lib/632722100213.step"
-    (offset (xyz 0 -0.13779527559055 0.06653543532364))
+    (offset (xyz 0 -3.7 1.6))
     (scale (xyz 1 1 1))
     (rotate (xyz 0 0 0))
   )

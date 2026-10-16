@@ -11,6 +11,52 @@
 	)
 	(lib_symbols)
 	(sheet
+		(at 320 20)
+		(size 80 50)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "172cca13-a51a-4318-a87b-88cec7859968")
+		(property "Sheetname" "USB_PD"
+			(at 320 19.5 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "usb_pd.kicad_sch"
+			(at 320 70.5 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "shield"
+				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c"
+					(page "9")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 20 160)
 		(size 80 50)
 		(exclude_from_sim no)
@@ -328,52 +374,6 @@
 			(project "shield"
 				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c"
 					(page "5")
-				)
-			)
-		)
-	)
-	(sheet
-		(at 320 20)
-		(size 80 50)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0)
-		)
-		(uuid "172cca13-a51a-4318-a87b-88cec7859968")
-		(property "Sheetname" "USB_PD"
-			(at 320 19.5 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "usb_pd.kicad_sch"
-			(at 320 70.5 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "shield"
-				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c"
-					(page "9")
 				)
 			)
 		)
