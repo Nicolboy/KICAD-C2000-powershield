@@ -297,15 +297,24 @@ l'utilisateur — pas une fusion) : un récepteur USB-C (Würth 632722100213,
 filles via un connecteur dédié — convention d'interface, la propagation
 carte-à-carte est hors périmètre de ce dépôt.
 
+**Masse `GND_PRI`, pas `GND` (decision #27).** Tout ce sous-système
+(VBUS_IN, protections ESD, STUSB4531, réseau grille T1, décharge) est
+référencé à `GND_PRI` — même domaine « primaire/brut » que le connecteur
+11-25V (`J9`) — et devient le retour de masse principal des cartes filles
+côté USB-PD. Séparé de `GND` (ESP32/C2000) par les convertisseurs 3,3V
+existants, pas par un mécanisme neuf.
+
 ```
-USB-C (Würth 632722100213) — VBUS_IN, CC1, CC2, GND
+USB-C (Würth 632722100213) — VBUS_IN, CC1, CC2, GND_PRI
    │
 STUSB4531QTR — négociation PD autonome (dead battery), alimenté sur VBUS_IN
    │  VBUS_EN_SNK → réseau R (100k/22k) → grille T1 (filtrage 100R/100nF)
    │  DISCH/VBUS_VS_DISCH → décharge autonome système/réceptacle
-   │  SCL/SDA/ALERT → bus I2C dédié ESP32 (GPIO22/23/21, PAS celui des
-   │       nappes qui reste au C2000) — supervision seulement, l'autorun
-   │       négocie sans lui
+   │  SCL/SDA/ALERT → ISO1640BD + DPC817 (isolation numérique, decision #27)
+   │       → bus I2C dédié ESP32 (GPIO22/23/21, PAS celui des nappes qui
+   │       reste au C2000) — supervision seulement, l'autorun négocie
+   │       sans lui. VREG_2V7 (régulateur interne STUSB4531) alimente le
+   │       côté Side 2 de l'isolateur.
    │
    ▼
 T1 (SQJ459EP-T2_GE3, PMOS) — unique interrupteur de puissance, pas d'eFuse

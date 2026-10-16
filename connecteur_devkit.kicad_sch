@@ -5928,7 +5928,7 @@
 			)
 		)
 	)
-	(global_label "STUSB_ALERT"
+	(global_label "ESP32_ALERT_ISO"
 		(shape bidirectional)
 		(at 358.14 113.792 180)
 		(fields_autoplaced yes)
@@ -7286,7 +7286,7 @@
 			)
 		)
 	)
-	(global_label "STUSB_SDA"
+	(global_label "ESP32_SDA_ISO"
 		(shape bidirectional)
 		(at 358.14 108.712 180)
 		(fields_autoplaced yes)
@@ -7381,7 +7381,7 @@
 			)
 		)
 	)
-	(global_label "STUSB_SCL"
+	(global_label "ESP32_SCL_ISO"
 		(shape bidirectional)
 		(at 358.14 111.252 180)
 		(fields_autoplaced yes)

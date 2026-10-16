@@ -1316,6 +1316,119 @@ faire.
 
 ---
 
+## 27. Isolation numérique ESP32 ↔ STUSB4531 (ISO1640BD + DPC817), et le sous-système USB-PD rejoint le domaine `GND_PRI`
+
+**Décision.** Le bus de supervision I2C/ALERT entre l'ESP32 et le
+STUSB4531QTR (`STUSB_SCL`/`STUSB_SDA`/`STUSB_ALERT`, decision USB-PD
+existante) reliait jusqu'ici directement GPIO22/23/21 aux pins de U1 —
+même net, aucune isolation. Isolé par :
+- **`ISO1640BD`** (TI, 8-SOIC, isolation **basique** 3000V<sub>RMS</sub>)
+  pour `SCL`/`SDA` — écart assumé par rapport au reste du projet
+  (NCM3S1205MC en isolation renforcée), jugé suffisant par l'utilisateur
+  pour un bus de supervision sans contrainte sécurité/mains.
+- **`DPC817`** (Diodes Inc., optocoupleur SMD SL-4) pour `ALERT` — choisi
+  malgré son statut **NRND** ("Not Recommended for New Designs", marqué
+  sur la datasheet elle-même) : confirmé après vérification que son
+  boîtier est un format générique standard d'optocoupleur 4 broches
+  (même famille que PC817/EL817/LTV817), donc remplaçable facilement si
+  le composant disparaît du marché.
+
+**Découverte en explorant `usb_pd.kicad_sch` avant de dessiner quoi que ce
+soit** : les pull-ups I2C/ALERT existants (`R45`/`R46`/`R47`, 3×4,7kΩ,
+decision USB-PD déjà actée) sont tirés vers `3V3_ESP32` — déjà,
+électriquement, côté ESP32. Réutilisés tels quels comme pull-ups **Side 1**
+de l'isolateur, simplement renommés (`STUSB_SCL`→`ESP32_SCL_ISO`,
+`STUSB_SDA`→`ESP32_SDA_ISO`, `STUSB_ALERT`→`ESP32_ALERT_ISO`, côté ESP32
+uniquement — les labels sur les pins propres de U1 restent `STUSB_SCL`/
+`STUSB_SDA`/`STUSB_ALERT`, Side 2, inchangés).
+
+**`VREG_2V7`** (régulateur interne 2,7V du STUSB4531, déjà un net existant
+et découplé) sert de `VCC2` de l'isolateur — dans la plage 2,25-5,5V
+acceptée par l'ISO1640 (datasheet §6.3). Pas de régulateur neuf. Pull-ups
+Side 2 neufs : **2,2kΩ** (`R55`/`R56`, dans la plage de courant de sortie
+Side 2 de l'ISO1640, 0,5-50mA). R_led du DPC817 : **330Ω** (`R57`, limite
+le courant LED à ≈4,4mA avec `VREG_2V7`=2,7V et V<sub>F</sub>=1,25V typ,
+proche de la condition de caractérisation CTR du DPC817 à 5mA — cohérent
+avec la mention déjà actée en decision : `SPRSPC5. Considérer 4 mA`).
+
+**Clarification majeure de l'utilisateur, portée plus large que la seule
+isolation ESP32 : `GND` reste côté ESP32/C2000, mais tout
+`usb_pd.kicad_sch` (16 occurrences de `GND` — VBUS_IN, protections ESD,
+réseau grille T1, décharge, STUSB4531 lui-même, pas seulement `GND2` de
+l'isolateur) rejoint `GND_PRI`.** Logique : le sous-système USB-PD (20V
+externe) appartient au même domaine « primaire/brut » que le connecteur
+11-25V (`J9`, `VIN_PWR`/`GND_PRI`) — **`GND_PRI` devient le retour de masse
+principal des cartes filles** côté USB-PD, séparé de `GND` par les
+convertisseurs 3,3V existants (même mécanisme que les deux NCM3S1205MC,
+rien de neuf à ce niveau-là). Vérifié dans `shield.kicad_pro` : `GND_PRI`
+est déjà pattern-matché en `Isole_Primaire` (et `GND` déjà en
+`Isole_Secondaire`) — ce renommage suffit à lui seul à requalifier tout le
+sous-système, aucune nouvelle entrée `netclass_patterns` nécessaire pour
+`GND_PRI` lui-même.
+
+**Hors périmètre, noté pas traité ici** : `VBUS_IN`/`VBUS_OUT`/`CC1`/`CC2`/
+etc. restent en classe `Puissance` (largeur de piste), pas `Isole_Primaire`
+— la règle de clearance `.kicad_dru` ne les protège donc pas explicitement
+contre une piste `Isole_Secondaire` pour l'instant (seul `GND_PRI`
+lui-même est couvert). Étendre la règle pour couvrir aussi ces nets est une
+décision de routage à prendre plus tard, pas improvisée ici.
+
+**Composants — symboles et empreintes.** `ISO1640BD` absent des
+bibliothèques KiCad stock (`Isolator.kicad_sym` n'a que ISO1642/3/4DWR) —
+dessiné à la main depuis la Fig. 5-1 de la datasheet (8-SOIC :
+`VCC1`(1) `SDA1`(2) `SCL1`(3) `GND1`(4) `GND2`(5) `SCL2`(6) `SDA2`(7)
+`VCC2`(8)), empreinte stock `Package_SO:SOIC-8_3.9x4.9mm_P1.27mm`
+(dimensions nominales du datasheet, §3 Device Information, concordent).
+`DPC817` : brochage et graphisme repris à l'identique du symbole stock
+KiCad `PC817` (même silicium, même brochage physique Anode/Cathode/
+Émetteur/Collecteur), mais empreinte **dessinée à la main** (`lib/
+DPC817.kicad_mod`, SL-4, D=4,60/E1=6,50/e=2,54/E=10,16mm typ — Package
+Outline Dimensions p.6) : aucune empreinte stock KiCad ne correspondait
+avec confiance aux dimensions réelles du boîtier SMD.
+
+**Bug trouvé en implémentant, à ne pas reproduire** : un `global_label`
+avec `(shape power_in)` — mot-clé invalide, les seules formes valides sont
+`input`/`output`/`bidirectional`/`tri_state`/`passive` — fait échouer la
+résolution de connectivité ERC sur **toute la broche concernée** (pas
+seulement un avertissement cosmétique) : les 60 broches neuves de la
+tâche précédente (decision #26) remontaient en `pin_not_connected`/
+`power_pin_not_driven` avant correction, alors que la coïncidence de
+coordonnée label/broche était pourtant juste. Toujours utiliser
+`bidirectional` pour les nets d'alimentation en labels-only.
+
+**Caractérisation `composants-datasheets/`** : nouvelle famille
+`isolator_digital` ajoutée à `tools/lint_hw.py`/`.claude/rules/
+data-yaml.md` (`vcc1_min/max`, `vcc2_min/max`, `viso`, `f_max`, `pd1_max`,
+`pd2_max`) — aucune famille existante ne convenait (deux domaines
+d'alimentation indépendants, pas comparable à `logic` ni `opto`, même
+logique de séparation que `ldo_adj`/`ldo_fixed`). `dpc817.yaml` utilise la
+famille `opto` existante ; son champ `ron` est `null` + `todo` (optocoupleur
+à sortie phototransistor, pas à sortie FET — `Ron` n'est pas publié par ce
+datasheet). `python tools/lint_hw.py data/shield-power/` : les deux
+fichiers neufs sortent propres (`dpc817.yaml` : avertissement de
+complétude 4/5, attendu et documenté ; `iso1640.yaml` : aucun message).
+`ncm3s1205mc.yaml` reste en erreur (famille inconnue préexistante,
+`pinmap.positions` absent) — **pas touché, hors périmètre de cette tâche**.
+
+**Vérification.** `check_schematic_labels.py` sur `usb_pd.kicad_sch` et
+`connecteur_devkit.kicad_sch` : rotation/justify correctes partout.
+`kicad-cli sch erc` sur `shield.kicad_sch` entier, comparé **par feuille et
+par catégorie** à l'état précédent : `USB_PD` ne gagne qu'un seul
+`power_pin_not_driven` neuf (`GND_PRI` sur `U5`/STUSB4531QTR, attendu —
+même caractéristique déjà acceptée que `VIN_PWR`/`GND_PRI` sur `U1`/`U2`/
+`U3` de la feuille `DC`, un net primaire sans régulateur on-board pour le
+« piloter » au sens ERC) ; le reste de l'écart (`endpoint_off_grid` +4 sur
+`/`) correspond au pin 1 des 5 composants neufs, même défaut déjà accepté
+partout ailleurs dans le projet (`J1`/`R1`/etc.), pas une régression.
+
+**Hors périmètre** : le PCB n'est pas touché (toujours 0 piste/0 via) ; la
+pinmap `DPC817`/`ISO1640BD` n'est pas encore confirmée par capture
+d'empreinte réelle (R15, `todo` dans les deux YAML) ; étendre la règle
+`.kicad_dru`/`netclass_patterns` à `VBUS_IN`/`VBUS_OUT`/etc. reste à
+décider plus tard, au routage.
+
+---
+
 ## Points ouverts — ne pas combler par une estimation
 
 Ces valeurs manquent. Elles demandent une lecture de datasheet ou une mesure,
