@@ -5886,9 +5886,28 @@
 			)
 		)
 	)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	(symbol
 		(lib_id "Power_Parts:ISO1640BD")
-		(at 240 100 0)
+		(at 100 190 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5896,9 +5915,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "19efc79a-af64-45f6-bae6-46c365a782e9")
+		(uuid "0cc3ff4a-dec9-4908-9550-f4263dd3134a")
 		(property "Reference" "U6"
-			(at 239.238 100.508 0)
+			(at 99.238 190.508 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5909,7 +5928,7 @@
 			)
 		)
 		(property "Value" "ISO1640BD"
-			(at 234.412 115.242 0)
+			(at 94.412 205.242 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5920,7 +5939,7 @@
 			)
 		)
 		(property "Footprint" "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
-			(at 240 100 0)
+			(at 100 190 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5930,7 +5949,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 240 100 0)
+			(at 100 190 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5940,7 +5959,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 240 100 0)
+			(at 100 190 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5950,28 +5969,28 @@
 			)
 		)
 		(pin "1"
-			(uuid "e03687b9-9610-42e1-a70b-00172e3a4e8a")
+			(uuid "bbadeb82-948d-43bd-8fc9-7344461d3124")
 		)
 		(pin "2"
-			(uuid "b02c7a2e-d71f-4fd8-953f-ef3e8cdbf762")
+			(uuid "02d36bf6-ed92-4388-ac74-ceb1a6c9ab05")
 		)
 		(pin "3"
-			(uuid "b2745b2f-5508-4232-8286-48a428e40bed")
+			(uuid "4c5fa22c-10b1-4a32-9ee6-298bb2ae9435")
 		)
 		(pin "4"
-			(uuid "4d1a2a28-4f2b-4f70-9be1-867df050abdb")
+			(uuid "84e57615-1a5b-4a1e-bc8b-363572233050")
 		)
 		(pin "5"
-			(uuid "f5f509d1-a944-4fc1-9296-9c4bbf6dbe4f")
+			(uuid "65c44e41-2d91-426b-a85e-11917413fa3f")
 		)
 		(pin "6"
-			(uuid "e1cab57c-968e-4b73-9753-4b5374c98645")
+			(uuid "a50ecdc9-f4c7-411d-ab94-4aa5e03a2f24")
 		)
 		(pin "7"
-			(uuid "33f7eb85-cef0-44df-a085-837e0c1f1022")
+			(uuid "22afb68b-923d-43f2-ab81-6e564f528c68")
 		)
 		(pin "8"
-			(uuid "4ec247a8-8372-44eb-8b67-9ea49978c92d")
+			(uuid "2a79f0b4-db90-46ee-bfdf-0baffa384b86")
 		)
 		(instances
 			(project "shield"
@@ -5984,7 +6003,7 @@
 	)
 	(global_label "3V3_ESP32"
 		(shape bidirectional)
-		(at 227.3 92.38 180)
+		(at 87.3 182.38 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5992,9 +6011,9 @@
 			)
 			(justify right)
 		)
-		(uuid "58b55c4b-00c5-4a9b-9092-f5a381bc4891")
+		(uuid "fac731d3-6cfd-4511-98f0-24735779acff")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 227.3 92.38 180)
+			(at 87.3 182.38 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6008,7 +6027,7 @@
 	)
 	(global_label "ESP32_SDA_ISO"
 		(shape bidirectional)
-		(at 227.3 97.46 180)
+		(at 87.3 187.46 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6016,9 +6035,9 @@
 			)
 			(justify right)
 		)
-		(uuid "72e3bdd7-0f6d-4043-afa2-e1b9650ea2c0")
+		(uuid "79e6a00c-492f-489a-bd26-7821537ff1fd")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 227.3 97.46 180)
+			(at 87.3 187.46 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6032,7 +6051,7 @@
 	)
 	(global_label "ESP32_SCL_ISO"
 		(shape bidirectional)
-		(at 227.3 102.54 180)
+		(at 87.3 192.54 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6040,9 +6059,9 @@
 			)
 			(justify right)
 		)
-		(uuid "ac103188-e1f5-4f7e-8c2e-aa60e62626f3")
+		(uuid "3d6420dd-1f91-40a5-beb3-92c8a4c631f1")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 227.3 102.54 180)
+			(at 87.3 192.54 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6056,7 +6075,7 @@
 	)
 	(global_label "GND"
 		(shape bidirectional)
-		(at 227.3 107.62 180)
+		(at 87.3 197.62 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6064,9 +6083,9 @@
 			)
 			(justify right)
 		)
-		(uuid "23b6b4c1-d379-43c9-9ff7-a12c4516cf20")
+		(uuid "89262ff7-bba0-497d-9687-ae3232e19212")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 227.3 107.62 180)
+			(at 87.3 197.62 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6080,7 +6099,7 @@
 	)
 	(global_label "GND_PRI"
 		(shape bidirectional)
-		(at 252.7 107.62 0)
+		(at 112.7 197.62 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6088,9 +6107,9 @@
 			)
 			(justify left)
 		)
-		(uuid "d9123f18-3bc2-4949-aa59-be28ffdccae9")
+		(uuid "2f0b333e-2c7a-42a2-a7dd-b0dbaf218d29")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 252.7 107.62 0)
+			(at 112.7 197.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6104,7 +6123,7 @@
 	)
 	(global_label "STUSB_SCL"
 		(shape bidirectional)
-		(at 252.7 102.54 0)
+		(at 112.7 192.54 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6112,9 +6131,9 @@
 			)
 			(justify left)
 		)
-		(uuid "7c952cc0-514b-4dbe-884c-b79da9db2c61")
+		(uuid "adbb578f-9f40-4940-8c89-09d30d174db2")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 252.7 102.54 0)
+			(at 112.7 192.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6128,7 +6147,7 @@
 	)
 	(global_label "STUSB_SDA"
 		(shape bidirectional)
-		(at 252.7 97.46 0)
+		(at 112.7 187.46 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6136,9 +6155,9 @@
 			)
 			(justify left)
 		)
-		(uuid "2d38244c-98e5-4a35-944f-4bb3d78a98fb")
+		(uuid "f022bc29-40b6-43c8-8dda-d3f3781d365c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 252.7 97.46 0)
+			(at 112.7 187.46 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6152,7 +6171,7 @@
 	)
 	(global_label "VREG_2V7"
 		(shape bidirectional)
-		(at 252.7 92.38 0)
+		(at 112.7 182.38 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6160,309 +6179,9 @@
 			)
 			(justify left)
 		)
-		(uuid "9d7107db-bd73-4182-8bf1-05a68719fe1b")
+		(uuid "cd04672b-d07f-478d-9bab-080b1f2cc664")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 252.7 92.38 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 252.7 98.73 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "33d56221-66d3-4194-b7ca-5dd61765e497")
-		(property "Reference" "R55"
-			(at 252.7 92.38 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "2.2k"
-			(at 252.7 105.08 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 252.7 98.73 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 252.7 98.73 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 252.7 98.73 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "f9a07051-051e-401c-9e2f-a1f6b1aa1b2e")
-		)
-		(pin "2"
-			(uuid "4bfad26b-0401-4f09-9b1c-33263979c45c")
-		)
-		(instances
-			(project "shield"
-				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/172cca13-a51a-4318-a87b-88cec7859968"
-					(reference "R55")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(global_label "VREG_2V7"
-		(shape bidirectional)
-		(at 252.7 94.92 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "bee47046-2d14-4c1c-a215-d2b096505de5")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 252.7 94.92 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 252.7 93.65 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "c4d6e11c-2512-44fa-9bf3-2b074fbeafe7")
-		(property "Reference" "R56"
-			(at 252.7 87.3 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "2.2k"
-			(at 252.7 100 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 252.7 93.65 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 252.7 93.65 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 252.7 93.65 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "634e4698-b151-40ec-b419-c9243b8ecff6")
-		)
-		(pin "2"
-			(uuid "70dcb77d-70ac-4672-afe4-ebff01147eae")
-		)
-		(instances
-			(project "shield"
-				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/172cca13-a51a-4318-a87b-88cec7859968"
-					(reference "R56")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(global_label "VREG_2V7"
-		(shape bidirectional)
-		(at 252.7 89.84 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "778fd8b4-ac06-4778-aa7b-d44c1170fae5")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 252.7 89.84 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 232.38 125 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "4c303f6c-2e06-403d-ae11-a0cb6f8cf0b9")
-		(property "Reference" "R57"
-			(at 232.38 118.65 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "330R"
-			(at 232.38 131.35 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 232.38 125 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 232.38 125 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 232.38 125 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "dd003e88-41c4-43b5-8d7c-2fbb03e5b918")
-		)
-		(pin "2"
-			(uuid "80dfd7a6-1eb4-4221-9a26-016a27408dde")
-		)
-		(instances
-			(project "shield"
-				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/172cca13-a51a-4318-a87b-88cec7859968"
-					(reference "R57")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(global_label "VREG_2V7"
-		(shape bidirectional)
-		(at 232.38 121.19 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "57ed9c1f-a958-44e1-81fa-4386aa5cbf6b")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 232.38 121.19 90)
+			(at 112.7 182.38 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6476,7 +6195,7 @@
 	)
 	(symbol
 		(lib_id "Power_Parts:DPC817")
-		(at 240 131.35 0)
+		(at 150 190 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6484,9 +6203,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "1c8afcb3-c94d-4149-9379-c48093bf5733")
+		(uuid "b2f62423-c4c0-40a2-88da-de7cd12ce4b9")
 		(property "Reference" "U7"
-			(at 239.238 131.858 0)
+			(at 149.238 190.508 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6497,7 +6216,7 @@
 			)
 		)
 		(property "Value" "DPC817"
-			(at 234.412 146.592 0)
+			(at 144.412 205.242 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6508,7 +6227,7 @@
 			)
 		)
 		(property "Footprint" "lib:DPC817"
-			(at 240 131.35 0)
+			(at 150 190 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6518,7 +6237,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 240 131.35 0)
+			(at 150 190 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6528,7 +6247,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 240 131.35 0)
+			(at 150 190 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6538,16 +6257,16 @@
 			)
 		)
 		(pin "1"
-			(uuid "8ebdd5fa-695b-4a3b-9781-2b58b0906130")
+			(uuid "2959cfb7-43e3-4419-a136-fcfd091ecae1")
 		)
 		(pin "2"
-			(uuid "35058eed-7c76-4344-a5dc-95d1d10c4038")
+			(uuid "fa8fd995-45e4-47fd-a53a-e55daf9a9d73")
 		)
 		(pin "3"
-			(uuid "c02bed8f-1b50-4f9e-a22f-c9cfc772e775")
+			(uuid "ef187265-f8c6-4039-aae4-82f4bbd8115c")
 		)
 		(pin "4"
-			(uuid "45666bed-ddaf-4655-9d91-299ad90758e4")
+			(uuid "db80fea0-6233-4bce-9b71-6919266c558b")
 		)
 		(instances
 			(project "shield"
@@ -6558,9 +6277,9 @@
 			)
 		)
 	)
-	(global_label "STUSB_ALERT"
+	(global_label "DPC817_A"
 		(shape bidirectional)
-		(at 232.38 133.89 180)
+		(at 142.38 187.46 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6568,9 +6287,33 @@
 			)
 			(justify right)
 		)
-		(uuid "007e95f2-2676-4b48-a6ea-1c518fda9890")
+		(uuid "0dbf692d-6b2c-4c2f-9830-5a4eefe14874")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 232.38 133.89 180)
+			(at 142.38 187.46 180)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
+	(global_label "STUSB_ALERT"
+		(shape bidirectional)
+		(at 142.38 192.54 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "fa475758-aa62-4909-a408-2b74b45f63d1")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 142.38 192.54 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6584,7 +6327,7 @@
 	)
 	(global_label "GND"
 		(shape bidirectional)
-		(at 247.62 133.89 0)
+		(at 157.62 192.54 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6592,9 +6335,9 @@
 			)
 			(justify left)
 		)
-		(uuid "e7778f09-da3b-4ecf-bc9a-c7d658e5daee")
+		(uuid "5137430e-1f0b-43cc-85af-465db133b91a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 247.62 133.89 0)
+			(at 157.62 192.54 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6608,7 +6351,7 @@
 	)
 	(global_label "ESP32_ALERT_ISO"
 		(shape bidirectional)
-		(at 247.62 128.81 0)
+		(at 157.62 187.46 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6616,9 +6359,9 @@
 			)
 			(justify left)
 		)
-		(uuid "b41dc9e0-a9c6-49b7-8131-f9e579c57870")
+		(uuid "94a773bb-e3aa-469d-9c70-fcfaaa665812")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 247.62 128.81 0)
+			(at 157.62 187.46 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6627,6 +6370,378 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 180 185 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "6dd8716a-73fe-426f-919b-30f6bb50e5b2")
+		(property "Reference" "R55"
+			(at 180 178.65 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "2.2k"
+			(at 180 191.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 180 185 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 180 185 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 180 185 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "74b8ac25-4337-46e8-8a8b-08533c9bb438")
+		)
+		(pin "2"
+			(uuid "0b8dd18a-3298-40a8-9bfc-379ed434e401")
+		)
+		(instances
+			(project "shield"
+				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/172cca13-a51a-4318-a87b-88cec7859968"
+					(reference "R55")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "VREG_2V7"
+		(shape bidirectional)
+		(at 180 181.19 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "6bca0a54-1f93-46dd-a5e0-b65a646ceb03")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 180 181.19 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "STUSB_SCL"
+		(shape bidirectional)
+		(at 180 188.81 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "7c824c5f-df4e-4276-9171-5a82f628f77a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 180 188.81 270)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 200 185 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "d1b6f6bb-ed36-4d1e-a80c-c03a5aec05ea")
+		(property "Reference" "R56"
+			(at 200 178.65 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "2.2k"
+			(at 200 191.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 200 185 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 200 185 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 200 185 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "40f7c055-cbb5-487f-9c53-b67b53d8b368")
+		)
+		(pin "2"
+			(uuid "d234a26e-7c0c-4da9-9786-ccded31e03ea")
+		)
+		(instances
+			(project "shield"
+				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/172cca13-a51a-4318-a87b-88cec7859968"
+					(reference "R56")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "VREG_2V7"
+		(shape bidirectional)
+		(at 200 181.19 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "ea09606b-ba53-4919-88fb-6136e60089a6")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 200 181.19 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "STUSB_SDA"
+		(shape bidirectional)
+		(at 200 188.81 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "fc524dee-564f-41ec-b359-759c29e28895")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 200 188.81 270)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 220 185 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "6294c8ee-3ff9-40bf-8421-370ef89c47ce")
+		(property "Reference" "R57"
+			(at 220 178.65 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "330R"
+			(at 220 191.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 220 185 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 220 185 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 220 185 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "b89e3648-5930-40ab-8a4c-8b0fc6b41167")
+		)
+		(pin "2"
+			(uuid "d0930a5b-5648-4ae8-8111-39d928db7d27")
+		)
+		(instances
+			(project "shield"
+				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/172cca13-a51a-4318-a87b-88cec7859968"
+					(reference "R57")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "VREG_2V7"
+		(shape bidirectional)
+		(at 220 181.19 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "292185f6-c0eb-4a3c-bb35-7435b68b58ae")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 220 181.19 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "DPC817_A"
+		(shape bidirectional)
+		(at 220 188.81 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "5e254c3d-1749-40e4-b4e5-2448d9de68e5")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 220 188.81 270)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 	)
