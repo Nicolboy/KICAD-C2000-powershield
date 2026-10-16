@@ -4668,7 +4668,7 @@
 			)
 		)
 	)
-	(global_label "ADC_8"
+	(global_label "ADC_8_MCU"
 		(shape bidirectional)
 		(at 90.932 47.244 0)
 		(fields_autoplaced yes)
@@ -5857,7 +5857,7 @@
 			)
 		)
 	)
-	(global_label "ADC_9"
+	(global_label "ADC_9_MCU"
 		(shape bidirectional)
 		(at 45.212 49.784 180)
 		(fields_autoplaced yes)
@@ -6260,7 +6260,7 @@
 			)
 		)
 	)
-	(global_label "ADC_10"
+	(global_label "ADC_10_MCU"
 		(shape bidirectional)
 		(at 90.932 52.324 0)
 		(fields_autoplaced yes)
@@ -6690,7 +6690,7 @@
 			)
 		)
 	)
-	(global_label "ADC_11"
+	(global_label "ADC_11_MCU"
 		(shape bidirectional)
 		(at 45.212 54.864 180)
 		(fields_autoplaced yes)
@@ -7070,7 +7070,7 @@
 			)
 		)
 	)
-	(global_label "ADC_12"
+	(global_label "ADC_12_MCU"
 		(shape bidirectional)
 		(at 90.932 57.404 0)
 		(fields_autoplaced yes)

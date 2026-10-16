@@ -193,6 +193,54 @@ carte porte l'isolation que *sa* fonction exige), pas sur le shield. Modbus
 n'a pas de signal propre : c'est `UART_TX`/`UART_RX` + un transceiver RS-485
 côté carte fille, avec sa propre broche `DE`/`RE` gérée localement si besoin.
 
+### Connecteurs dédiés — carte HV et carte Filament (HT)
+
+**Écart assumé à la decision #17** (décision #26, `decisions.md`) : ces deux
+cartes ont plus de signaux à échanger que les réserves des six nappes
+partagées ne peuvent en offrir d'un coup. Chaque carte reçoit son propre
+connecteur IDC 2×10, en plus des six nappes ci-dessus — pas à la place.
+
+**Carte HV** — `connecteur_carte_hv.kicad_sch`, deux connecteurs :
+
+| Broche | `J19` (`NAPPE_HV_ADC`) | Broche | `J20` (`NAPPE_HV_DIO`) |
+|---|---|---|---|
+| 1 | `3V3_ISO` | 1 | `3V3_ISO` |
+| 3 | `Vin` | 3 | `PWM1_A` |
+| 5 | `Iin` | 5 | `Stage1_EN` |
+| 7 | `V1` | 7 | `PWM2_A` |
+| 9 | `I_shunt1` | 9 | `Stage2_EN` |
+| 11 | `I_SHUNT1_CMP` | 11 | `HV_EN` |
+| 13 | `Vout` | 13 | `Discharge` |
+| 15 | `Iout` | 15 | réserve |
+| 17 | `I_shunt2` | 17 | `Temp1` |
+| 19 | `I_SHUNT2_CMP` | 19 | `Temp2` |
+
+(positions paires = GND, comme sur les six nappes). Tous ces signaux sont
+déjà protégés ailleurs dans le projet — simple deuxième point d'accès,
+aucun composant de protection neuf sur cette feuille.
+
+**Carte Filament (HT)** — `connecteur_ht.kicad_sch`, un connecteur `J21`
+(`NAPPE_FILAMENT_HT`) :
+
+| Broche | Signal | Origine |
+|---|---|---|
+| 1 | `3V3_ISO` | — |
+| 3 | `PWM3_A` | nappe PWM, déjà protégé |
+| 5 | `CMP_OUT` | nappe GPIO-1, déjà protégé |
+| 7 | `PWM3_B` | nappe PWM, déjà protégé |
+| 9 | `CLB_OUT` | nappe GPIO-1, déjà protégé |
+| 11 | `Vht` | `ADC_8_MCU`→`ADC_12_MCU`, neuf (trio R=100 Ω) |
+| 13 | `Temp_ht` | `ADC_10_MCU`, neuf (trio R=100 Ω) |
+| 15 | `I_Shunt_ht` | `ADC_11_MCU`, neuf (trio R=100 Ω) |
+| 17 | `I_Shunt_ht_comp` | `ADC_8_MCU`, neuf (trio R=22 Ω, chemin comparateur `CMPSS3`) |
+| 19 | `V_bias` | `ADC_12_MCU`, neuf (trio R=100 Ω) |
+
+Les cinq voies ADC du connecteur devkit (`ADC_8`-`ADC_12`), posées depuis le
+début mais jamais câblées, sont maintenant **toutes** affectées — plus
+aucune réserve analogique disponible ailleurs dans le projet. Détail complet
+(pourquoi `ADC_8` spécifiquement, gabarit de trio, rappel de la config
+`CMPSS3` côté firmware hors périmètre) : decision #26.
+
 ### Alimentation — chaîne complète sur le shield
 
 Plus de carte de puissance séparée : le shield reçoit le **11-25V externe**

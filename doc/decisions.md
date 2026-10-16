@@ -1226,6 +1226,96 @@ pas corrigé, hors périmètre.
 
 ---
 
+## 26. Connecteurs dédiés carte HV et carte Filament (HT), en plus des six nappes — écart assumé à la decision #17
+
+**Décision.** Les deux premières cartes filles réelles (« carte HV », « carte
+Filament ») ont plus de signaux à échanger que ce que les réserves des six
+nappes partagées peuvent offrir d'un coup (ADC-2 : 3 réserves ; GPIO-1 :
+aucune). Plutôt que de forcer leur brochage dans cette capacité insuffisante,
+chaque carte reçoit **son propre connecteur IDC 2×10 dédié**, en plus des six
+nappes — écart délibéré à la decision #17 (« pas de connecteur sur mesure par
+carte »), assumé pour ces deux cartes spécifiquement, pas une remise en
+cause du principe pour les futures cartes génériques.
+
+Le style labels-only (connectivité par nom de net, jamais par position)
+permet ça sans toucher au câblage existant : un deuxième `global_label` du
+même nom sur la nouvelle broche suffit — même principe déjà en place pour
+`Stage1_EN`/`Stage2_EN`/`HV_EN`/`Discharge`, visibles à la fois sur GPIO-1 et
+sur logic/CLB (decision #20).
+
+**Carte HV** — deux connecteurs neufs, `J19` (`NAPPE_HV_ADC`, mesures
+Vin/Iin/V1/Vout/Iout/shunts) et `J20` (`NAPPE_HV_DIO`, PWM/commandes/
+températures), sur une feuille dédiée `connecteur_carte_hv.kicad_sch`. Les 20
+signaux repris (hors `3V3_ISO`/GND) sont **tous déjà protégés ailleurs** dans
+le projet (`Vin`, `Iin`, `V1`, `Vout`, `Iout`, `I_shunt1`, `I_SHUNT1_CMP`,
+`I_shunt2`, `I_SHUNT2_CMP`, `Temp1`, `Temp2`, `PWM1_A`, `PWM2_A`,
+`Stage1_EN`, `Stage2_EN`, `HV_EN`, `Discharge`) — vérifié net par net avant
+de poser quoi que ce soit. Aucune protection neuve sur cette feuille.
+
+**Carte Filament (HT)** — un connecteur neuf, `J21` (`NAPPE_FILAMENT_HT`), sur
+`connecteur_ht.kicad_sch`. `PWM3_A`, `PWM3_B`, `CMP_OUT`, `CLB_OUT` sont
+repris tels quels (déjà protégés). **Cinq signaux sont neufs** : les voies
+`ADC_8`-`ADC_12` du connecteur devkit, jusqu'ici posées mais jamais câblées
+nulle part (`isolated_pin_label`, documenté depuis le départ) :
+
+| Voie devkit | Signal carte Filament | R du trio | Pourquoi |
+|---|---|---|---|
+| `ADC_9` | `Vht` | 100 Ω | mesure simple |
+| `ADC_10` | `Temp_ht` | 100 Ω | mesure simple |
+| `ADC_11` | `I_Shunt_ht` | 100 Ω | mesure simple |
+| `ADC_8` | `I_Shunt_ht_comp` | 22 Ω | chemin comparateur/Trip Zone, Rs ≤ 50 Ω (decision #4) |
+| `ADC_12` | `V_bias` | 100 Ω | mesure simple |
+
+`ADC_8` est choisi spécifiquement pour `I_Shunt_ht_comp` (pas un tirage au
+sort) : vérifié dans SysConfig (device F28P551, boîtier 64PM) que sa broche
+physique (pin 15) est une entrée valide de `CMPSS3` — comparateur
+entièrement libre dans ce projet (`CMPSS1`/`CMPSS2` déjà pris par
+`I_SHUNT1_CMP`/`I_SHUNT2_CMP`). **La configuration de `CMPSS3` côté firmware
+devkit reste à faire — hors périmètre de ce dépôt KiCad**, signalée ici pour
+ne pas l'oublier.
+
+**Prérequis appliqué avant de poser les trios** : les 5 labels `ADC_8`-`12`
+sur `connecteur_devkit.kicad_sch` ont été renommés en `ADC_8_MCU`-`12_MCU`.
+Convention stricte du projet (decision #19, confirmée par l'erratum qu'elle
+documente) : le nom brut vit côté nappe/carte, le nom `_MCU` vit côté
+connecteur devkit, jamais l'inverse — sinon le trio protège un nœud qui ne va
+nulle part, court-circuité par un doublon de label invisible à l'ERC.
+
+**Gabarit de trio repris à l'identique** des 27 existants
+(`protections_devkit.kicad_sch`) : BAT54S (clamp `GND`/`3V3_PROT`) + R série +
+C 100 pF shunt vers `GND`. Désignateurs `D44`-`D48`, `R50`-`R54`, `C66`-`C70`.
+
+**Trois nouveaux symboles** dans `lib/C2000_Devkit_Connectors.kicad_sym`
+(gabarit `NAPPE_ADC1` : une rangée de 20 broches, footprint
+`Connector_IDC:IDC-Header_2x10_P2.54mm_Vertical`) : `NAPPE_HV_ADC`,
+`NAPPE_HV_DIO`, `NAPPE_FILAMENT_HT`.
+
+**Correction trouvée en implémentant** : un `global_label` avec
+`(shape power_in)` — mot-clé invalide, les seules formes valides sont
+`input`/`output`/`bidirectional`/`tri_state`/`passive` — fait échouer la
+résolution de connectivité ERC sur **toute la broche concernée**, pas
+seulement un avertissement cosmétique : les 60 broches neuves remontaient en
+`pin_not_connected`/`power_pin_not_driven` avant correction (`bidirectional`
+partout), alors que la coïncidence de coordonnée label/broche était pourtant
+correcte. À ne pas reproduire sur un futur générateur de label.
+
+**Vérification.** `check_schematic_labels.py` sur les deux nouvelles feuilles
+et sur `connecteur_devkit.kicad_sch` : rotation/justify correctes partout
+(le seul avertissement — Référence/Valeur empilées sur les gros connecteurs
+et les BAT54S — est déjà la norme acceptée sur les 18 nappes et 27 trios
+existants, pas une régression). `kicad-cli sch erc` sur `shield.kicad_sch`
+entier, comparé **par feuille et par catégorie** à l'état précédent : les
+deux nouvelles feuilles ressortent à 0 violation ; les 5 `isolated_pin_label`
+sur `ADC_8`-`12` ont disparu ; aucune catégorie n'augmente ailleurs (la
+hausse d'`endpoint_off_grid` sur `/` correspond aux mêmes emplacements déjà
+connus, pas à de nouvelles broches).
+
+**Hors périmètre** : le PCB n'est pas touché (toujours 0 piste/0 via) ; la
+configuration `CMPSS3` côté firmware devkit (projet CCS séparé) reste à
+faire.
+
+---
+
 ## Points ouverts — ne pas combler par une estimation
 
 Ces valeurs manquent. Elles demandent une lecture de datasheet ou une mesure,

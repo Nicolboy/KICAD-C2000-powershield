@@ -31,11 +31,13 @@ FOTA et un écran OLED d'état.
 | **Devkit C2000** | MCU, deux LDO 3,3V, JTAG, bouton reset, LED, cavalier de boot |
 | **Devkit ESP32** | Wi-Fi, hôte FOTA, écran OLED SPI (`ER-OLEDM032-1B`) |
 
-Liaison shield ↔ cartes DC/DC : quatre nappes IDC 2 × 10 détrompées,
-`3V3_ISO`/`GND` en positions 1/2 puis alternance signal/masse stricte 1:1
-sur les 16 positions suivantes. Écran OLED : nappe IDC 2 × 8 détrompée
-dédiée, alimentée avec l'ESP32. Détail complet dans
-[`doc/nappes-shield.md`](doc/nappes-shield.md).
+Liaison shield ↔ cartes DC/DC : six nappes IDC 2 × 10 détrompées (backplane
+partagé, decision #17), `3V3_ISO`/`GND` en positions 1/2 puis alternance
+signal/masse stricte 1:1 sur les positions suivantes. Deux cartes
+(HV, Filament) ont en plus leur propre connecteur dédié (decision #26),
+leurs besoins dépassant les réserves du backplane partagé. Écran OLED :
+nappe IDC 2 × 8 détrompée dédiée, alimentée avec l'ESP32. Détail complet
+dans [`doc/nappes-shield.md`](doc/nappes-shield.md).
 
 ---
 
@@ -102,13 +104,13 @@ kicad-cli pcb drc --exit-code-violations shield.kicad_pcb
 
 Travail en cours, et le dire plutôt que de le masquer :
 
-- **Schéma** — huit feuilles (connecteurs devkit/ESP32/OLED, nappes DC/DC,
-  alimentation, alimentation USB-C PD des cartes filles, quatre feuilles
-  de chaînes de protection). Toutes les broches réelles portent une
-  empreinte. L'ERC reste à ~190 violations, de
-  la même famille que le reste de l'atelier (`pin_not_connected`,
-  `isolated_pin_label` sur des réserves non pilotées) — pas corrigées
-  d'office, voir `doc/decisions.md`.
+- **Schéma** — dix feuilles (connecteurs devkit/ESP32/OLED, nappes DC/DC,
+  alimentation, alimentation USB-C PD des cartes filles, connecteurs dédiés
+  carte HV et carte Filament, quatre feuilles de chaînes de protection).
+  Toutes les broches réelles portent une empreinte. L'ERC reste à quelques
+  dizaines de violations, de la même famille que le reste de l'atelier
+  (`pin_not_connected`, `isolated_pin_label` sur des réserves non pilotées)
+  — pas corrigées d'office, voir `doc/decisions.md`.
 - **PCB** — 85 empreintes importées depuis le schéma, **pas encore
   routé** (0 piste, 0 via). Le placement et le routage demandent des choix
   de conception qui n'ont pas leur place dans un script.
