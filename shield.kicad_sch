@@ -57,6 +57,52 @@
 		)
 	)
 	(sheet
+		(at 320 90)
+		(size 80 50)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "2288e01a-e767-4813-b24d-8e63182ac44e")
+		(property "Sheetname" "Connecteur_Carte_HV"
+			(at 320 89.5 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "connecteur_carte_hv.kicad_sch"
+			(at 320 140.5 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "shield"
+				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c"
+					(page "10")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 20 160)
 		(size 80 50)
 		(exclude_from_sim no)
@@ -241,6 +287,52 @@
 		)
 	)
 	(sheet
+		(at 20 220)
+		(size 80 50)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "c6a522a8-8e6f-497b-8a31-2bcb5b43e987")
+		(property "Sheetname" "Connecteur_HT"
+			(at 20 219.5 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "connecteur_ht.kicad_sch"
+			(at 20 270.5 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "shield"
+				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c"
+					(page "11")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 121.158 89.662)
 		(size 78.74 45.974)
 		(exclude_from_sim no)
@@ -374,98 +466,6 @@
 			(project "shield"
 				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c"
 					(page "5")
-				)
-			)
-		)
-	)
-	(sheet
-		(at 320 90)
-		(size 80 50)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0)
-		)
-		(uuid "2288e01a-e767-4813-b24d-8e63182ac44e")
-		(property "Sheetname" "Connecteur_Carte_HV"
-			(at 320 89.5 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "connecteur_carte_hv.kicad_sch"
-			(at 320 140.5 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "shield"
-				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c"
-					(page "10")
-				)
-			)
-		)
-	)
-	(sheet
-		(at 20 220)
-		(size 80 50)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0)
-		)
-		(uuid "c6a522a8-8e6f-497b-8a31-2bcb5b43e987")
-		(property "Sheetname" "Connecteur_HT"
-			(at 20 219.5 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "connecteur_ht.kicad_sch"
-			(at 20 270.5 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(instances
-			(project "shield"
-				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c"
-					(page "11")
 				)
 			)
 		)

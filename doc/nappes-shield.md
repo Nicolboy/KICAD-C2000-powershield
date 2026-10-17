@@ -310,7 +310,8 @@ USB-C (Würth 632722100213) — VBUS_IN, CC1, CC2, GND_PRI
 STUSB4531QTR — négociation PD autonome (dead battery), alimenté sur VBUS_IN
    │  VBUS_EN_SNK → réseau R (100k/22k) → grille T1 (filtrage 100R/100nF)
    │  DISCH/VBUS_VS_DISCH → décharge autonome système/réceptacle
-   │  SCL/SDA/ALERT → ISO1640BD + DPC817 (isolation numérique, decision #27)
+   │  SCL/SDA/ALERT → ISO1640BD + TCMT1100 (isolation numérique, decision
+   │       #27, TCMT1100 remplace DPC817 depuis la decision #28)
    │       → bus I2C dédié ESP32 (GPIO22/23/21, PAS celui des nappes qui
    │       reste au C2000) — supervision seulement, l'autorun négocie
    │       sans lui. VREG_2V7 (régulateur interne STUSB4531) alimente le

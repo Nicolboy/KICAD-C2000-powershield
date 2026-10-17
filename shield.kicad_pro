@@ -40,8 +40,8 @@
         "other_text_upright": false,
         "pads": {
           "drill": 0.0,
-          "height": 0.3,
-          "width": 1.0
+          "height": 1.0,
+          "width": 0.3
         },
         "silk_line_width": 0.15,
         "silk_text_italic": false,
@@ -608,7 +608,7 @@
         "wire_width": 8
       },
       {
-        "clearance": 0.1,
+        "clearance": 0.25,
         "name": "Puissance",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": 5,
@@ -1067,14 +1067,26 @@
           "label": "Datasheet",
           "name": "Datasheet",
           "show": true
+        },
+        {
+          "group_by": false,
+          "label": "#",
+          "name": "${ITEM_NUMBER}",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Description",
+          "name": "Description",
+          "show": false
         }
       ],
       "filter_string": "",
       "group_symbols": true,
       "include_excluded_from_bom": true,
-      "name": "Default Editing",
+      "name": "",
       "sort_asc": true,
-      "sort_field": "Référence"
+      "sort_field": "Reference"
     },
     "bus_aliases": {},
     "connection_grid_size": 50.0,
@@ -1117,7 +1129,7 @@
         "uuid": "3e79b37e-13ed-4a43-b954-3b2f3b716c2c"
       }
     ],
-    "used_designators": "C1-23,C29-36,C42-54,C59-61,C101-146,D1-56,R1-34,R101-146,J1-9,J11-12,JP1-3,FL1-4,U1-3",
+    "used_designators": "C1-23,C29-36,C42-54,C59-61,C71-72,C101-146,D1-56,R1-34,R101-146,J1-9,J11-12,JP1-3,FL1-4,U1-3",
     "variants": []
   },
   "sheets": [
@@ -1156,6 +1168,14 @@
     [
       "172cca13-a51a-4318-a87b-88cec7859968",
       "USB_PD"
+    ],
+    [
+      "2288e01a-e767-4813-b24d-8e63182ac44e",
+      "Connecteur_Carte_HV"
+    ],
+    [
+      "c6a522a8-8e6f-497b-8a31-2bcb5b43e987",
+      "Connecteur_HT"
     ]
   ],
   "text_variables": {},

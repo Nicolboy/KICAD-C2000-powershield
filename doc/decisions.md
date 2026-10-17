@@ -1429,6 +1429,102 @@ décider plus tard, au routage.
 
 ---
 
+## 28. `DPC817` (U7) remplacé par `TCMT1100` (Vishay) — optocoupleur SMD réellement standard, zéro empreinte maison
+
+**Pourquoi revenir sur la décision #27.** Le `DPC817` choisi en #27 avait
+deux défauts qu'une vérification plus poussée a mis en évidence : (1) son
+boîtier SMD SL-4 (D=4,60/E1=6,50/e=2,54/E=10,16mm) n'a d'équivalent exact
+dans aucune bibliothèque KiCad stock — les deux candidats au bon pas
+(`SOP-4_3.8x4.1mm_P2.54mm` à 6,95mm d'envergure et `SOP-4_7.5x4.1mm_
+P2.54mm` à 11,2mm) ratent la cible réelle (9,86-10,46mm) de 3,2mm et
+0,75mm respectivement, d'où l'empreinte dessinée à la main (`lib/
+DPC817.kicad_mod`) ; (2) le composant lui-même est NRND chez le
+fabricant. Un boîtier Würth `WL357` (SOP-4 réel, pas-de-broches 2,54mm,
+non-NRND) a aussi été vérifié (`datasheets/isolation/WL357-SOP-4.pdf`)
+mais son land pattern recommandé (envergure 7,4mm) ne correspond pas non
+plus aux footprints stock à 0,45mm près — nécessitait, lui aussi, une
+empreinte maison.
+
+**Choix retenu : `TCMT1100` (Vishay, série TCMT110.).** Vérifié contre
+`datasheets/isolation/tcmt110.pdf` : boîtier **SSOP-4 "Half Pitch
+Mini-Flat"** (pas 1,27mm, pas 2,54mm), associé nativement dans la
+bibliothèque KiCad stock elle-même au symbole `Isolator:TCMT1100` +
+l'empreinte `Package_SO:SOP-4_4.4x2.6mm_P1.27mm` — **aucune empreinte
+maison nécessaire**. Comparaison pad-à-pad contre le land pattern "Possible
+footprint" du datasheet (p.7, Fig. 17) : centre de pad stock à 3,1875mm
+contre 3,15mm recommandé par Vishay (écart 0,04mm, négligeable — le pad
+stock est juste un peu plus large, 1,625mm contre 1,30mm typ, ce qui va
+dans le sens de la facilité de brasage, pas d'un défaut). CTR 50-600%
+(`IF`=5mA, `VCE`=5V — même condition de test que celle déjà retenue pour
+le courant de polarisation du circuit, `R57`=330Ω inchangé), `VISO`=3750V
+<sub>RMS</sub> (contre 5000V pour le DPC817 — toujours trois ordres de
+grandeur au-dessus du besoin réel d'un bus de supervision basse tension),
+pas NRND, bien distribué (Vishay).
+
+**Câblage et brochage inchangés.** `TCMT1100` suit la même convention
+universelle Anode(1)/Cathode(2)/Émetteur(3)/Collecteur(4) que `DPC817` et
+le symbole stock KiCad place ces 4 broches aux mêmes coordonnées locales
+(±7,62mm en X, ±2,54mm en Y) que le symbole `DPC817` fait main — aucune
+reprise de câblage nécessaire dans `usb_pd.kicad_sch`, simple
+remplacement du `lib_id` et des propriétés Value/Footprint/Datasheet sur
+l'instance `U7`. Le label `DPC817_A` (anode, côté `R57`) renommé en
+`U7_A` pour ne pas laisser un nom de net périmé.
+
+**PCB.** `U7` déjà posé/orienté (B.Cu, layer 34) depuis la decision #27 —
+reconstruit à la main via kipy plutôt que ré-importé ("Update PCB from
+Schematic" non exposé par l'API IPC actuelle) : 4 pads repositionnés aux
+offsets du footprint stock (±3,1875mm/±0,635mm, tailles 1,625×0,6mm),
+silkscreen/courtyard/contour fab reconstruits segment par segment depuis
+le fichier stock `SOP-4_4.4x2.6mm_P1.27mm.kicad_mod`, identité de
+librairie (`defn.id`) recalée sur `Package_SO:SOP-4_4.4x2.6mm_P1.27mm`.
+**Convention de miroir vérifiée empiriquement** (pas supposée) : ce
+footprint, posé en B.Cu, a son axe Y inversé par rapport aux coordonnées
+brutes du fichier `.kicad_mod` (confirmé sur le marqueur pin-1, seul
+élément non symétrique de l'ancien dessin DPC817 — les segments
+eux-mêmes ne permettaient pas de trancher, la silhouette étant
+accidentellement symétrique en Y).
+
+**DRC après le remplacement, filtré sur `U7`** : plus aucune violation
+`lib_footprint_issues` (empreinte introuvable) ; reste un
+`lib_footprint_mismatch` mineur (écart cosmétique entre la copie locale
+reconstruite à la main et la bibliothèque stock, même famille de message
+que les 6 instances déjà préexistantes ailleurs sur le board) et un
+`text_height` (même défaut générique que toute empreinte neuve du
+projet). Aucun court-circuit, croisement ni violation d'isolation propre
+à `U7`.
+
+**Régression découverte en vérifiant, sans lien avec ce remplacement —
+signalée, pas corrigée ici** : 72 nouvelles violations `silk_overlap`/
+`silk_over_copper` sont apparues entre la session de routage des 5 trios
+ADC (decision précédente, hors numérotation) et maintenant, touchant les
+champs Référence de `D44`-`D48`/`C66`-`C72`/`R45`-`R47`/`R54`-`R57`/`U6` —
+un cluster entièrement différent de `U7`, à une autre zone du board.
+Confirmé reproductible (deux lancements DRC consécutifs sur le fichier
+inchangé donnent exactement les mêmes 809 violations) donc pas un bruit
+de calcul de zone — plausiblement un recalcul du placement automatique
+des champs Référence (`fields_autoplaced yes`) déclenché par les
+sauvegardes successives de cette session, pas quelque chose que ce
+remplacement de `U7` a causé. **Non corrigé** : hors périmètre de la
+tâche demandée, à traiter dans une tâche dédiée.
+
+**Caractérisation `composants-datasheets/`** : `data/shield-power/
+dpc817.yaml` supprimé (composant retiré du board), remplacé par
+`tcmt1100.yaml` (même famille `opto`, mêmes 5 champs) — `t_on`/`t_off`
+repris de la table Switching Characteristics p.3 (condition `VS`=5V,
+`IC`=2mA, `RL`=100Ω, fig.1, valeurs **typ** seulement, le datasheet ne
+publie pas de max pour ces deux champs, à la différence du DPC817) ;
+`viso`=3750V p.2 ; `ron`=`null`+`todo` (même rationale que DPC817,
+sortie phototransistor). `python tools/lint_hw.py data/` : `tcmt1100.yaml`
+sort avec le même avertissement de complétude 4/5 attendu (identique au
+`dpc817.yaml` qu'il remplace) ; `docs/hw/dpc817.md` supprimé (généré,
+`gen_md.py` ne supprime pas les fichiers orphelins automatiquement).
+
+**Hors périmètre** : la régression de silkscreen signalée ci-dessus ; la
+pinmap `TCMT1100` reste non confirmée par capture d'empreinte réelle
+(R15, `todo` repris du `dpc817.yaml`).
+
+---
+
 ## Points ouverts — ne pas combler par une estimation
 
 Ces valeurs manquent. Elles demandent une lecture de datasheet ou une mesure,
