@@ -695,7 +695,7 @@
 			)
 		)
 	)
-	(global_label "PWM3_B"
+	(global_label "PWM_bias"
 		(shape output)
 		(at 208.026 54.102 0)
 		(fields_autoplaced yes)
@@ -1199,7 +1199,7 @@
 			)
 		)
 	)
-	(global_label "CMP_OUT"
+	(global_label "PWM_EN"
 		(shape output)
 		(at 264.922 126.746 0)
 		(fields_autoplaced yes)
@@ -1343,7 +1343,7 @@
 			)
 		)
 	)
-	(global_label "PWM1_A"
+	(global_label "Stage_inter_hv_PWM"
 		(shape output)
 		(at 71.882 105.41 0)
 		(fields_autoplaced yes)
@@ -2039,7 +2039,7 @@
 			)
 		)
 	)
-	(global_label "PWM2_A"
+	(global_label "Stage_hv_PWM"
 		(shape output)
 		(at 152.4 45.72 0)
 		(fields_autoplaced yes)
@@ -2063,7 +2063,7 @@
 			)
 		)
 	)
-	(global_label "PWM3_A"
+	(global_label "PWM_ht"
 		(shape output)
 		(at 140.462 165.1 0)
 		(fields_autoplaced yes)

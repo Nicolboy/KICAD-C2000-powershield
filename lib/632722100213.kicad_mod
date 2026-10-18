@@ -1,6 +1,6 @@
 (footprint "632722100213" (version 20221018) (generator "pcbnew") (generator_version "10.0")
   (layer "F.Cu")
-  (descr "Wurth Elektronik WR-COM USB PD Horizontal Receptacle SMT, 6 broches signal (CC1/CC2/VBUS x2/GND x2) + 4 pattes mecaniques traversantes. Geometrie reprise du module SamacSys/ECAD telecharge (composants-datasheets/datasheets/mecanique/usbc/), reformatee au format KiCad 10. Numerotation des pattes mecaniques corrigee MH1-MH4 (le fichier .kicad_mod d'origine de Wurth les numerotait 1-4, en contradiction avec son propre .kicad_sym qui utilise MH1-MH4 - voir doc/decisions.md).")
+  (descr "Wurth Elektronik WR-COM USB PD Horizontal Receptacle SMT, 6 broches signal (CC1/CC2/VBUS x2/GND x2) + 4 pattes mecaniques traversantes. Geometrie reprise du module SamacSys/ECAD telecharge (lib_fp_commun/mecanique/usbc/), reformatee au format KiCad 10. Numerotation des pattes mecaniques corrigee MH1-MH4 (le fichier .kicad_mod d'origine de Wurth les numerotait 1-4, en contradiction avec son propre .kicad_sym qui utilise MH1-MH4 - voir doc/decisions.md).")
   (attr smd)
   (fp_text reference "REF**" (at 0 -0.35) (layer "F.SilkS")
     (effects (font (size 1.27 1.27) (thickness 0.254)))

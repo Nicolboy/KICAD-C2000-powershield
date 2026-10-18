@@ -1,0 +1,6 @@
+connecteur USB 3.1 typeC
+Condensateur mlcc 0805 4.7u,1u,1u,100nF
+diode TVS ESDA25W et (x2)ESDA25P35  ? tension? puissance?
+resistance 0805 1k, 100k,(3x)22k,100,
+MOSFET P SQJ459EP-T2_GE3 soic 8
+LED 3mm rouge/vert

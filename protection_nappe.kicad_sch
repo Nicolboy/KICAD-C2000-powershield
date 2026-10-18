@@ -938,7 +938,7 @@
 			)
 		)
 	)
-	(global_label "Stage2_EN"
+	(global_label "Stage_hv_EN"
 		(shape output)
 		(at 155.976 257.808 0)
 		(fields_autoplaced yes)
@@ -1778,7 +1778,7 @@
 			)
 		)
 	)
-	(global_label "CLB_OUT"
+	(global_label "Vht_EN"
 		(shape output)
 		(at 245.976 52.808 0)
 		(fields_autoplaced yes)
@@ -2234,7 +2234,7 @@
 			)
 		)
 	)
-	(global_label "HV_EN"
+	(global_label "Vhv_EN"
 		(shape output)
 		(at 245.976 257.808 0)
 		(fields_autoplaced yes)
@@ -2594,7 +2594,7 @@
 			)
 		)
 	)
-	(global_label "Stage1_EN"
+	(global_label "Stage_inter_hv_EN"
 		(shape output)
 		(at 65.976 257.808 0)
 		(fields_autoplaced yes)
@@ -2786,7 +2786,7 @@
 			)
 		)
 	)
-	(global_label "I_SHUNT1_CMP"
+	(global_label "I_shunt_inter_hv_cmp"
 		(shape output)
 		(at 65.976 52.808 0)
 		(fields_autoplaced yes)
@@ -2810,7 +2810,7 @@
 			)
 		)
 	)
-	(global_label "Discharge"
+	(global_label "~{Discharge_hv}"
 		(shape output)
 		(at 335.976 257.808 0)
 		(fields_autoplaced yes)
@@ -2834,7 +2834,7 @@
 			)
 		)
 	)
-	(global_label "I_SHUNT2_CMP"
+	(global_label "I_shunt_hv_cmp"
 		(shape output)
 		(at 155.976 52.808 0)
 		(fields_autoplaced yes)

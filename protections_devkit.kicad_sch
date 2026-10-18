@@ -431,30 +431,6 @@
 			(embedded_fonts no)
 		)
 	)
-	(global_label "VREF_ADC_MCU"
-		(shape input)
-		(at 236.474 111.252 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "014d1cb8-c9dd-4e7f-9505-d335d582ea4e")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 253.6711 111.252 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-	)
 	(global_label "3V3_PROT"
 		(shape input)
 		(at 163.576 102.616 90)
@@ -575,7 +551,7 @@
 			)
 		)
 	)
-	(global_label "Vout"
+	(global_label "V_hv"
 		(shape output)
 		(at 66.04 115.062 0)
 		(fields_autoplaced yes)
@@ -911,7 +887,7 @@
 			)
 		)
 	)
-	(global_label "Vin"
+	(global_label "Vin_hv"
 		(shape output)
 		(at 66.802 53.34 0)
 		(fields_autoplaced yes)
@@ -996,30 +972,6 @@
 		(uuid "4fbff37b-2194-4f79-b23c-861e2de00e3b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 53.011 104.902 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-	)
-	(global_label "VREF_ADC"
-		(shape output)
-		(at 269.494 118.11 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "510906cf-f39d-45e0-88db-fc34ee9f093c")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 281.6716 118.11 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1151,7 +1103,7 @@
 			)
 		)
 	)
-	(global_label "Temp2"
+	(global_label "Temp_hv"
 		(shape output)
 		(at 133.096 110.236 0)
 		(fields_autoplaced yes)
@@ -1188,30 +1140,6 @@
 		(uuid "67781034-73d4-4fdb-bb85-a1fcade6a887")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 43.0372 172.212 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-	)
-	(global_label "GND"
-		(shape input)
-		(at 225.044 120.142 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "6a802ab3-e45f-4836-baf5-5c458cd44b2d")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 225.044 126.9977 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1367,7 +1295,7 @@
 			)
 		)
 	)
-	(global_label "I_shunt1"
+	(global_label "I_shunt_inter_hv"
 		(shape output)
 		(at 202.948 118.308 0)
 		(fields_autoplaced yes)
@@ -1391,7 +1319,7 @@
 			)
 		)
 	)
-	(global_label "I_shunt2"
+	(global_label "I_shunt_hv"
 		(shape output)
 		(at 265.75 52.71 0)
 		(fields_autoplaced yes)
@@ -1484,30 +1412,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
-			)
-		)
-	)
-	(global_label "GND"
-		(shape input)
-		(at 240.03 146.304 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "94b62e0c-b27c-4925-b497-92da3847dc77")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 240.03 153.1597 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 			)
 		)
 	)
@@ -1703,7 +1607,7 @@
 			)
 		)
 	)
-	(global_label "Iin"
+	(global_label "Iin_hv"
 		(shape output)
 		(at 132.08 168.91 0)
 		(fields_autoplaced yes)
@@ -1751,31 +1655,7 @@
 			)
 		)
 	)
-	(global_label "VREF_ADC_MCU"
-		(shape input)
-		(at 261.874 118.11 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "c8b66560-adeb-4be9-a47b-5108ab41779a")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 244.6769 118.11 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-	)
-	(global_label "Temp1"
+	(global_label "Temp_inter_hv"
 		(shape output)
 		(at 131.318 50.8 0)
 		(fields_autoplaced yes)
@@ -1788,54 +1668,6 @@
 		(uuid "d7b8a4b7-2a6c-439c-affe-b129e5ee5737")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 140.4112 50.8 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-	)
-	(global_label "VREF_ADC_MCU"
-		(shape input)
-		(at 240.03 138.684 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "db73d760-8e6e-4915-ac22-74b0f8e99158")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 240.03 121.4869 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-	)
-	(global_label "3V3_PROT"
-		(shape input)
-		(at 225.044 102.362 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "e1836a67-ba6b-4f45-8e87-3af5e38a2f3d")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 225.044 90.0635 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1991,7 +1823,7 @@
 			)
 		)
 	)
-	(global_label "V1"
+	(global_label "V_inter_hv"
 		(shape output)
 		(at 60.96 172.212 0)
 		(fields_autoplaced yes)
@@ -2087,7 +1919,7 @@
 			)
 		)
 	)
-	(global_label "Iout"
+	(global_label "I_hv"
 		(shape output)
 		(at 193.162 48.006 0)
 		(fields_autoplaced yes)
@@ -2144,6 +1976,7 @@
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 235.456 70.668 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2220,6 +2053,7 @@
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 40.64 184.15 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2296,6 +2130,7 @@
 		)
 		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 62.23 115.062 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2341,86 +2176,6 @@
 	)
 	(symbol
 		(lib_id "Power_Parts:BAT54S")
-		(at 227.584 111.252 270)
-		(mirror x)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "2908d846-e55b-40f9-b88d-abd10c2dbb6d")
-		(property "Reference" "D11"
-			(at 232.584 111.252 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "BAT54S"
-			(at 222.584 111.252 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 227.584 111.252 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 227.584 111.252 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 227.584 111.252 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "3c13fa0b-759e-456c-8b29-a78f60b2d084")
-		)
-		(pin "2"
-			(uuid "7ad61f12-969a-48cc-83ea-79d9ce2fb053")
-		)
-		(pin "3"
-			(uuid "e63e5c54-a53e-4fde-a6f7-f2758f07ba33")
-		)
-		(instances
-			(project "shield"
-				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/f4905f3b-41b3-4c1f-813f-80bb56cc6d92"
-					(reference "D11")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Power_Parts:BAT54S")
 		(at 98.806 162.306 270)
 		(mirror x)
 		(unit 1)
@@ -2453,6 +2208,7 @@
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
 			(at 98.806 162.306 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2533,6 +2289,7 @@
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
 			(at 32.004 164.592 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2613,6 +2370,7 @@
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
 			(at 169.672 37.084 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2693,6 +2451,7 @@
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
 			(at 98.044 101.092 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2772,6 +2531,7 @@
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 176.144 65.532 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2817,82 +2577,6 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 240.03 142.494 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "619b248e-e3bf-4293-a1ab-b0bdef1b575f")
-		(property "Reference" "C10"
-			(at 247.14 143.272 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "100pF"
-			(at 246.632 140.478 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 240.03 142.494 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 240.03 142.494 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 240.03 142.494 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "ccd94b54-d5f6-4bb9-8b57-c900fcba010a")
-		)
-		(pin "2"
-			(uuid "7170aa5e-7541-4bd8-8ad6-b62cc47e65ec")
-		)
-		(instances
-			(project "shield"
-				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/f4905f3b-41b3-4c1f-813f-80bb56cc6d92"
-					(reference "C10")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
 		(at 110.744 181.61 180)
 		(unit 1)
 		(body_style 1)
@@ -2924,6 +2608,7 @@
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 110.744 181.61 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3001,6 +2686,7 @@
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
 			(at 227.584 43.434 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3080,6 +2766,7 @@
 		)
 		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 128.27 168.91 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3157,6 +2844,7 @@
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
 			(at 166.116 111.506 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3236,6 +2924,7 @@
 		)
 		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 127.508 50.8 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3312,6 +3001,7 @@
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 107.95 125.984 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3388,6 +3078,7 @@
 		)
 		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 189.352 48.006 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3465,6 +3156,7 @@
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
 			(at 36.83 44.704 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3544,6 +3236,7 @@
 		)
 		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 57.15 172.212 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3620,6 +3313,7 @@
 		)
 		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 62.992 53.34 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3696,6 +3390,7 @@
 		)
 		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 129.286 110.236 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3773,6 +3468,7 @@
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
 			(at 32.004 104.902 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3852,6 +3548,7 @@
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 44.196 128.778 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3928,6 +3625,7 @@
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 106.172 66.294 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4004,6 +3702,7 @@
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 45.72 66.04 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4080,6 +3779,7 @@
 		)
 		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 199.138 118.308 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4156,6 +3856,7 @@
 		)
 		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 261.94 52.71 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4200,82 +3901,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
-		(at 265.684 118.11 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "f4318db7-70ad-47e3-bfe5-f6681b1c28c1")
-		(property "Reference" "R10"
-			(at 266.97 112.844 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "100R"
-			(at 264.684 113.352 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 265.684 118.11 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 265.684 118.11 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 265.684 118.11 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "36296fcd-28de-4f21-84c0-acf6155f76ec")
-		)
-		(pin "2"
-			(uuid "22f7b9e1-4797-4a12-9837-e19053f9f828")
-		)
-		(instances
-			(project "shield"
-				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/f4905f3b-41b3-4c1f-813f-80bb56cc6d92"
-					(reference "R10")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Power_Parts:BAT54S")
 		(at 98.806 42.926 270)
 		(mirror x)
@@ -4309,6 +3934,7 @@
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
 			(at 98.806 42.926 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4388,6 +4014,7 @@
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 177.038 137.414 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects

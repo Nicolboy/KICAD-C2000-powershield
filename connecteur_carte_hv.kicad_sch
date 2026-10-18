@@ -53,7 +53,7 @@
 					)
 				)
 			)
-			(property "Description" "Connecteur dedie carte HV - mesures (Vin/Iin/V1/Vout/Iout/shunts)"
+			(property "Description" "Connecteur dedie carte HV - mesures (Vin_hv/Iin_hv/V_inter_hv/V_hv/I_hv/shunts)"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -117,7 +117,7 @@
 				(pin passive line
 					(at -22.86 15.24 0)
 					(length 5.08)
-					(name "Vin"
+					(name "Vin_hv"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -153,7 +153,7 @@
 				(pin passive line
 					(at -22.86 10.16 0)
 					(length 5.08)
-					(name "Iin"
+					(name "Iin_hv"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -189,7 +189,7 @@
 				(pin passive line
 					(at -22.86 5.08 0)
 					(length 5.08)
-					(name "V1"
+					(name "V_inter_hv"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -225,7 +225,7 @@
 				(pin passive line
 					(at -22.86 0 0)
 					(length 5.08)
-					(name "I_shunt1"
+					(name "I_shunt_inter_hv"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -261,7 +261,7 @@
 				(pin passive line
 					(at -22.86 -5.08 0)
 					(length 5.08)
-					(name "I_SHUNT1_CMP"
+					(name "I_shunt_inter_hv_cmp"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -297,7 +297,7 @@
 				(pin passive line
 					(at -22.86 -10.16 0)
 					(length 5.08)
-					(name "Vout"
+					(name "V_hv"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -333,7 +333,7 @@
 				(pin passive line
 					(at -22.86 -15.24 0)
 					(length 5.08)
-					(name "Iout"
+					(name "I_hv"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -369,7 +369,7 @@
 				(pin passive line
 					(at -22.86 -20.32 0)
 					(length 5.08)
-					(name "I_shunt2"
+					(name "I_shunt_hv"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -405,7 +405,7 @@
 				(pin passive line
 					(at -22.86 -25.4 0)
 					(length 5.08)
-					(name "I_SHUNT2_CMP"
+					(name "I_shunt_hv_cmp"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -553,7 +553,7 @@
 				(pin passive line
 					(at -22.86 15.24 0)
 					(length 5.08)
-					(name "PWM1_A"
+					(name "Stage_inter_hv_PWM"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -589,7 +589,7 @@
 				(pin passive line
 					(at -22.86 10.16 0)
 					(length 5.08)
-					(name "Stage1_EN"
+					(name "Stage_inter_hv_EN"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -625,7 +625,7 @@
 				(pin passive line
 					(at -22.86 5.08 0)
 					(length 5.08)
-					(name "PWM2_A"
+					(name "Stage_hv_PWM"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -661,7 +661,7 @@
 				(pin passive line
 					(at -22.86 0 0)
 					(length 5.08)
-					(name "Stage2_EN"
+					(name "Stage_hv_EN"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -697,7 +697,7 @@
 				(pin passive line
 					(at -22.86 -5.08 0)
 					(length 5.08)
-					(name "HV_EN"
+					(name "Vhv_EN"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -733,7 +733,7 @@
 				(pin passive line
 					(at -22.86 -10.16 0)
 					(length 5.08)
-					(name "Discharge"
+					(name "~{Discharge_hv}"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -805,7 +805,7 @@
 				(pin passive line
 					(at -22.86 -20.32 0)
 					(length 5.08)
-					(name "Temp1"
+					(name "Temp_inter_hv"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -841,7 +841,7 @@
 				(pin passive line
 					(at -22.86 -25.4 0)
 					(length 5.08)
-					(name "Temp2"
+					(name "Temp_hv"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -878,9 +878,9 @@
 			(embedded_fonts no)
 		)
 	)
-	(global_label "PWM2_A"
+	(global_label "Stage_hv_PWM"
 		(shape bidirectional)
-		(at 137.14 74.92 180)
+		(at 137.16 74.168 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -890,7 +890,31 @@
 		)
 		(uuid "04499fad-974c-4886-a164-1ee95c13c5da")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.14 74.92 180)
+			(at 137.16 74.168 180)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
+	(global_label "VREF_ADC_MCU"
+		(shape bidirectional)
+		(at 137.16 94.488 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "0796ba89-db74-46de-94f7-ac4e96fc9fb2")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 118.8516 94.488 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -926,7 +950,7 @@
 			)
 		)
 	)
-	(global_label "Vout"
+	(global_label "V_hv"
 		(shape bidirectional)
 		(at 37.14 90.16 180)
 		(fields_autoplaced yes)
@@ -952,7 +976,7 @@
 	)
 	(global_label "GND"
 		(shape bidirectional)
-		(at 137.14 87.62 180)
+		(at 137.16 86.868 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -962,7 +986,7 @@
 		)
 		(uuid "221816a3-a794-4fcf-9f4a-396c547f3b8c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.14 87.62 180)
+			(at 137.16 86.868 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -974,7 +998,7 @@
 			)
 		)
 	)
-	(global_label "Vin"
+	(global_label "Vin_hv"
 		(shape bidirectional)
 		(at 37.14 64.76 180)
 		(fields_autoplaced yes)
@@ -1022,9 +1046,9 @@
 			)
 		)
 	)
-	(global_label "PWM1_A"
+	(global_label "Stage_inter_hv_PWM"
 		(shape bidirectional)
-		(at 137.14 64.76 180)
+		(at 137.16 64.008 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1034,7 +1058,7 @@
 		)
 		(uuid "39927dcf-33b2-46c1-863b-8d0eb723000e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.14 64.76 180)
+			(at 137.16 64.008 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1048,7 +1072,7 @@
 	)
 	(global_label "GND"
 		(shape bidirectional)
-		(at 137.14 107.94 180)
+		(at 137.16 107.188 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1058,7 +1082,7 @@
 		)
 		(uuid "4064c2d1-270c-4be3-bd94-b5e9fe1df528")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.14 107.94 180)
+			(at 137.16 107.188 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1072,7 +1096,7 @@
 	)
 	(global_label "3V3_ISO"
 		(shape bidirectional)
-		(at 137.14 59.68 180)
+		(at 137.16 58.928 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1082,7 +1106,7 @@
 		)
 		(uuid "431c525f-e0f9-47a7-8e30-7d3471303730")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.14 59.68 180)
+			(at 137.16 58.928 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1096,7 +1120,7 @@
 	)
 	(global_label "GND"
 		(shape bidirectional)
-		(at 137.14 77.46 180)
+		(at 137.16 76.708 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1106,7 +1130,7 @@
 		)
 		(uuid "4c050977-9f2f-476a-a707-fa23b76fc38d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.14 77.46 180)
+			(at 137.16 76.708 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1144,7 +1168,7 @@
 	)
 	(global_label "GND"
 		(shape bidirectional)
-		(at 137.14 82.54 180)
+		(at 137.16 81.788 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1154,7 +1178,7 @@
 		)
 		(uuid "61675974-49f0-47e4-9bcb-96f4b6b77940")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.14 82.54 180)
+			(at 137.16 81.788 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1216,7 +1240,7 @@
 	)
 	(global_label "GND"
 		(shape bidirectional)
-		(at 137.14 97.78 180)
+		(at 137.16 97.028 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1226,7 +1250,7 @@
 		)
 		(uuid "6e0cdb3d-9339-4bcb-ade8-35a8f7b85521")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.14 97.78 180)
+			(at 137.16 97.028 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1238,7 +1262,7 @@
 			)
 		)
 	)
-	(global_label "I_SHUNT2_CMP"
+	(global_label "I_shunt_hv_cmp"
 		(shape bidirectional)
 		(at 37.14 105.4 180)
 		(fields_autoplaced yes)
@@ -1310,9 +1334,9 @@
 			)
 		)
 	)
-	(global_label "Temp2"
+	(global_label "Temp_hv"
 		(shape bidirectional)
-		(at 137.14 105.4 180)
+		(at 137.16 104.648 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1322,7 +1346,7 @@
 		)
 		(uuid "7476b59c-7832-494b-8773-4857f4f2070b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.14 105.4 180)
+			(at 137.16 104.648 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1358,7 +1382,7 @@
 			)
 		)
 	)
-	(global_label "I_shunt1"
+	(global_label "I_shunt_inter_hv"
 		(shape bidirectional)
 		(at 37.14 80 180)
 		(fields_autoplaced yes)
@@ -1382,7 +1406,7 @@
 			)
 		)
 	)
-	(global_label "V1"
+	(global_label "V_inter_hv"
 		(shape bidirectional)
 		(at 37.14 74.92 180)
 		(fields_autoplaced yes)
@@ -1406,7 +1430,7 @@
 			)
 		)
 	)
-	(global_label "I_shunt2"
+	(global_label "I_shunt_hv"
 		(shape bidirectional)
 		(at 37.14 100.32 180)
 		(fields_autoplaced yes)
@@ -1430,33 +1454,9 @@
 			)
 		)
 	)
-	(global_label "RESERVE_HV_DIO_1"
-		(shape bidirectional)
-		(at 137.14 95.24 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "7cf9bcf6-f0a6-417a-940a-4607f3907928")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.14 95.24 180)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-	)
 	(global_label "GND"
 		(shape bidirectional)
-		(at 137.14 67.3 180)
+		(at 137.16 66.548 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1466,7 +1466,7 @@
 		)
 		(uuid "7e8743b7-07c8-417e-b26c-1f516f5e8c17")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.14 67.3 180)
+			(at 137.16 66.548 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1478,7 +1478,7 @@
 			)
 		)
 	)
-	(global_label "Iin"
+	(global_label "Iin_hv"
 		(shape bidirectional)
 		(at 37.14 69.84 180)
 		(fields_autoplaced yes)
@@ -1502,7 +1502,7 @@
 			)
 		)
 	)
-	(global_label "I_SHUNT1_CMP"
+	(global_label "I_shunt_inter_hv_cmp"
 		(shape bidirectional)
 		(at 37.14 85.08 180)
 		(fields_autoplaced yes)
@@ -1550,9 +1550,9 @@
 			)
 		)
 	)
-	(global_label "HV_EN"
+	(global_label "Vhv_EN"
 		(shape bidirectional)
-		(at 137.14 85.08 180)
+		(at 137.16 84.328 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1562,7 +1562,7 @@
 		)
 		(uuid "8bccd572-f8a9-43c1-a112-52e0694692d5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.14 85.08 180)
+			(at 137.16 84.328 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1576,7 +1576,7 @@
 	)
 	(global_label "GND"
 		(shape bidirectional)
-		(at 137.14 72.38 180)
+		(at 137.16 71.628 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1586,7 +1586,7 @@
 		)
 		(uuid "9c26f9c2-27eb-4886-b87e-cc9696cc2d8c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.14 72.38 180)
+			(at 137.16 71.628 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1600,7 +1600,7 @@
 	)
 	(global_label "GND"
 		(shape bidirectional)
-		(at 137.14 102.86 180)
+		(at 137.16 102.108 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1610,7 +1610,7 @@
 		)
 		(uuid "aba48707-7bc0-4421-ba58-213e012ad344")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.14 102.86 180)
+			(at 137.16 102.108 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1624,7 +1624,7 @@
 	)
 	(global_label "GND"
 		(shape bidirectional)
-		(at 137.14 62.22 180)
+		(at 137.16 61.468 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1634,7 +1634,7 @@
 		)
 		(uuid "ba844d52-2410-4766-acd3-7192a76d386c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.14 62.22 180)
+			(at 137.16 61.468 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1646,9 +1646,9 @@
 			)
 		)
 	)
-	(global_label "Discharge"
+	(global_label "~{Discharge_hv}"
 		(shape bidirectional)
-		(at 137.14 90.16 180)
+		(at 137.16 89.408 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1658,7 +1658,7 @@
 		)
 		(uuid "bd2b8a74-8447-4c18-824b-f61d5bb137e9")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.14 90.16 180)
+			(at 137.16 89.408 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1720,7 +1720,7 @@
 	)
 	(global_label "GND"
 		(shape bidirectional)
-		(at 137.14 92.7 180)
+		(at 137.16 91.948 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1730,7 +1730,7 @@
 		)
 		(uuid "c81539ea-a850-4ae6-a9e9-7f974cc6b2bb")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.14 92.7 180)
+			(at 137.16 91.948 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1742,9 +1742,9 @@
 			)
 		)
 	)
-	(global_label "Temp1"
+	(global_label "Temp_inter_hv"
 		(shape bidirectional)
-		(at 137.14 100.32 180)
+		(at 137.16 99.568 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1754,7 +1754,7 @@
 		)
 		(uuid "d50d507a-b942-47b7-a964-5c4d18ddfb00")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.14 100.32 180)
+			(at 137.16 99.568 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1766,9 +1766,9 @@
 			)
 		)
 	)
-	(global_label "Stage1_EN"
+	(global_label "Stage_inter_hv_EN"
 		(shape bidirectional)
-		(at 137.14 69.84 180)
+		(at 137.16 69.088 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1778,7 +1778,7 @@
 		)
 		(uuid "d9d31ec5-1d1f-439d-85b0-fbc20c815d15")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.14 69.84 180)
+			(at 137.16 69.088 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1790,7 +1790,7 @@
 			)
 		)
 	)
-	(global_label "Iout"
+	(global_label "I_hv"
 		(shape bidirectional)
 		(at 37.14 95.24 180)
 		(fields_autoplaced yes)
@@ -1814,9 +1814,9 @@
 			)
 		)
 	)
-	(global_label "Stage2_EN"
+	(global_label "Stage_hv_EN"
 		(shape bidirectional)
-		(at 137.14 80 180)
+		(at 137.16 79.248 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1826,7 +1826,7 @@
 		)
 		(uuid "df110990-681c-48c1-b070-76b102cad287")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.14 80 180)
+			(at 137.16 79.248 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1840,7 +1840,7 @@
 	)
 	(symbol
 		(lib_id "C2000_Devkit_Connectors:NAPPE_HV_DIO")
-		(at 160 80 0)
+		(at 160.02 79.248 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -1850,7 +1850,7 @@
 		(dnp no)
 		(uuid "3bda1dc6-6bab-4ff7-a609-2781c7687359")
 		(property "Reference" "J20"
-			(at 159.238 80.508 0)
+			(at 159.258 79.756 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1861,7 +1861,7 @@
 			)
 		)
 		(property "Value" "NAPPE_HV_DIO"
-			(at 154.412 111.242 0)
+			(at 154.432 110.49 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1872,7 +1872,7 @@
 			)
 		)
 		(property "Footprint" "Connector_IDC:IDC-Header_2x10_P2.54mm_Vertical"
-			(at 160 80 0)
+			(at 155.976 50.81 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1882,7 +1882,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 160 80 0)
+			(at 160.02 79.248 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1892,7 +1892,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 160 80 0)
+			(at 160.02 79.248 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -2004,7 +2004,7 @@
 			)
 		)
 		(property "Footprint" "Connector_IDC:IDC-Header_2x10_P2.54mm_Vertical"
-			(at 60 80 0)
+			(at 54.102 51.562 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects

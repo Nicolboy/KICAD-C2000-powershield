@@ -18,7 +18,9 @@ disparait d'Eeschema, ce script continue de fonctionner tel quel via :
 
 Aucune dependance externe (pas de pandas) : CSV lu avec le module
 `csv` standard, XML lu avec `kicad_netlist_reader` fourni par
-l'installation KiCad (ajoute a sys.path si besoin).
+l'installation KiCad (dossier de plugins localise dynamiquement, voir
+_import_kicad_netlist_reader -- aucun chemin ni numero de version code
+en dur, portable d'une machine/installation a l'autre).
 
     @package
     Output: Texte (style Design Spark), regroupe par famille
@@ -34,13 +36,63 @@ l'installation KiCad (ajoute a sys.path si besoin).
 
 import csv
 import datetime
+import os
 import re
+import shutil
 import sys
 from pathlib import Path
 
-_KICAD_PLUGINS_DIR = Path(r"C:\Program Files\KiCad\10.0\bin\scripting\plugins")
-if str(_KICAD_PLUGINS_DIR) not in sys.path:
-    sys.path.insert(0, str(_KICAD_PLUGINS_DIR))
+
+def _import_kicad_netlist_reader():
+    """Importe kicad_netlist_reader en localisant dynamiquement le dossier
+    de plugins scripting de l'installation KiCad presente sur la machine --
+    pas de chemin ni de numero de version code en dur (l'ancien
+    "C:\\Program Files\\KiCad\\10.0\\..." cassait des qu'on changeait de
+    machine ou de version). N'est appele que si le format XML est utilise
+    (voie CSV : aucune dependance necessaire)."""
+    try:
+        import kicad_netlist_reader
+        return kicad_netlist_reader
+    except ImportError:
+        pass
+
+    candidates = []
+
+    kicad_cli = shutil.which("kicad-cli") or shutil.which("kicad-cli.exe")
+    if kicad_cli:
+        candidates.append(Path(kicad_cli).resolve().parent / "scripting" / "plugins")
+
+    env_dir = os.environ.get("KICAD_SCRIPTING_PLUGINS_DIR")
+    if env_dir:
+        candidates.append(Path(env_dir))
+
+    for program_files in (os.environ.get("ProgramFiles"), os.environ.get("ProgramFiles(x86)")):
+        if not program_files:
+            continue
+        kicad_root = Path(program_files) / "KiCad"
+        if kicad_root.is_dir():
+            for version_dir in sorted(kicad_root.iterdir(), reverse=True):
+                candidates.append(version_dir / "bin" / "scripting" / "plugins")
+
+    for candidate in candidates:
+        if not candidate.is_dir():
+            continue
+        added = str(candidate) not in sys.path
+        if added:
+            sys.path.insert(0, str(candidate))
+        try:
+            import kicad_netlist_reader
+            return kicad_netlist_reader
+        except ImportError:
+            if added:
+                sys.path.remove(str(candidate))
+
+    raise SystemExit(
+        "kicad_netlist_reader introuvable automatiquement -- soit lancer ce "
+        "script depuis KiCad (menu BOM Ancienne), soit definir la variable "
+        "d'environnement KICAD_SCRIPTING_PLUGINS_DIR, soit utiliser le CSV "
+        "via `kicad-cli sch export bom` (aucune dependance necessaire)."
+    )
 
 
 FAMILY_BY_PREFIX = {
@@ -77,6 +129,21 @@ def sort_key(ref):
     return (prefix, int(num) if num else 0)
 
 
+def _detect_project_title(input_path):
+    """Deduit le nom du projet depuis le fichier d'entree, plutot qu'un
+    titre code en dur par copie du script (qui desynchronise des qu'on en
+    a plusieurs -- vecu : deux copies, deux titres differents). KiCad
+    place toujours %I/%O dans le dossier du projet ouvert (pas de token
+    %P pour le chemin du projet cote ligne de commande, verifie dans les
+    chaines de traduction KiCad) -- on retrouve le `.kicad_pro` a cote du
+    fichier d'entree ; a defaut, le nom du dossier parent."""
+    folder = Path(input_path).resolve().parent
+    pro_files = sorted(folder.glob("*.kicad_pro"))
+    if pro_files:
+        return pro_files[0].stem
+    return folder.name
+
+
 def is_xml_netlist(path):
     with open(path, 'r', encoding='utf-8', errors='ignore') as f:
         head = f.read(256).lstrip()
@@ -86,7 +153,7 @@ def is_xml_netlist(path):
 def read_rows_from_xml(netlist_path):
     """Lit le netlist generique Eeschema -- regroupe par (Value, Footprint)
     via kicad_netlist_reader, comme le ferait le dialogue BOM natif."""
-    import kicad_netlist_reader
+    kicad_netlist_reader = _import_kicad_netlist_reader()
 
     net = kicad_netlist_reader.netlist(netlist_path)
     components = net.getInterestingComponents(excludeBOM=True)
@@ -151,7 +218,7 @@ def generate_report(input_path, output_txt_path):
     report.append("-----------------\n")
     report.append(f"Report Written: {now}")
     report.append(f"Project Path:   {meta['source']}")
-    report.append("Design Title:   KICAD-C2000-powershield")
+    report.append(f"Design Title:   {_detect_project_title(input_path)}")
     if meta['date']:
         report.append(f"Netlist Date:   {meta['date']}")
     report.append(f"Source Tool:    {meta['tool']}")

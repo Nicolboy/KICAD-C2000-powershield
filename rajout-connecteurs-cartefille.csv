@@ -1,0 +1,40 @@
+carte HV,,,,,reference carte powershield
+"ADC connecteur ADC IDC-2x10-2,54mm",,,,,
+,signal,,masse,,
+1,3V3_iso,2,X,,
+3,Vin_hv,4,X,,Vin
+5,Iin_hv,6,X,,Iin
+7,V_inter_hv,8,X,,V1
+9,I_shunt_inter_hv,10,X,,I_shunt1
+11,I_shunt_inter_hv_cmp,12,X,,I_SHUNT1_CMP
+13,V_hv,14,X,,Vout
+15,I_hv,16,X,,Iout
+17,I_shunt_hv,18,X,,I_shunt2
+19,I_shunt_hv_cmp,20,X,,I_SHUNT2_CMP
+,,,,,
+"DIO connecteur ADC IDC-2x10-2,54mm",,,,,
+n°,signal,,masse,,
+1,3V3_iso,2,X,,
+3,Stage_inter_hv_PWM,4,X,,PWM1_A
+5,Stage_inter_hv_EN,6,X,,Stage1_EN
+7,Stage_hv_PWM,8,X,,PWM2_A
+9,Stage_hv_EN,10,X,,Stage2_EN
+11,Vhv_EN,12,X,,HV_EN
+13,~{Discharge_hv},14,X,,Discharge
+15,,16,X,,
+17,Temp_inter_hv,18,X,,Temp1
+19,Temp_hv,20,X,,Temp2
+,,,,,
+carte Filament,,,,,
+"DIO connecteur ADC IDC-2x10-2,54mm",,,,,
+,signal,,masse,,
+1,3V3_iso,2,X,,
+3,PWM_ht,4,X,,PWM3_A
+5,PWM_EN,6,X,,CMP_OUT
+7,PWM_bias,8,X,,PWM3_B
+9,Vht_EN,10,X,,CLB_OUT
+11,Vht,12,X,,Reserve_ADC2_1
+13,Temp_ht,14,X,,Reserve_ADC2_2
+15,I_Shunt_ht,16,X,,Reserve_ADC2_3
+17,I_Shunt_ht_comp,18,X,,"Reserve ADC1_1  (ADC_8 en  configuration  CMPSS3, entrée HP signal 2)"
+19,V_bias,20,X,,Reserve ADC1_2

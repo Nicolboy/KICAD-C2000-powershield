@@ -120,7 +120,7 @@
 				(pin passive line
 					(at -22.86 15.24 0)
 					(length 5.08)
-					(name "Vin"
+					(name "Vin_hv"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -156,7 +156,7 @@
 				(pin passive line
 					(at -22.86 10.16 0)
 					(length 5.08)
-					(name "Vout"
+					(name "V_hv"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -192,7 +192,7 @@
 				(pin passive line
 					(at -22.86 5.08 0)
 					(length 5.08)
-					(name "V1"
+					(name "V_inter_hv"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -228,7 +228,7 @@
 				(pin passive line
 					(at -22.86 0 0)
 					(length 5.08)
-					(name "Temp1"
+					(name "Temp_inter_hv"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -264,7 +264,7 @@
 				(pin passive line
 					(at -22.86 -5.08 0)
 					(length 5.08)
-					(name "Temp2"
+					(name "Temp_hv"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -300,7 +300,7 @@
 				(pin passive line
 					(at -22.86 -10.16 0)
 					(length 5.08)
-					(name "Iin"
+					(name "Iin_hv"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -336,7 +336,7 @@
 				(pin passive line
 					(at -22.86 -15.24 0)
 					(length 5.08)
-					(name "Iout"
+					(name "I_hv"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -628,7 +628,7 @@
 				(pin passive line
 					(at -22.86 5.08 0)
 					(length 5.08)
-					(name "I_shunt1"
+					(name "I_shunt_inter_hv"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -664,7 +664,7 @@
 				(pin passive line
 					(at -22.86 0 0)
 					(length 5.08)
-					(name "I_shunt2"
+					(name "I_shunt_hv"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -700,7 +700,7 @@
 				(pin passive line
 					(at -22.86 -5.08 0)
 					(length 5.08)
-					(name "I_SHUNT1_CMP"
+					(name "I_shunt_inter_hv_cmp"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -736,7 +736,7 @@
 				(pin passive line
 					(at -22.86 -10.16 0)
 					(length 5.08)
-					(name "I_SHUNT2_CMP"
+					(name "I_shunt_hv_cmp"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1428,7 +1428,7 @@
 				(pin passive line
 					(at -22.86 15.24 0)
 					(length 5.08)
-					(name "Stage1_EN"
+					(name "Stage_inter_hv_EN"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1464,7 +1464,7 @@
 				(pin passive line
 					(at -22.86 10.16 0)
 					(length 5.08)
-					(name "Stage2_EN"
+					(name "Stage_hv_EN"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1500,7 +1500,7 @@
 				(pin passive line
 					(at -22.86 5.08 0)
 					(length 5.08)
-					(name "HV_EN"
+					(name "Vhv_EN"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1536,7 +1536,7 @@
 				(pin passive line
 					(at -22.86 0 0)
 					(length 5.08)
-					(name "Discharge"
+					(name "~{Discharge_hv}"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1572,7 +1572,7 @@
 				(pin passive line
 					(at -22.86 -5.08 0)
 					(length 5.08)
-					(name "CMP_OUT"
+					(name "PWM_EN"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1716,7 +1716,7 @@
 				(pin passive line
 					(at -22.86 -25.4 0)
 					(length 5.08)
-					(name "CLB_OUT"
+					(name "Vht_EN"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2300,7 +2300,7 @@
 				(pin passive line
 					(at -22.86 15.24 0)
 					(length 5.08)
-					(name "PWM1_A"
+					(name "Stage_inter_hv_PWM"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2372,7 +2372,7 @@
 				(pin passive line
 					(at -22.86 5.08 0)
 					(length 5.08)
-					(name "PWM2_A"
+					(name "Stage_hv_PWM"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2444,7 +2444,7 @@
 				(pin passive line
 					(at -22.86 -5.08 0)
 					(length 5.08)
-					(name "PWM3_A"
+					(name "PWM_ht"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2480,7 +2480,7 @@
 				(pin passive line
 					(at -22.86 -10.16 0)
 					(length 5.08)
-					(name "PWM3_B"
+					(name "PWM_bias"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2803,7 +2803,7 @@
 			)
 		)
 	)
-	(global_label "Vout"
+	(global_label "V_hv"
 		(shape bidirectional)
 		(at 108.966 45.212 180)
 		(fields_autoplaced yes)
@@ -2896,7 +2896,7 @@
 			)
 		)
 	)
-	(global_label "Iin"
+	(global_label "Iin_hv"
 		(shape bidirectional)
 		(at 108.966 65.532 180)
 		(fields_autoplaced yes)
@@ -3104,7 +3104,7 @@
 			)
 		)
 	)
-	(global_label "PWM1_A"
+	(global_label "Stage_inter_hv_PWM"
 		(shape bidirectional)
 		(at 108.966 192.532 180)
 		(fields_autoplaced yes)
@@ -3127,7 +3127,7 @@
 			)
 		)
 	)
-	(global_label "Temp2"
+	(global_label "Temp_hv"
 		(shape bidirectional)
 		(at 108.966 60.452 180)
 		(fields_autoplaced yes)
@@ -3150,7 +3150,7 @@
 			)
 		)
 	)
-	(global_label "HV_EN"
+	(global_label "Vhv_EN"
 		(shape bidirectional)
 		(at 201.93 126.492 180)
 		(fields_autoplaced yes)
@@ -3243,7 +3243,7 @@
 			)
 		)
 	)
-	(global_label "Discharge"
+	(global_label "~{Discharge_hv}"
 		(shape bidirectional)
 		(at 201.93 55.372 180)
 		(fields_autoplaced yes)
@@ -3358,7 +3358,7 @@
 			)
 		)
 	)
-	(global_label "Iout"
+	(global_label "I_hv"
 		(shape bidirectional)
 		(at 108.966 70.612 180)
 		(fields_autoplaced yes)
@@ -3451,7 +3451,7 @@
 			)
 		)
 	)
-	(global_label "I_shunt2"
+	(global_label "I_shunt_hv"
 		(shape bidirectional)
 		(at 108.966 131.572 180)
 		(fields_autoplaced yes)
@@ -3567,7 +3567,7 @@
 			)
 		)
 	)
-	(global_label "CLB_OUT"
+	(global_label "Vht_EN"
 		(shape bidirectional)
 		(at 201.93 156.972 180)
 		(fields_autoplaced yes)
@@ -3776,7 +3776,7 @@
 			)
 		)
 	)
-	(global_label "I_SHUNT1_CMP"
+	(global_label "I_shunt_inter_hv_cmp"
 		(shape bidirectional)
 		(at 108.966 136.652 180)
 		(fields_autoplaced yes)
@@ -3822,7 +3822,7 @@
 			)
 		)
 	)
-	(global_label "Stage1_EN"
+	(global_label "Stage_inter_hv_EN"
 		(shape bidirectional)
 		(at 201.93 116.332 180)
 		(fields_autoplaced yes)
@@ -4007,7 +4007,7 @@
 			)
 		)
 	)
-	(global_label "PWM2_A"
+	(global_label "Stage_hv_PWM"
 		(shape bidirectional)
 		(at 108.966 202.692 180)
 		(fields_autoplaced yes)
@@ -4285,7 +4285,7 @@
 			)
 		)
 	)
-	(global_label "PWM3_B"
+	(global_label "PWM_bias"
 		(shape bidirectional)
 		(at 201.93 75.692 180)
 		(fields_autoplaced yes)
@@ -4308,7 +4308,7 @@
 			)
 		)
 	)
-	(global_label "Stage2_EN"
+	(global_label "Stage_hv_EN"
 		(shape bidirectional)
 		(at 201.93 45.212 180)
 		(fields_autoplaced yes)
@@ -4377,7 +4377,7 @@
 			)
 		)
 	)
-	(global_label "Stage2_EN"
+	(global_label "Stage_hv_EN"
 		(shape bidirectional)
 		(at 201.93 121.412 180)
 		(fields_autoplaced yes)
@@ -4469,7 +4469,7 @@
 			)
 		)
 	)
-	(global_label "V1"
+	(global_label "V_inter_hv"
 		(shape bidirectional)
 		(at 108.966 50.292 180)
 		(fields_autoplaced yes)
@@ -4839,7 +4839,7 @@
 			)
 		)
 	)
-	(global_label "PWM3_A"
+	(global_label "PWM_ht"
 		(shape bidirectional)
 		(at 108.966 212.852 180)
 		(fields_autoplaced yes)
@@ -4862,7 +4862,7 @@
 			)
 		)
 	)
-	(global_label "HV_EN"
+	(global_label "Vhv_EN"
 		(shape bidirectional)
 		(at 201.93 50.292 180)
 		(fields_autoplaced yes)
@@ -5000,7 +5000,7 @@
 			)
 		)
 	)
-	(global_label "Temp1"
+	(global_label "Temp_inter_hv"
 		(shape bidirectional)
 		(at 108.966 55.372 180)
 		(fields_autoplaced yes)
@@ -5069,7 +5069,7 @@
 			)
 		)
 	)
-	(global_label "PWM3_B"
+	(global_label "PWM_bias"
 		(shape bidirectional)
 		(at 108.966 217.932 180)
 		(fields_autoplaced yes)
@@ -5161,7 +5161,7 @@
 			)
 		)
 	)
-	(global_label "Discharge"
+	(global_label "~{Discharge_hv}"
 		(shape bidirectional)
 		(at 201.93 131.572 180)
 		(fields_autoplaced yes)
@@ -5207,7 +5207,7 @@
 			)
 		)
 	)
-	(global_label "Stage1_EN"
+	(global_label "Stage_inter_hv_EN"
 		(shape bidirectional)
 		(at 201.93 40.132 180)
 		(fields_autoplaced yes)
@@ -5345,7 +5345,7 @@
 			)
 		)
 	)
-	(global_label "CMP_OUT"
+	(global_label "PWM_EN"
 		(shape bidirectional)
 		(at 201.93 136.652 180)
 		(fields_autoplaced yes)
@@ -5368,7 +5368,7 @@
 			)
 		)
 	)
-	(global_label "I_shunt1"
+	(global_label "I_shunt_inter_hv"
 		(shape bidirectional)
 		(at 108.966 126.492 180)
 		(fields_autoplaced yes)
@@ -5483,7 +5483,7 @@
 			)
 		)
 	)
-	(global_label "I_SHUNT2_CMP"
+	(global_label "I_shunt_hv_cmp"
 		(shape bidirectional)
 		(at 108.966 141.732 180)
 		(fields_autoplaced yes)
@@ -5529,7 +5529,7 @@
 			)
 		)
 	)
-	(global_label "Vin"
+	(global_label "Vin_hv"
 		(shape bidirectional)
 		(at 108.966 40.132 180)
 		(fields_autoplaced yes)

@@ -1,6 +1,6 @@
 (footprint "NCM3S1205MC" (version 20221018) (generator "pcbnew") (generator_version "10.0")
   (layer "F.Cu")
-  (descr "Murata NCM3 series isolated DC-DC, 4-pin SMD gull-wing. Geometrie reprise du modele telecharge SnapEDA CONV_NCM3S1205MC-R7 (composants-datasheets/datasheets/NCM3S1205MC/), pas du plan datasheet KDC_NCM3_A01 p.10 fait main (decision #15) - voir doc/decisions.md pour l'arbitrage.")
+  (descr "Murata NCM3 series isolated DC-DC, 4-pin SMD gull-wing. Geometrie reprise du modele telecharge SnapEDA CONV_NCM3S1205MC-R7 (lib_fp_commun/NCM3S1205MC/), pas du plan datasheet KDC_NCM3_A01 p.10 fait main (decision #15) - voir doc/decisions.md pour l'arbitrage.")
   (attr smd)
   (fp_text reference "REF**" (at 0 -9.6) (layer "F.SilkS")
     (effects (font (size 1 1) (thickness 0.15)))

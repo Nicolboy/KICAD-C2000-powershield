@@ -1525,6 +1525,72 @@ pinmap `TCMT1100` reste non confirmée par capture d'empreinte réelle
 
 ---
 
+## 29. `VREF_ADC` bufferisé par un suiveur `TLV9151` (U8) + 10Ω série, sur `protections_devkit.kicad_sch`
+
+**Pourquoi.** `VREF_ADC` (le `VREFHI` du C2000, après son propre trio de
+protection) fan-out directement vers la nappe ADC-2 pour alimenter la
+broche `REFIN` de chaque isolateur ratiométrique AMC0x11R/AMC03xxR des
+cartes filles — potentiellement **une dizaine de sorties** en parallèle.
+La datasheet AMC0211R/AMC0311R (§8.2.2.2, Fig. 8-3) est explicite : *"The
+reference input has a finite input impedance. Consider this impedance
+when driving the REFIN pin from a high-impedance source"* — et recommande
+un suiveur bufferisé plutôt qu'une connexion directe depuis une source à
+impédance non négligeable. Le courant réel en jeu est trivial (`R_REFIN`
+81-111kΩ, §6.13 de la datasheet → ≈30-41µA par canal, ≈0,3-0,4mA pour une
+dizaine) — ce n'est pas le facteur dimensionnant. Les deux qui le sont :
+(1) la précision du suiveur se propage en erreur de gain identique sur
+tous les canaux en aval (`REFIN` fixe le plein échelle de chaque AMC) ;
+(2) la charge capacitive cumulée des `100nF` de découplage REFIN
+recommandés **par carte fille** (même §8.2.2.2) peut dépasser les 1000pF
+admissibles en sortie d'un `TLV9151` (§6.17, datasheet TLV9151) dès que
+plusieurs cartes sont branchées — d'où `R58` (10Ω série) pour isoler la
+sortie du suiveur de cette charge cumulée. L'utilisateur gère séparément
+un `10R`+`100nF` en entrée de **chaque** REFIN côté carte fille (hors
+périmètre de ce dépôt, à faire sur chaque carte fille).
+
+**Composant : `TLV9151` (U8), pas une nouvelle évaluation.** Déjà utilisé
+et caractérisé sur le projet sœur (`data/carte-puissance/tlv9151.yaml`,
+4 instances en suiveur de mesure sur le board dual-boost) — mêmes
+specs électriques, nouvelle fiche `data/shield-power/tlv9151.yaml` car
+contexte/réf différents (U8 ici, refs [2,4,5,6] là-bas). Aucun symbole
+stock KiCad pour ce composant — brochage repris du gabarit stock
+`NCS325` (même arrangement SOT-23-5 DBV : OUT=1/V-=2/+IN=3/-IN=4/V+=5,
+vérifié pin à pin contre la Table 5-1 p.4 de la datasheet TLV9151 avant
+réutilisation, même méthode que le remplacement `DPC817`→`TCMT1100` de
+la decision #28).
+
+**Topologie.** Le `global_label` de sortie du trio de protection existant
+(anciennement `VREF_ADC`, shape `output`) est renommé `VREF_ADC_PREBUF`
+pour ne plus atteindre directement la nappe. U8 monté en suiveur
+(`-IN`↔`OUT` par fil local, comme les trios R+BAT54S+C existants de cette
+feuille) : `+IN`←`VREF_ADC_PREBUF`, `OUT`→`R58`(10Ω)→`VREF_ADC` (nom
+repris à l'identique, aucune autre feuille/documentation à modifier).
+Alimenté par `3V3_PROT` (seul rail 3,3V local disponible sur cette
+feuille) + découplage `C73` (100nF), même convention que tous les autres
+CI du projet.
+
+**DRC... non, ERC.** Filtré sur `U8`/`R58`/`C73`/`VREF_ADC`/
+`VREF_ADC_PREBUF` : +9 par rapport à l'état précédent, toutes dans des
+catégories déjà massivement préexistantes ailleurs dans le projet et
+déjà acceptées — `endpoint_off_grid` (7, même défaut « pin 1 » déjà noté
+aux decisions #27/#28, plus des segments de fil de quelques dixièmes de
+mm déjà présents sur de nombreux trios existants de cette même feuille,
+pas une régression), `power_pin_not_driven` (1, `U8`/`V-`/`GND` — même
+caractéristique déjà acceptée pour `U1`-`U3`/`U5` sur la feuille `DC`,
+un net primaire sans régulateur local pour le « piloter » au sens ERC),
+`lib_symbol_mismatch` (1, déjà 1 instance préexistante pour `U7`/
+`TCMT1100` — écart cosmétique copie-locale vs bibliothèque, inhérent à
+toute réutilisation d'un gabarit stock). Aucun court-circuit, aucune
+broche non connectée de façon inattendue.
+
+**Hors périmètre** : PCB non touché (placement/routage de `U8`/`R58`/
+`C73` à faire via kipy, KiCad ouvert, pas encore fait) ; pinmap `TLV9151`
+non confirmée par capture d'empreinte réelle (R15) ; le `10R`+`100nF`
+par carte fille reste à la charge de l'utilisateur, sur chaque carte
+fille, pas dans ce dépôt.
+
+---
+
 ## Points ouverts — ne pas combler par une estimation
 
 Ces valeurs manquent. Elles demandent une lecture de datasheet ou une mesure,

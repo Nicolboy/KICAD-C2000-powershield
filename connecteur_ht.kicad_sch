@@ -117,7 +117,7 @@
 				(pin passive line
 					(at -22.86 15.24 0)
 					(length 5.08)
-					(name "PWM3_A"
+					(name "PWM_ht"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -153,7 +153,7 @@
 				(pin passive line
 					(at -22.86 10.16 0)
 					(length 5.08)
-					(name "CMP_OUT"
+					(name "PWM_EN"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -189,7 +189,7 @@
 				(pin passive line
 					(at -22.86 5.08 0)
 					(length 5.08)
-					(name "PWM3_B"
+					(name "PWM_bias"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -225,7 +225,7 @@
 				(pin passive line
 					(at -22.86 0 0)
 					(length 5.08)
-					(name "CLB_OUT"
+					(name "Vht_EN"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1513,7 +1513,7 @@
 			)
 		)
 	)
-	(global_label "CMP_OUT"
+	(global_label "PWM_EN"
 		(shape bidirectional)
 		(at 37.14 69.84 180)
 		(fields_autoplaced yes)
@@ -1609,7 +1609,7 @@
 			)
 		)
 	)
-	(global_label "CLB_OUT"
+	(global_label "Vht_EN"
 		(shape bidirectional)
 		(at 37.14 80 180)
 		(fields_autoplaced yes)
@@ -2041,7 +2041,7 @@
 			)
 		)
 	)
-	(global_label "PWM3_B"
+	(global_label "PWM_bias"
 		(shape bidirectional)
 		(at 37.14 74.92 180)
 		(fields_autoplaced yes)
@@ -2113,7 +2113,7 @@
 			)
 		)
 	)
-	(global_label "PWM3_A"
+	(global_label "PWM_ht"
 		(shape bidirectional)
 		(at 37.14 64.76 180)
 		(fields_autoplaced yes)

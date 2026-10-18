@@ -51,14 +51,14 @@ position par ailleurs utilisable par un signal `Rapide`.
 
 | | | | | | | | |
 |---|---|---|---|---|---|---|---|
-| 1 **3V3_ISO** | 2 **GND** | 3 **Vin** | 4 GND | 5 **Vout** | 6 GND | 7 **V1** | 8 GND |
-| 9 **Temp1** | 10 GND | 11 **Temp2** | 12 GND | 13 **Iin** | 14 GND | 15 **Iout** | 16 GND |
+| 1 **3V3_ISO** | 2 **GND** | 3 **Vin_hv** | 4 GND | 5 **V_hv** | 6 GND | 7 **V_inter_hv** | 8 GND |
+| 9 **Temp_inter_hv** | 10 GND | 11 **Temp_hv** | 12 GND | 13 **Iin_hv** | 14 GND | 15 **I_hv** | 16 GND |
 | 17 **réserve ADC1-1** | 18 GND | 19 **réserve ADC1-2** | 20 **GND** | | | | |
 
 ### ADC-2 — shunts, référence, réserves
 
-**Corrigé (decision #19) : le brochage omettait `I_SHUNT1_CMP`/
-`I_SHUNT2_CMP`.** Seule la voie filtrée (`I_shunt1`/`I_shunt2`, chemin
+**Corrigé (decision #19) : le brochage omettait `I_shunt_inter_hv_cmp`/
+`I_shunt_hv_cmp`.** Seule la voie filtrée (`I_shunt_inter_hv`/`I_shunt_hv`, chemin
 `_MES`) était câblée ; la decision #4 impose pourtant que chaque shunt
 sorte **deux fois** — un chemin direct, sans filtre, vers le comparateur.
 Les deux signaux manquants prennent la place de deux des six réserves
@@ -68,28 +68,28 @@ Les deux signaux manquants prennent la place de deux des six réserves
 supprimée, tout le connecteur repasse en alternance stricte.** Le
 premier passage gardait `VREF_ADC`/`VREFLO_SENSE` adjacents en 7/8 (une
 exception à l'alternance, héritée de la decision #3) et plaçait
-`I_SHUNT1_CMP` juste derrière en position 9 — sans masse entre les deux,
+`I_shunt_inter_hv_cmp` juste derrière en position 9 — sans masse entre les deux,
 un signal `Rapide` (comparateur, fronts rapides) collé à une référence
-analogique précise. Plutôt que de recaser seulement `I_SHUNT1_CMP`/
-`I_SHUNT2_CMP` ailleurs, la paire de référence elle-même est déplacée en
+analogique précise. Plutôt que de recaser seulement `I_shunt_inter_hv_cmp`/
+`I_shunt_hv_cmp` ailleurs, la paire de référence elle-même est déplacée en
 positions 3/5 : chaque position impaire du connecteur est maintenant
 entourée de masse des deux côtés, **sans exception**. `VREF_ADC`/
 `VREFLO_SENSE` perdent leur adjacence directe mais gagnent un blindage
 complet — ce qui compte pour une référence qui alimente aussi le REFIN
-des isolateurs ratiométriques (voir plus bas). `I_shunt1`/`I_shunt2`
+des isolateurs ratiométriques (voir plus bas). `I_shunt_inter_hv`/`I_shunt_hv`
 cèdent leurs positions 3/5 et reculent en 7/9 (toujours entourées de
 masse, toujours adjacentes entre elles via la masse de la position 8).
 Une réserve est perdue dans l'échange (la position 9, ancien slot libre,
-porte maintenant `I_shunt2`) : réserves 4 → **3**.
+porte maintenant `I_shunt_hv`) : réserves 4 → **3**.
 
 | | | | | | | | |
 |---|---|---|---|---|---|---|---|
-| 1 **3V3_ISO** | 2 **GND** | 3 **VREFLO_SENSE** | 4 GND | 5 **VREF_ADC** | 6 GND | 7 **I_shunt1** | 8 **GND** |
-| 9 **I_shunt2** | 10 GND | 11 **I_SHUNT1_CMP** | 12 GND | 13 **I_SHUNT2_CMP** | 14 GND | 15 **réserve ADC2-1** | 16 GND |
+| 1 **3V3_ISO** | 2 **GND** | 3 **VREFLO_SENSE** | 4 GND | 5 **VREF_ADC** | 6 GND | 7 **I_shunt_inter_hv** | 8 **GND** |
+| 9 **I_shunt_hv** | 10 GND | 11 **I_shunt_inter_hv_cmp** | 12 GND | 13 **I_shunt_hv_cmp** | 14 GND | 15 **réserve ADC2-1** | 16 GND |
 | 17 **réserve ADC2-2** | 18 GND | 19 **réserve ADC2-3** | 20 **GND** | | | | |
 
-`I_SHUNT1_CMP`/`I_SHUNT2_CMP` (positions 11/13) ne sont **pas** placés
-adjacents à `I_shunt1`/`I_shunt2` (positions 7/9, séparées par la masse
+`I_shunt_inter_hv_cmp`/`I_shunt_hv_cmp` (positions 11/13) ne sont **pas** placés
+adjacents à `I_shunt_inter_hv`/`I_shunt_hv` (positions 7/9, séparées par la masse
 de la position 10) malgré la parenté de mesure : la decision #4 exige
 que les deux chemins restent électriquement indépendants (un défaut sur
 le filtre ne doit pas désarmer la protection), les coller sur le
@@ -101,7 +101,10 @@ pas deux signaux indépendants — mais contrairement au premier passage,
 elles n'ont plus besoin d'être physiquement adjacentes sur le connecteur
 pour ça : le lien électrique entre les deux se fait par le suiveur
 rail-to-rail du shield, pas par leur proximité sur la nappe. Le shield
-bufferise VREF_ADC par ce suiveur avant de l'envoyer.
+bufferise VREF_ADC par ce suiveur avant de l'envoyer. Composant réel :
+`U8` (TLV9151, `protections_devkit.kicad_sch`) + `R58` (10Ω série,
+isolation de la charge capacitive cumulée des découplages REFIN des
+cartes filles) — decision #29.
 
 **C'est cette même paire qui sert de référence aux isolateurs ratiométriques
 (suffixe "R", type AMC0311R/AMC0302R) des cartes DC/DC** — leur broche REFIN
@@ -120,8 +123,8 @@ bout sans retoucher aucune carte.
 
 | | | | | | | | |
 |---|---|---|---|---|---|---|---|
-| 1 **3V3_ISO** | 2 **GND** | 3 **PWM1_A** | 4 GND | 5 **PWM1_B** | 6 GND | 7 **PWM2_A** | 8 GND |
-| 9 **PWM2_B** | 10 GND | 11 **PWM3_A** | 12 GND | 13 **PWM3_B** | 14 GND | 15 **PWM4_A** | 16 GND |
+| 1 **3V3_ISO** | 2 **GND** | 3 **Stage_inter_hv_PWM** | 4 GND | 5 **PWM1_B** | 6 GND | 7 **Stage_hv_PWM** | 8 GND |
+| 9 **PWM2_B** | 10 GND | 11 **PWM_ht** | 12 GND | 13 **PWM_bias** | 14 GND | 15 **PWM4_A** | 16 GND |
 | 17 **PWM4_B** | 18 GND | 19 **réserve PWM-1** | 20 **GND** | | | | |
 
 Seules lignes à fronts rapides de l'ensemble. PWM3 et PWM4 restent en réserve, en
@@ -131,18 +134,18 @@ paires complémentaires HRPWM avec temps mort matériel.
 
 | | | | | | | | |
 |---|---|---|---|---|---|---|---|
-| 1 **3V3_ISO** | 2 **GND** | 3 **Stage1_EN** | 4 GND | 5 **Stage2_EN** | 6 GND | 7 **HV_EN** | 8 GND |
-| 9 **Discharge** | 10 GND | 11 **CMP_OUT** | 12 GND | 13 **nFAULT** | 14 GND | 15 **I2C_SCL** | 16 GND |
-| 17 **I2C_SDA** | 18 GND | 19 **CLB_OUT** | 20 **GND** | | | | |
+| 1 **3V3_ISO** | 2 **GND** | 3 **Stage_inter_hv_EN** | 4 GND | 5 **Stage_hv_EN** | 6 GND | 7 **Vhv_EN** | 8 GND |
+| 9 **~{Discharge_hv}** | 10 GND | 11 **PWM_EN** | 12 GND | 13 **nFAULT** | 14 GND | 15 **I2C_SCL** | 16 GND |
+| 17 **I2C_SDA** | 18 GND | 19 **Vht_EN** | 20 **GND** | | | | |
 
 `nFAULT` remonte un défaut d'une carte DC/DC vers `~{FAULT_MCU}` (B28, nom en
-logique négative depuis la decision #20). `CMP_OUT` sort le drapeau de défaut
+logique négative depuis la decision #20). `PWM_EN` sort le drapeau de défaut
 agrégé du C2000. L'I2C reste disponible pour un capteur de température ou une
-EEPROM de calibration sur une carte DC/DC. `CLB_OUT` (B27 du connecteur devkit)
+EEPROM de calibration sur une carte DC/DC. `Vht_EN` (B27 du connecteur devkit)
 était orphelin — exporté sur aucune nappe avant la decision #19 — et retrouve
 ici un foyer.
 
-**`Stage1_EN`, `Stage2_EN`, `HV_EN` et `Discharge` sont maintenant reliés**
+**`Stage_inter_hv_EN`, `Stage_hv_EN`, `Vhv_EN` et `~{Discharge_hv}` sont maintenant reliés**
 (decision #20) : devkit modifié pour sortir GPIO9/GPIO20/GPIO21/GPIO41 sur le
 connecteur A (4 masses sacrifiées, voir decision #20), protégés par un trio
 chacun (`protection_nappe.kicad_sch`, R = 10 Ω, signaux classés `Rapide`), et
@@ -165,14 +168,14 @@ signal, pour qu'il fusionne avec les autres nappes :
 
 | Broche | Nom cosmétique | Net réel | Origine |
 |---|---|---|---|
-| 3 | `CLB_Out_1` | `Stage1_EN` | neuf (GPIO9, pilotable aussi par le CLB en matériel) |
-| 5 | `CLB_Out_2` | `Stage2_EN` | neuf (GPIO20, logiciel seul) |
-| 7 | `CLB_Out_3` | `HV_EN` | neuf (GPIO21, logiciel seul) |
-| 9 | `CLB_Out_4` | `Discharge` | neuf (GPIO41, logiciel seul) |
+| 3 | `CLB_Out_1` | `Stage_inter_hv_EN` | neuf (GPIO9, pilotable aussi par le CLB en matériel) |
+| 5 | `CLB_Out_2` | `Stage_hv_EN` | neuf (GPIO20, logiciel seul) |
+| 7 | `CLB_Out_3` | `Vhv_EN` | neuf (GPIO21, logiciel seul) |
+| 9 | `CLB_Out_4` | `~{Discharge_hv}` | neuf (GPIO41, logiciel seul) |
 | 11 | `CLB_In_1` | `CAN_RX` | lu en plus de la nappe COM, CAN continue de fonctionner |
 | 13 | `CLB_In_2` | `CAN_TX` | idem |
 | 15 | `CLB_In_3` | `PWM2_B` | lu en plus de la nappe PWM, le canal garde son rôle complémentaire |
-| 17 | `CLB_In_4` | `PWM3_B` | idem |
+| 17 | `CLB_In_4` | `PWM_bias` | idem |
 | 19 | `CLB_In_5` | `PWM4_B` | idem |
 
 Les 4 sorties sont neuves côté MCU (voir decision #20) ; les 5 entrées sont de
@@ -205,15 +208,15 @@ connecteur IDC 2×10, en plus des six nappes ci-dessus — pas à la place.
 | Broche | `J19` (`NAPPE_HV_ADC`) | Broche | `J20` (`NAPPE_HV_DIO`) |
 |---|---|---|---|
 | 1 | `3V3_ISO` | 1 | `3V3_ISO` |
-| 3 | `Vin` | 3 | `PWM1_A` |
-| 5 | `Iin` | 5 | `Stage1_EN` |
-| 7 | `V1` | 7 | `PWM2_A` |
-| 9 | `I_shunt1` | 9 | `Stage2_EN` |
-| 11 | `I_SHUNT1_CMP` | 11 | `HV_EN` |
-| 13 | `Vout` | 13 | `Discharge` |
-| 15 | `Iout` | 15 | réserve |
-| 17 | `I_shunt2` | 17 | `Temp1` |
-| 19 | `I_SHUNT2_CMP` | 19 | `Temp2` |
+| 3 | `Vin_hv` | 3 | `Stage_inter_hv_PWM` |
+| 5 | `Iin_hv` | 5 | `Stage_inter_hv_EN` |
+| 7 | `V_inter_hv` | 7 | `Stage_hv_PWM` |
+| 9 | `I_shunt_inter_hv` | 9 | `Stage_hv_EN` |
+| 11 | `I_shunt_inter_hv_cmp` | 11 | `Vhv_EN` |
+| 13 | `V_hv` | 13 | `~{Discharge_hv}` |
+| 15 | `I_hv` | 15 | réserve |
+| 17 | `I_shunt_hv` | 17 | `Temp_inter_hv` |
+| 19 | `I_shunt_hv_cmp` | 19 | `Temp_hv` |
 
 (positions paires = GND, comme sur les six nappes). Tous ces signaux sont
 déjà protégés ailleurs dans le projet — simple deuxième point d'accès,
@@ -225,10 +228,10 @@ aucun composant de protection neuf sur cette feuille.
 | Broche | Signal | Origine |
 |---|---|---|
 | 1 | `3V3_ISO` | — |
-| 3 | `PWM3_A` | nappe PWM, déjà protégé |
-| 5 | `CMP_OUT` | nappe GPIO-1, déjà protégé |
-| 7 | `PWM3_B` | nappe PWM, déjà protégé |
-| 9 | `CLB_OUT` | nappe GPIO-1, déjà protégé |
+| 3 | `PWM_ht` | nappe PWM, déjà protégé |
+| 5 | `PWM_EN` | nappe GPIO-1, déjà protégé |
+| 7 | `PWM_bias` | nappe PWM, déjà protégé |
+| 9 | `Vht_EN` | nappe GPIO-1, déjà protégé |
 | 11 | `Vht` | `ADC_8_MCU`→`ADC_12_MCU`, neuf (trio R=100 Ω) |
 | 13 | `Temp_ht` | `ADC_10_MCU`, neuf (trio R=100 Ω) |
 | 15 | `I_Shunt_ht` | `ADC_11_MCU`, neuf (trio R=100 Ω) |
@@ -324,7 +327,7 @@ T1 (SQJ459EP-T2_GE3, PMOS) — unique interrupteur de puissance, pas d'eFuse
 VBUS_OUT → connecteur de sortie puissance cartes filles (daisy chain)
 ```
 
-`HV_EN`/`Discharge` (nappe GPIO-1, decision #17/#20) **ne sont pas
+`Vhv_EN`/`~{Discharge_hv}` (nappe GPIO-1, decision #17/#20) **ne sont pas
 mêlés à ce circuit** — signaux distincts, à ne pas confondre : le
 STUSB4531QTR gère sa propre coupure/décharge en autonome.
 

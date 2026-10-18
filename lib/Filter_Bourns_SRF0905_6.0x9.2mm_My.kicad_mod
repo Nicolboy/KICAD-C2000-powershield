@@ -263,17 +263,6 @@
 		(uuid "e1678998-97ec-474b-8700-f302bb208417")
 	)
 	(embedded_fonts no)
-	(model "${KICAD10_3DMODEL_DIR}/Filter.3dshapes/Filter_Bourns_SRF0905_6.0x9.2mm.step"
-		(offset
-			(xyz 0 0 0)
-		)
-		(scale
-			(xyz 1 1 1)
-		)
-		(rotate
-			(xyz 0 0 0)
-		)
-	)
 	(model "${KIPRJMOD}/lib/DLW5BSZ801TQ2L.step"
 		(offset
 			(xyz 0 0 0)
