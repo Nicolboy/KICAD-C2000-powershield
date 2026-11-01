@@ -41,22 +41,23 @@ dans [`doc/nappes-shield.md`](doc/nappes-shield.md).
 
 ---
 
-## Alimentation — deux NCM3S1205MC indépendants
+## Alimentation des cartes filles — USB-C Power Delivery (STUSB4531QTR)
 
-Le shield reçoit le 11-25V externe et produit lui-même ses rails isolés via
-deux convertisseurs Murata NCM3S1205MC (9-36V→5V/600mA, isolation 5000VAC)
-— un par domaine, pour ne pas coupler le bruit numérique sur l'alimentation
-de l'isolation :
+Entrée séparée du 11-25V du shield (decision #23) : un port USB-C négocie
+jusqu'à 100W (20V/5A) via un STUSB4531QTR autonome — gestion du contrat PD,
+coupure (`VBUS_EN_SNK`) et décharge (`DISCH`/`VBUS_VS_DISCH`) sans eFuse
+externe, un seul MOSFET P piloté directement. La puissance négociée est
+transmise **en daisy chain** aux cartes filles.
 
-- **#1 « numérique »** → cavaliers indépendants vers +5V devkit C2000 et
-  +5V devkit ESP32 (qui alimente aussi l'OLED).
-- **#2 « isolation E/S »** → LDO 3,3V + zener de protection → `3V3_ISO` et
-  `GND` sur les 4 nappes, pour le côté commande des isolateurs des cartes
-  DC/DC.
+Le STUSB4531 expose son bus de configuration/état (I2C : `STUSB_SCL`/
+`STUSB_SDA`, alerte `STUSB_ALERT`) à l'ESP32 via un isolateur dédié
+(`ISO1640BD`) — l'ESP32 peut ainsi lire la tension/le courant négociés et
+réagir aux alertes sans relier directement le domaine USB-C (`GND_PRI`,
+decision #27) au domaine de commande. Cette supervision rejoint son rôle
+de superviseur Wi-Fi/FOTA déjà confié ailleurs dans le projet.
 
-Masses secondaires des deux modules reliées en un point unique (étoile),
-même principe que le point VSS/VSSA unique des devkits. Détail et
-justification dans [`doc/decisions.md`](doc/decisions.md) (#13).
+Détail et justification dans [`doc/decisions.md`](doc/decisions.md)
+(#23, #27).
 
 ---
 
