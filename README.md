@@ -111,9 +111,9 @@ Travail en cours, et le dire plutôt que de le masquer :
   dizaines de violations, de la même famille que le reste de l'atelier
   (`pin_not_connected`, `isolated_pin_label` sur des réserves non pilotées)
   — pas corrigées d'office, voir `doc/decisions.md`.
-- **PCB** — 85 empreintes importées depuis le schéma, **pas encore
-  routé** (0 piste, 0 via). Le placement et le routage demandent des choix
-  de conception qui n'ont pas leur place dans un script.
+- **PCB** — 207 empreintes importées depuis le schéma, routage **commencé,
+  environ 10 %**. Le placement et le routage demandent des choix de
+  conception qui n'ont pas leur place dans un script.
 - **Connecteur devkit C2000/ESP32, nappes DC/DC, embase OLED** — brochage
   figé, labels vérifiés par ERC contre les coordonnées réelles des broches.
 
