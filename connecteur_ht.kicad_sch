@@ -1921,7 +1921,7 @@
 			)
 		)
 	)
-	(global_label "Temp_ht"
+	(global_label "I_Out_ht"
 		(shape bidirectional)
 		(at 171.196 83.566 180)
 		(fields_autoplaced yes)
@@ -1933,7 +1933,7 @@
 		)
 		(uuid "ba885cf2-c59e-45ca-b9ca-fcdddb2440fc")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 171.196 83.566 180)
+			(at 159.4796 83.566 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2089,7 +2089,7 @@
 			)
 		)
 	)
-	(global_label "Temp_ht"
+	(global_label "I_Out_ht"
 		(shape bidirectional)
 		(at 37.14 90.16 180)
 		(fields_autoplaced yes)
@@ -2101,7 +2101,7 @@
 		)
 		(uuid "cebad0dc-aadd-463b-8f6f-69a2b9638173")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 37.14 90.16 180)
+			(at 25.4236 90.16 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2510,7 +2510,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "NAPPE_FILAMENT_HT"
+		(property "Value" "DC_HT"
 			(at 54.412 111.242 0)
 			(show_name no)
 			(do_not_autoplace no)

@@ -1860,7 +1860,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "NAPPE_HV_DIO"
+		(property "Value" "DC_HV_DIO"
 			(at 154.432 110.49 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1992,7 +1992,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "NAPPE_HV_ADC"
+		(property "Value" "DC_HV_ADC"
 			(at 54.412 111.242 0)
 			(show_name no)
 			(do_not_autoplace no)

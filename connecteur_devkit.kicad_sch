@@ -9484,7 +9484,7 @@
 			)
 		)
 		(property "Value" "ER-OLEDM032-1"
-			(at 141.35 248.666 0)
+			(at 125.73 259.08 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects

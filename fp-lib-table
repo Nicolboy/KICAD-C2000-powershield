@@ -2,4 +2,7 @@
 	(version 7)
 	(lib (name "lib") (type "KiCad") (uri "${KIPRJMOD}/lib") (options "") (descr ""))
 	(lib (name "TO252") (type "KiCad") (uri "${KIPRJMOD}/../lib_fp_commun/TO252.pretty") (options "") (descr "Empreinte custom TO252-3 tab=pin2 (IPD050N10N5) -- partagee entre projets, voir ../KICAD.md"))
+	(lib (name "artwork") (type "KiCad") (uri "${KIPRJMOD}/../lib_fp_commun/artwork.pretty") (options "") (descr "Logos lebel/pcbway (empreintes decoratives silkscreen/cuivre) -- partagee entre projets, voir ../KICAD.md"))
+	(lib (name "Symbol_commun") (type "KiCad") (uri "${KIPRJMOD}/../lib_fp_commun/Symbol_commun.pretty") (options "") (descr "Copie complete de la bibliotheque standard KiCad Symbol.pretty (logos CE/ESD/FCC/WEEE/HighVoltage/etc) -- partagee entre projets, voir ../KICAD.md. Nom distinct du nickname global 'Symbol' pour eviter tout conflit."))
+	(lib (name "Graphic") (type "KiCad") (uri "${KIPRJMOD}/../lib_fp_commun/Graphic.pretty") (options "") (descr "Convertie depuis la bibliotheque standard KiCad Graphic.kicad_sym (symboles danger/graphiques), toutes primitives sur F.SilkS -- partagee entre projets, voir ../KICAD.md"))
 )

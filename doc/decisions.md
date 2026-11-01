@@ -1252,7 +1252,9 @@ le projet (`Vin`, `Iin`, `V1`, `Vout`, `Iout`, `I_shunt1`, `I_SHUNT1_CMP`,
 `Stage1_EN`, `Stage2_EN`, `HV_EN`, `Discharge`) — vérifié net par net avant
 de poser quoi que ce soit. Aucune protection neuve sur cette feuille.
 
-**Carte Filament (HT)** — un connecteur neuf, `J21` (`NAPPE_FILAMENT_HT`), sur
+**Carte Filament (HT)** — un connecteur neuf, `J21` (symbole
+`NAPPE_FILAMENT_HT`, valeur affichée renommée `DC_HT` depuis,
+2026-10-28), sur
 `connecteur_ht.kicad_sch`. `PWM3_A`, `PWM3_B`, `CMP_OUT`, `CLB_OUT` sont
 repris tels quels (déjà protégés). **Cinq signaux sont neufs** : les voies
 `ADC_8`-`ADC_12` du connecteur devkit, jusqu'ici posées mais jamais câblées
@@ -1261,7 +1263,7 @@ nulle part (`isolated_pin_label`, documenté depuis le départ) :
 | Voie devkit | Signal carte Filament | R du trio | Pourquoi |
 |---|---|---|---|
 | `ADC_9` | `Vht` | 100 Ω | mesure simple |
-| `ADC_10` | `Temp_ht` | 100 Ω | mesure simple |
+| `ADC_10` | `I_Out_ht` | 100 Ω | mesure simple (ex-`Temp_ht` — mesure de température primaire retirée côté KICAD-HT, remplacée par le courant de sortie réel, 2026-10-28) |
 | `ADC_11` | `I_Shunt_ht` | 100 Ω | mesure simple |
 | `ADC_8` | `I_Shunt_ht_comp` | 22 Ω | chemin comparateur/Trip Zone, Rs ≤ 50 Ω (decision #4) |
 | `ADC_12` | `V_bias` | 100 Ω | mesure simple |

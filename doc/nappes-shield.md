@@ -223,7 +223,7 @@ déjà protégés ailleurs dans le projet — simple deuxième point d'accès,
 aucun composant de protection neuf sur cette feuille.
 
 **Carte Filament (HT)** — `connecteur_ht.kicad_sch`, un connecteur `J21`
-(`NAPPE_FILAMENT_HT`) :
+(symbole `NAPPE_FILAMENT_HT`, valeur affichée `DC_HT`, 2026-10-28) :
 
 | Broche | Signal | Origine |
 |---|---|---|
@@ -233,7 +233,7 @@ aucun composant de protection neuf sur cette feuille.
 | 7 | `PWM_bias` | nappe PWM, déjà protégé |
 | 9 | `Vht_EN` | nappe GPIO-1, déjà protégé |
 | 11 | `Vht` | `ADC_8_MCU`→`ADC_12_MCU`, neuf (trio R=100 Ω) |
-| 13 | `Temp_ht` | `ADC_10_MCU`, neuf (trio R=100 Ω) |
+| 13 | `I_Out_ht` | `ADC_10_MCU`, neuf (trio R=100 Ω) — ex-`Temp_ht`, 2026-10-28 |
 | 15 | `I_Shunt_ht` | `ADC_11_MCU`, neuf (trio R=100 Ω) |
 | 17 | `I_Shunt_ht_comp` | `ADC_8_MCU`, neuf (trio R=22 Ω, chemin comparateur `CMPSS3`) |
 | 19 | `V_bias` | `ADC_12_MCU`, neuf (trio R=100 Ω) |
