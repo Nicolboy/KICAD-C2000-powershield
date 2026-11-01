@@ -398,6 +398,13 @@ l'embase physique manquait. Broche 7 non étiquetée sur le plan constructeur
 fourni : laissée en `NC` par prudence plutôt que supposée masse — à
 reconfirmer si le datasheet complet devient disponible.
 
+**Mise à jour.** Broche 7 reliée à `GND` (label global posé sur la broche,
+exactement comme la broche 8 adjacente) — décision explicite de
+l'utilisateur, plus un point ouvert. `no_connect_connected` apparaît
+désormais dans l'ERC pour cette broche (la pin reste typée `NC` dans le
+symbole `OLED_SPI_2x8`) : avertissement attendu, accepté au même titre que
+les autres de cette famille, pas une erreur à corriger.
+
 À la même occasion, assignation d'une empreinte à tous les composants du
 projet qui n'en avaient pas (R/C en 0805, BAT54S en SOT-23, connecteurs
 2 broches génériques — cavaliers et alimentation — en PinHeader 1×02,
@@ -1624,6 +1631,3 @@ pas une approximation plausible.
   court-circuit du LDO en panne une fois choisi (§13).
 - Référence exacte du connecteur d'alimentation 11-25V (type, tenue en
   courant) — pas encore choisie.
-- Broche 7 de l'embase OLED (J10) : non étiquetée sur le plan constructeur
-  fourni, laissée en NC par prudence (§15). À confirmer avec le datasheet
-  complet de l'ER-OLEDM032-1B.

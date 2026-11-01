@@ -85,8 +85,8 @@ commune à tous les projets KiCad de l'atelier, documentée dans
 
 Une part du travail est faite par un agent : lecture de datasheet, choix de
 boîtier et création d'empreinte custom quand nécessaire (ex.
-`lib/NCM3S1205MC.kicad_mod`), pose des composants, étiquetage. Le placement
-fin et le routage restent manuels.
+`lib/NCM3S1205MC.kicad_mod`), traitement par lots, étiquetage. Le placement
+des composants et le routage restent manuels.
 
 ---
 
@@ -103,7 +103,7 @@ kicad-cli pcb drc --exit-code-violations shield.kicad_pcb
 
 ## État d'avancement
 
-Travail en cours, et le dire plutôt que de le masquer :
+Travail en cours:
 
 - **Schéma** — dix feuilles (connecteurs devkit/ESP32/OLED, nappes DC/DC,
   alimentation, alimentation USB-C PD des cartes filles, connecteurs dédiés
@@ -119,7 +119,7 @@ Travail en cours, et le dire plutôt que de le masquer :
   figé, labels vérifiés par ERC contre les coordonnées réelles des broches.
 
 Points laissés ouverts — modèle de LDO 3,3V, référence du connecteur
-11-25V, broche 7 de l'embase OLED, budget de courant des rails 5V — sont
+11-25V, budget de courant des rails 5V — sont
 listés en fin de [`doc/decisions.md`](doc/decisions.md). Ils attendent une
 lecture de datasheet ou une mesure, pas une estimation.
 
