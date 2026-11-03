@@ -1600,6 +1600,81 @@ fille, pas dans ce dépôt.
 
 ---
 
+## 30. U2/U3 (NCM3S1205MC) câblés à l'envers, entrée et sortie — détecté en revue
+
+**Défaut.** Sur `dc.kicad_sch`, les broches 1/2 (entrée) et 3/4 (sortie) de
+U2 et U3 étaient câblées sur le net opposé à leur fonction réelle :
+`VIN_PWR` (positif) atterrissait sur la broche `-VIN`, `GND_PRI` (retour)
+sur `+VIN` ; côté sortie, `+VOUT` rejoignait `GND` et `-VOUT` rejoignait
+`5V_ISO`/`5V_NUM`. Corrigé par permutation des 8 étiquettes globales
+posées sur ces broches (commit `22663de`) — ni le symbole, ni les
+numéros de broche, ni l'empreinte n'ont changé.
+
+**Conséquence si non détecté.** Entrée inversée sur un module dont la
+datasheet ne mentionne pas de protection contre l'inversion de polarité
+(Murata KDC_NCM3_A01, liste des fonctions p.1) : destruction probable à
+la mise sous tension. Sortie inversée : `5V_ISO`/`5V_NUM` se seraient
+présentés à **-5V** par rapport à `GND`, pas +5V — tout ce qui en aval
+attend une alimentation positive (LDO U1, rails numériques) aurait été
+endommagé ou non fonctionnel.
+
+**Preuve physique.** Datasheet Murata KDC_NCM3_A01 p.10 (« Pin
+Connections » + vue de dessous) : `1=-Vin, 2=+Vin, 3=+Vout, 4=-Vout`,
+confirmé par les cotes de l'empreinte (pastilles 2/3 = 4,8mm ↔ broches
+2/3 = 4,75mm ; 1/4 = 3,55 ↔ 3,50 ; entraxe 6,75 ; 5,10 au bord ; ordre
+1→4 antihoraire en vue de dessus) — `lib/NCM3S1205MC.kicad_mod` suit
+cette numérotation. Confirmé indépendamment par le chemin réel du
+schéma, entrée et retour :
+
+- `J9` (positif) → `VIN_PWR` → enroulement `FL3`/`FL4` broches 2→3 →
+  `U2_VINF`/`U3_VINF`
+- `J9` (retour) → `GND_PRI` → enroulement `FL3`/`FL4` broches 1→4 →
+  `U2_GNDF`/`U3_GNDF`
+
+**Rectification de la décision #21(b).** Sa phrase *« +VOUT (U2 ET U3,
+broche 3) sert de driver implicite du net GND... ce n'est pas un
+artefact du modèle téléchargé, c'est un choix électrique déjà en
+place »* décrivait en réalité le **symptôme** de ce défaut, pas un choix
+assumé — le `pin_to_pin` de l'ERC sur cette broche (deux `Power output`
+connectées) le signalait déjà à l'époque de #21, mais a été interprété
+comme une exception à accepter plutôt que comme une alerte à
+investiguer. #21 n'est pas réécrite ; cette entrée en corrige la lecture.
+
+**Piège à retenir.** Une première tentative de correction (renommer les
+étiquettes du *symbole* pour qu'elles collent au câblage existant) a été
+faite et annulée : comparer l'empreinte au symbole ne prouve rien, la
+pastille N porte le nom de la broche N par construction, quel que soit
+le câblage réel — les deux sources dérivent l'une de l'autre, pas d'une
+preuve indépendante. Seule la comparaison **position physique du
+datasheet ↔ câblage réel du schéma** fait foi. Ne jamais renommer une
+broche pour faire « coller » un schéma.
+
+**Vérification.**
+- `kicad-cli sch erc` : 314 → **313** violations. Le `pin_to_pin` sur la
+  broche 3 a disparu (U2/U3 n'y partagent plus `GND` à deux `Power
+  output`) ; l'autre écart vient d'une imprécision de placement
+  préexistante depuis l'origine du projet sur l'étiquette `U3_VINF`
+  (posée à 0,03/0,06mm de la broche 2 réelle, pontée par un micro-fil
+  déjà présent dans l'historique) — recalée exactement sur la broche,
+  fil retiré, sans rapport électrique avec le défaut ci-dessus (commit
+  `23b5b2a`).
+- Netlist (`kicad-cli sch export netlist`) : `U2 : 1→U2_GNDF, 2→U2_VINF,
+  3→5V_ISO, 4→GND` ; `U3 : 1→U3_GNDF, 2→U3_VINF, 3→5V_NUM, 4→GND`.
+- PCB mis à jour depuis le schéma (F8, commit `6904387`) : pastilles
+  U2/U3 vérifiées sur les mêmes nets que la netlist ci-dessus.
+  `kicad-cli pcb drc` : 464 → 463 violations, seule disparaît une
+  catégorie sans rapport (`lib_footprint_issues`, bibliothèque
+  `artwork`) ; les `clearance`/`shorting_items`/`solder_mask_bridge`
+  touchant les pastilles U2/U3/C27/C28/C36 sont strictement identiques
+  avant/après — U2/U3 ne sont pas routés à ce stade (décision #21(a)),
+  la réaffectation de net ne modifie aucune piste.
+
+**Ce qui casse si on la défait.** Revenir au câblage d'avant
+reproduirait exactement le défaut ci-dessus — entrée et sortie à
+l'envers sur un convertisseur isolé non protégé contre l'inversion.
+
+---
+
 ## Points ouverts — ne pas combler par une estimation
 
 Ces valeurs manquent. Elles demandent une lecture de datasheet ou une mesure,
