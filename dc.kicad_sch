@@ -1971,7 +1971,7 @@
 		)
 		(uuid "eee07605-2ed6-4c16-a641-cd63f754ef32")
 	)
-	(global_label "U3_VINF"
+	(global_label "U3_GNDF"
 		(shape output)
 		(at 308.864 109.474 180)
 		(fields_autoplaced yes)
@@ -2205,7 +2205,7 @@
 			)
 		)
 	)
-	(global_label "5V_ISO"
+	(global_label "GND"
 		(shape input)
 		(at 132.094 109.474 0)
 		(fields_autoplaced yes)
@@ -2229,7 +2229,7 @@
 			)
 		)
 	)
-	(global_label "5V_NUM"
+	(global_label "GND"
 		(shape input)
 		(at 334.264 109.474 0)
 		(fields_autoplaced yes)
@@ -2348,7 +2348,7 @@
 			)
 		)
 	)
-	(global_label "U2_GNDF"
+	(global_label "U2_VINF"
 		(shape output)
 		(at 106.694 104.394 180)
 		(fields_autoplaced yes)
@@ -2372,7 +2372,7 @@
 			)
 		)
 	)
-	(global_label "GND"
+	(global_label "5V_NUM"
 		(shape input)
 		(at 334.264 104.394 0)
 		(fields_autoplaced yes)
@@ -2396,7 +2396,7 @@
 			)
 		)
 	)
-	(global_label "GND"
+	(global_label "5V_ISO"
 		(shape input)
 		(at 132.094 104.394 0)
 		(fields_autoplaced yes)
@@ -2514,7 +2514,7 @@
 			)
 		)
 	)
-	(global_label "U3_GNDF"
+	(global_label "U3_VINF"
 		(shape output)
 		(at 308.894 104.338 180)
 		(fields_autoplaced yes)
@@ -2632,7 +2632,7 @@
 			)
 		)
 	)
-	(global_label "U2_VINF"
+	(global_label "U2_GNDF"
 		(shape output)
 		(at 106.694 109.474 180)
 		(fields_autoplaced yes)
