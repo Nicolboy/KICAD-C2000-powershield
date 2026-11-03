@@ -1235,6 +1235,9 @@
 			(embedded_fonts no)
 		)
 		(symbol "Power_Parts:NCM3S1205MC"
+			(pin_numbers
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -1272,7 +1275,7 @@
 				)
 			)
 			(property "Datasheet" "datasheets/isolation/KDC_NCM3.pdf"
-				(at 0 0 0)
+				(at 1.27 11.176 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(hide yes)
@@ -1283,7 +1286,7 @@
 				)
 			)
 			(property "Description" "Murata NCM3 series - isolated 3W 4:1 input DC-DC, 9-36Vin -> 5V/600mA, 5000VAC. Pins/types repris du modele telecharge SnapEDA NCM3S1205MC-R7, positions inchangees (voir doc/decisions.md)."
-				(at 0 0 0)
+				(at 1.778 14.224 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(hide yes)
@@ -1903,16 +1906,6 @@
 	)
 	(wire
 		(pts
-			(xy 308.894 104.338) (xy 308.864 104.394)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d9bdd0f5-a5c6-4170-9aab-6362525e46a4")
-	)
-	(wire
-		(pts
 			(xy 237.998 85.344) (xy 237.998 96.012)
 		)
 		(stroke
@@ -2516,7 +2509,7 @@
 	)
 	(global_label "U3_VINF"
 		(shape output)
-		(at 308.894 104.338 180)
+		(at 308.864 104.394 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2526,7 +2519,7 @@
 		)
 		(uuid "e19dd221-3e21-460b-b266-b9cd2ce8da3e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 297.9259 104.338 0)
+			(at 297.8959 104.394 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3376,6 +3369,7 @@
 		)
 		(property "Footprint" "lib:NCM3S1205MC"
 			(at 119.394 106.934 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3384,8 +3378,9 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "datasheets/isolation/KDC_NCM3.pdf"
 			(at 119.394 106.934 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3394,8 +3389,9 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Murata NCM3 series - isolated 3W 4:1 input DC-DC, 9-36Vin -> 5V/600mA, 5000VAC. Pins/types repris du modele telecharge SnapEDA NCM3S1205MC-R7, positions inchangees (voir doc/decisions.md)."
 			(at 119.394 106.934 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3619,7 +3615,7 @@
 			)
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 67.564 224.282 0)
+			(at 67.818 210.82 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4105,6 +4101,7 @@
 		)
 		(property "Footprint" "lib:NCM3S1205MC"
 			(at 321.564 106.934 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4113,8 +4110,9 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "datasheets/isolation/KDC_NCM3.pdf"
 			(at 321.564 106.934 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4123,8 +4121,9 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Murata NCM3 series - isolated 3W 4:1 input DC-DC, 9-36Vin -> 5V/600mA, 5000VAC. Pins/types repris du modele telecharge SnapEDA NCM3S1205MC-R7, positions inchangees (voir doc/decisions.md)."
 			(at 321.564 106.934 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
