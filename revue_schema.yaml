@@ -1,0 +1,40 @@
+schema_racine: shield.kicad_sch
+
+connecteurs:
+  externes:
+    - {ref: J9, note: "J_PWR_11-25V, entree alimentation 11-25V externe"}
+    - {ref: J15, note: "USBC-PD, connecteur USB-C Power Delivery"}
+  internes:
+    - {ref: J1, note: "NAPPE_ADC1"}
+    - {ref: J2, note: "NAPPE_ADC2"}
+    - {ref: J3, note: "NAPPE_PWM"}
+    - {ref: J4, note: "NAPPE_GPIO1"}
+    - {ref: J13, note: "NAPPE_GPIO2"}
+    - {ref: J14, note: "NAPPE_COM"}
+    - {ref: J10, note: "OLED_SPI_2x8"}
+    - {ref: J16, note: "sortie alimentation principale vers cartes filles en daisy chain"}
+    - {ref: J19, note: "NAPPE_HV_ADC"}
+    - {ref: J20, note: "NAPPE_HV_DIO"}
+    - {ref: J21, note: "NAPPE_FILAMENT_HT"}
+
+modules:
+  - {ref: J7, type: devkit_esp32, brochage: doc/brochage-esp32.csv, connecteur_csv: J1}
+  - {ref: J8, type: devkit_esp32, brochage: doc/brochage-esp32.csv, connecteur_csv: J3}
+  - {ref: J17, type: devkit_c2000, brochage: doc/brochage-devkit.csv, connecteur_csv: A}
+  - {ref: J18, type: devkit_c2000, brochage: doc/brochage-devkit.csv, connecteur_csv: B}
+  - {ref: U4, type: oled}
+
+references_protection: [BAT54S, ESDA25W, Z3SMCxxx]
+
+elements_barriere: [NCM3S1205MC, ISO1640BD, TCMT1100]
+
+domaines_masse:
+  GND: commande
+  GND_PRI: primaire
+  U2_GNDF: flottant_u2
+  U3_GNDF: flottant_u3
+
+programmation:
+  cible: J18
+  programmateur: J7
+  nets: [UART_TX, UART_RX, BOOT_SEL, "~{RESET}"]

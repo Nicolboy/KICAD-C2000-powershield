@@ -222,6 +222,19 @@ connecteur IDC 2×10, en plus des six nappes ci-dessus — pas à la place.
 déjà protégés ailleurs dans le projet — simple deuxième point d'accès,
 aucun composant de protection neuf sur cette feuille.
 
+**Un seul point d'accès câblé à la fois, jamais les deux pour une même
+carte.** `Vin_hv`, `Stage_hv_EN`, etc. existent en double (sur J19/J20 *et*
+sur les positions correspondantes des six nappes partagées) parce que le
+même signal a deux sorties physiques possibles sur le shield — pas parce
+que la carte HV serait censée brancher une nappe ADC-1/ADC-2/PWM/GPIO-1
+**en plus de** J19/J20 en usage normal. C'est l'utilisateur qui choisit,
+carte par carte, quel jeu de nappes il câble réellement — jamais au hasard
+ni les deux simultanément pour la même carte. **Conséquence pour le
+budget de courant `3V3_ISO`** (voir decisions.md) : le courant consommé
+par les isolateurs d'une carte se compte une seule fois, sur le
+connecteur qu'elle utilise réellement — pas doublé en sommant son
+connecteur dédié et ses positions dupliquées sur les nappes génériques.
+
 **Carte Filament (HT)** — `connecteur_ht.kicad_sch`, un connecteur `J21`
 (symbole `NAPPE_FILAMENT_HT`, valeur affichée `DC_HT`, 2026-10-28) :
 

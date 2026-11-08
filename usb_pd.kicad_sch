@@ -5447,7 +5447,7 @@
 		(dnp no)
 		(uuid "3ee81bd0-1b50-41a8-a3a3-2c03b1e12b4f")
 		(property "Reference" "Q1"
-			(at 55.866 151.13 0)
+			(at 63.246 145.542 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7063,7 +7063,8 @@
 			)
 		)
 		(property "Footprint" "Package_SO:SOP-4_4.4x2.6mm_P1.27mm"
-			(at 242.824 64.008 0)
+			(at 243.078 72.39 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7073,7 +7074,8 @@
 			)
 		)
 		(property "Datasheet" "datasheets/isolation/tcmt110.pdf"
-			(at 242.824 64.008 0)
+			(at 242.824 75.692 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7083,7 +7085,8 @@
 			)
 		)
 		(property "Description" "Vishay TCMT1100 - optocoupleur phototransistor, CTR 50-600%, VISO=3750VRMS, boitier SSOP-4 standard KiCad."
-			(at 242.824 64.008 0)
+			(at 243.078 80.772 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
