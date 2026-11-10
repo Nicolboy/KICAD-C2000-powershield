@@ -984,10 +984,49 @@ le connecteur de sortie n'est qu'une convention d'interface, la
 propagation carte-à-carte restant un circuit à concevoir sur chaque carte
 fille (hors périmètre de ce dépôt).
 
-**Pourquoi une deuxième entrée, pas une fusion avec le 11-25V.** Confirmé
-explicitement par l'utilisateur : le `J_PWR` 11-25V existant ne sert et
-ne servira qu'aux deux NCM3S1205MC du shield (6W au total) ; le port
-USB-C est une entrée séparée, dédiée à la puissance des cartes filles.
+**Pourquoi une deuxième entrée, pas une fusion avec le 11-25V (position
+initiale, revue ci-dessous).** Confirmé explicitement par l'utilisateur
+à l'origine : le `J_PWR` 11-25V existant ne sert et ne servira qu'aux
+deux NCM3S1205MC du shield (6W au total) ; le port USB-C est une entrée
+séparée, dédiée à la puissance des cartes filles.
+
+**Révision (2026-11-10) : les deux entrées sont en fait redondantes, pas
+simultanées — fusionnées.** Correction explicite de l'utilisateur :
+`VIN_PWR` (11-25V, `J9`) et `VBUS_IN` (USB-C PD négocié) ne seront
+**jamais utilisées ensemble** — ce sont deux moyens alternatifs
+d'alimenter la même carte, l'USB-C en usage normal, le 11-25V en secours
+si l'USB-C ne fonctionne pas. Mise en œuvre : les 11 occurrences du
+`global_label "VBUS_IN"` dans `usb_pd.kicad_sch` renommées en
+`"VIN_PWR"` — fusion électrique pure (même net), aucun composant
+ajouté entre les deux.
+
+**Risque identifié et accepté explicitement.** Relier directement deux
+sources DC indépendantes expose à un retour de courant si les deux
+câbles se trouvent branchés en même temps par erreur, et expose le
+STUSB4531QTR (AMR `VDD`/VBUS = 28V, `DS_stusb4531.pdf` p.1, caractéristique
+« AMR = 28V ») à la pleine plage de `VIN_PWR`. Décision utilisateur après
+ces deux points soulevés : **lien direct, sans diode-OR** — discipline
+manuelle (jamais les deux branchés), accepté en connaissance de cause.
+
+**Ce qui rend ça sûr côté composant** : `D40` (zener 3W, SMC, déjà
+présente côté `VBUS_IN` pour la protection ESD/surtension) avait une
+valeur placeholder (`Z3SMCxxx`) non choisie — fixée à **`Z3SMC24`**
+dans cette même révision. Vérifié contre la datasheet Diotec
+(`z3smc1.pdf`, table p.2) : `Vz` = 22,8 à 25,6V pire cas, soit 2,4V de
+marge sous les 28V d'AMR du STUSB4531 — le zener clampe avant que la
+pleine plage de `VIN_PWR` (jusqu'à 36V tolérés côté NCM3S1205MC)
+n'atteigne le composant. Note secondaire, pas bloquante : à 25V (haut de
+la plage normale 11-25V), le zener est déjà proche de son seuil de
+conduction (`Vz_min` = 22,8V) — légère dissipation possible en
+fonctionnement normal au sommet de la plage, pas seulement en défaut.
+
+**Laissé en l'état, hors périmètre de cette révision** : `D41` (zener
+équivalente côté `VBUS_OUT`) porte toujours la valeur placeholder
+`Z3SMCxxx`, non choisie.
+
+**Vérification de la fusion.** `kicad-cli sch erc` avant/après : 355
+violations dans les deux cas, mêmes catégories, aucune nouvelle —
+fusion électriquement neutre à part l'union des deux nets.
 
 **Pourquoi `HV_EN`/`Discharge` (nappe GPIO-1, decision #17/#20) ne sont
 pas réutilisés ici.** Ces deux signaux existent déjà, pilotés par le
@@ -1061,12 +1100,15 @@ board** :
   notre bus 20V. `ESDA25P35` utilise le symbole générique
   `Device:D_TVS` + empreinte stock `Diode_SMD:ST_QFN-2L_1.6x1.0mm` — pas
   besoin d'un symbole custom, boîtier déjà couvert par KiCad.
-- **`PWR_FLAG`** posé sur `VBUS_IN` (pas sur `GND`, qui a déjà un
-  pilote `power_out` ailleurs dans le projet — en poser un deuxième
-  dessus aurait créé un conflit `pin_to_pin`, détecté et corrigé pendant
-  la vérification ERC ci-dessous) : `VBUS_IN` est un net neuf sans
-  régulateur on-board pour le "piloter" au sens ERC, strictement
-  nécessaire ici contrairement aux rails déjà établis du shield.
+- **`PWR_FLAG`** posé sur `VBUS_IN` à l'origine (pas sur `GND`, qui a
+  déjà un pilote `power_out` ailleurs dans le projet — en poser un
+  deuxième dessus aurait créé un conflit `pin_to_pin`, détecté et
+  corrigé pendant la vérification ERC ci-dessous) : `VBUS_IN` était un
+  net neuf sans régulateur on-board pour le "piloter" au sens ERC,
+  strictement nécessaire ici contrairement aux rails déjà établis du
+  shield. **Depuis la révision du 2026-11-10 ci-dessus, ce `PWR_FLAG` se
+  trouve sur `VIN_PWR`** (fusion des deux nets) — toujours utile, `J9`
+  seul (simple connecteur) ne pilote pas le net au sens ERC.
 
 **Bus I2C ESP32 dédié** (supervision/statut seulement — l'autorun du
 STUSB4531QTR négocie sans lui) : **PAS** le bus I2C des nappes (celui-là

@@ -431,7 +431,7 @@
 			(embedded_fonts no)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_ADC2"
 		(shape input)
 		(at 163.576 102.616 90)
 		(fields_autoplaced yes)
@@ -767,7 +767,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_ADC1"
 		(shape input)
 		(at 34.29 35.814 90)
 		(fields_autoplaced yes)
@@ -791,7 +791,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_ADC2"
 		(shape input)
 		(at 225.044 34.544 90)
 		(fields_autoplaced yes)
@@ -1199,7 +1199,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_ADC1"
 		(shape input)
 		(at 96.266 153.416 90)
 		(fields_autoplaced yes)
@@ -1223,7 +1223,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_ADC1"
 		(shape input)
 		(at 95.504 92.202 90)
 		(fields_autoplaced yes)
@@ -1367,7 +1367,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_ADC1"
 		(shape input)
 		(at 29.464 155.702 90)
 		(fields_autoplaced yes)
@@ -1391,7 +1391,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_ADC1"
 		(shape input)
 		(at 29.464 96.012 90)
 		(fields_autoplaced yes)
@@ -1559,7 +1559,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_ADC1"
 		(shape input)
 		(at 167.132 28.194 90)
 		(fields_autoplaced yes)
@@ -1847,7 +1847,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_ADC1"
 		(shape input)
 		(at 96.266 34.036 90)
 		(fields_autoplaced yes)

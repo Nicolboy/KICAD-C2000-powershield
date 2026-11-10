@@ -149,6 +149,52 @@
 		)
 	)
 	(sheet
+		(at 480 20)
+		(size 80 50)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "6c864dd7-6a76-4549-8b2a-5c161f2d31f2")
+		(property "Sheetname" "3V3_ISO"
+			(at 480 19.5 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "3v3_iso.kicad_sch"
+			(at 480 70.5 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "shield"
+				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c"
+					(page "12")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 120 20)
 		(size 80 50)
 		(exclude_from_sim no)

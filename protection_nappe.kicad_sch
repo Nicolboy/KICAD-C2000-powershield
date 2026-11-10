@@ -434,7 +434,7 @@
 			(embedded_fonts no)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_COM"
 		(shape input)
 		(at 217.46 196.11 90)
 		(fields_autoplaced yes)
@@ -626,7 +626,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_GPIO"
 		(shape input)
 		(at 217.46 36.11 90)
 		(fields_autoplaced yes)
@@ -674,7 +674,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_COM"
 		(shape input)
 		(at 37.46 196.11 90)
 		(fields_autoplaced yes)
@@ -722,7 +722,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_GPIO"
 		(shape input)
 		(at 307.46 241.11 90)
 		(fields_autoplaced yes)
@@ -770,7 +770,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_GPIO"
 		(shape input)
 		(at 127.46 241.11 90)
 		(fields_autoplaced yes)
@@ -866,7 +866,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_COM"
 		(shape input)
 		(at 127.46 196.11 90)
 		(fields_autoplaced yes)
@@ -890,7 +890,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_COM"
 		(shape input)
 		(at 127.46 116.11 90)
 		(fields_autoplaced yes)
@@ -1058,7 +1058,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_ADC2"
 		(shape input)
 		(at 127.46 36.11 90)
 		(fields_autoplaced yes)
@@ -1274,7 +1274,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_COM"
 		(shape input)
 		(at 307.46 116.11 90)
 		(fields_autoplaced yes)
@@ -1418,7 +1418,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_GPIO"
 		(shape input)
 		(at 217.46 241.11 90)
 		(fields_autoplaced yes)
@@ -1610,7 +1610,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_ADC2"
 		(shape input)
 		(at 37.46 36.11 90)
 		(fields_autoplaced yes)
@@ -1634,7 +1634,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_COM"
 		(shape input)
 		(at 37.46 116.11 90)
 		(fields_autoplaced yes)
@@ -1946,7 +1946,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_COM"
 		(shape input)
 		(at 307.46 36.11 90)
 		(fields_autoplaced yes)
@@ -1994,7 +1994,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_GPIO"
 		(shape input)
 		(at 37.46 241.11 90)
 		(fields_autoplaced yes)
@@ -2690,7 +2690,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_COM"
 		(shape input)
 		(at 217.46 116.11 90)
 		(fields_autoplaced yes)

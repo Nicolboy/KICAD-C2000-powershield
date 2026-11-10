@@ -479,7 +479,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_GPIO"
 		(shape input)
 		(at 40.64 109.728 90)
 		(fields_autoplaced yes)
@@ -548,6 +548,30 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+			)
+		)
+	)
+	(global_label "I2C_SDA_MCU"
+		(shape bidirectional)
+		(at 100.838 169.926 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "2824920b-edf5-4921-81c0-9fe8d463d3ad")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 100.838 169.926 180)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 	)
@@ -623,7 +647,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_GPIO"
 		(shape input)
 		(at 43.434 38.608 90)
 		(fields_autoplaced yes)
@@ -668,6 +692,30 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+			)
+		)
+	)
+	(global_label "3V3_C2000"
+		(shape bidirectional)
+		(at 108.458 169.926 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "6e28fd53-1a90-4792-b9a2-576d192c97e7")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 108.458 169.926 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 	)
@@ -767,6 +815,30 @@
 			)
 		)
 	)
+	(global_label "3V3_C2000"
+		(shape bidirectional)
+		(at 83.81 180 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "9f1b4c6d-b396-4e5c-99a6-bf68c3703d3c")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 83.81 180 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
 	(global_label "nFAULT"
 		(shape output)
 		(at 71.95 55.306 0)
@@ -839,7 +911,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_GPIO"
 		(shape input)
 		(at 116.586 38.862 90)
 		(fields_autoplaced yes)
@@ -924,6 +996,30 @@
 		(uuid "f3f4fcff-a8a2-493a-8f7d-3d0fc081bf33")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 129.906 83.5637 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
+	(global_label "I2C_SCL_MCU"
+		(shape bidirectional)
+		(at 76.19 180 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "faf77cac-d4f5-4cf3-a70a-0d31630c7c0c")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 76.19 180 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1086,6 +1182,83 @@
 			(project "shield"
 				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/e1effa4f-eedb-4566-b783-5564d1ec12c2"
 					(reference "C21")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 80 180 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "48a3d00b-368b-4dc3-900d-f2d12d1cd0db")
+		(property "Reference" "R68"
+			(at 79.746 183.556 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "4.7k"
+			(at 79.746 186.35 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 80 180 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 80 180 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 80 180 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "2ee57dc4-d158-431b-ba9a-838ca2ad8da2")
+		)
+		(pin "2"
+			(uuid "66c9ebcc-7c4d-4bf7-af66-fa1fdd3d89d8")
+		)
+		(instances
+			(project "shield"
+				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/e1effa4f-eedb-4566-b783-5564d1ec12c2"
+					(reference "R68")
 					(unit 1)
 				)
 			)
@@ -1394,6 +1567,83 @@
 			(project "shield"
 				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/e1effa4f-eedb-4566-b783-5564d1ec12c2"
 					(reference "C22")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 104.648 169.926 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "d2905445-cf75-4bb5-af7d-1352ac67ae1e")
+		(property "Reference" "R69"
+			(at 104.394 173.482 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "4.7k"
+			(at 104.394 176.276 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 104.648 169.926 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 104.648 169.926 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 104.648 169.926 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "c45329d4-9111-4e3f-8c67-fe8f69afb45d")
+		)
+		(pin "2"
+			(uuid "9df46dc2-5d58-451e-a009-7b3d1e248b5f")
+		)
+		(instances
+			(project "shield"
+				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/e1effa4f-eedb-4566-b783-5564d1ec12c2"
+					(reference "R69")
 					(unit 1)
 				)
 			)

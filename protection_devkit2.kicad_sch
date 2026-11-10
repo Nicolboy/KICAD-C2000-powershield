@@ -719,7 +719,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_GPIO"
 		(shape input)
 		(at 233.68 108.712 90)
 		(fields_autoplaced yes)
@@ -887,7 +887,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_PWM"
 		(shape input)
 		(at 110.49 90.17 90)
 		(fields_autoplaced yes)
@@ -959,7 +959,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_ADC2"
 		(shape input)
 		(at 36.068 28.702 90)
 		(fields_autoplaced yes)
@@ -1079,7 +1079,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_PWM"
 		(shape input)
 		(at 32.258 88.9 90)
 		(fields_autoplaced yes)
@@ -1223,7 +1223,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_PWM"
 		(shape input)
 		(at 234.188 30.226 90)
 		(fields_autoplaced yes)
@@ -1319,7 +1319,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_PWM"
 		(shape input)
 		(at 170.18 38.862 90)
 		(fields_autoplaced yes)
@@ -1463,7 +1463,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_PWM"
 		(shape input)
 		(at 116.332 29.718 90)
 		(fields_autoplaced yes)
@@ -1487,7 +1487,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_PWM"
 		(shape input)
 		(at 169.418 110.744 90)
 		(fields_autoplaced yes)
@@ -1799,7 +1799,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_PWM"
 		(shape input)
 		(at 28.702 146.558 90)
 		(fields_autoplaced yes)
@@ -1943,7 +1943,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_PWM"
 		(shape input)
 		(at 110.744 143.764 90)
 		(fields_autoplaced yes)

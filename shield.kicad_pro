@@ -39,9 +39,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 0.0,
-          "height": 1.0,
-          "width": 0.3
+          "drill": 1.0,
+          "height": 1.7,
+          "width": 1.7
         },
         "silk_line_width": 0.15,
         "silk_text_italic": false,
@@ -52,8 +52,8 @@
         "zones": {
           "border_display_style": 2,
           "border_hatch_pitch": 0.5,
-          "corner_radius": 0.0,
-          "corner_smoothing": 0,
+          "corner_radius": 1.0,
+          "corner_smoothing": 1,
           "fill_mode": 0,
           "hatch_gap": 1.5,
           "hatch_orientation": 0.0,
@@ -64,7 +64,7 @@
           "min_island_area": 10.0,
           "min_thickness": 0.25,
           "pad_connection": 1,
-          "remove_islands": 1,
+          "remove_islands": 0,
           "thermal_relief_gap": 0.5,
           "thermal_relief_spoke_width": 0.5
         }
@@ -572,6 +572,30 @@
         "wire_width": 8
       },
       {
+        "clearance": 0.2,
+        "name": "GND",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 7,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.5,
+        "tuning_profile": "",
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
+        "wire_width": 8
+      },
+      {
+        "clearance": 0.2,
+        "name": "GND_PRI",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 8,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.5,
+        "tuning_profile": "",
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
+        "wire_width": 8
+      },
+      {
         "clearance": 3.1,
         "name": "HT",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
@@ -651,7 +675,7 @@
         "pattern": "VIN_PWR"
       },
       {
-        "netclass": "Isole_Primaire",
+        "netclass": "GND_PRI",
         "pattern": "GND_PRI"
       },
       {
@@ -679,7 +703,7 @@
         "pattern": "5V_NUM"
       },
       {
-        "netclass": "Isole_Secondaire",
+        "netclass": "GND",
         "pattern": "GND"
       },
       {
@@ -973,6 +997,326 @@
       {
         "netclass": "Alim",
         "pattern": "3V3_PROT"
+      },
+      {
+        "netclass": "Alim",
+        "pattern": "3V3_ESP32"
+      },
+      {
+        "netclass": "Alim",
+        "pattern": "3V3_ISO_ADC1"
+      },
+      {
+        "netclass": "Alim",
+        "pattern": "3V3_ISO_ADC2"
+      },
+      {
+        "netclass": "Alim",
+        "pattern": "3V3_ISO_COM"
+      },
+      {
+        "netclass": "Alim",
+        "pattern": "3V3_ISO_GPIO"
+      },
+      {
+        "netclass": "Alim",
+        "pattern": "3V3_ISO_HT"
+      },
+      {
+        "netclass": "Alim",
+        "pattern": "3V3_ISO_HV1"
+      },
+      {
+        "netclass": "Alim",
+        "pattern": "3V3_ISO_HV2"
+      },
+      {
+        "netclass": "Alim",
+        "pattern": "3V3_ISO_LOGIC"
+      },
+      {
+        "netclass": "Alim",
+        "pattern": "3V3_ISO_PWM"
+      },
+      {
+        "netclass": "Alim",
+        "pattern": "VREG_1V2"
+      },
+      {
+        "netclass": "Alim",
+        "pattern": "VREG_2V7"
+      },
+      {
+        "netclass": "Puissance",
+        "pattern": "3V3_ISO_ADC_REG"
+      },
+      {
+        "netclass": "Puissance",
+        "pattern": "3V3_ISO_HV_REG"
+      },
+      {
+        "netclass": "Puissance",
+        "pattern": "3V3_ISO_LOGIC_REG"
+      },
+      {
+        "netclass": "Puissance",
+        "pattern": "3V3_ISO_PWM_REG"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "ADC_10_MCU"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "ADC_11_MCU"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "ADC_12_MCU"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "ADC_8_MCU"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "ADC_9_MCU"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "CMP_OUT_MCU"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "GATE"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "GATE_BIAS"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "GPOD"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "HVO1"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "I_Out_ht"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "I_Shunt_ht"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "I_Shunt_ht_comp"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "I_hv"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "I_shunt_hv"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "I_shunt_hv_cmp"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "I_shunt_inter_hv"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "I_shunt_inter_hv_cmp"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "Iin_hv"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "Temp_hv"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "Temp_inter_hv"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "V_bias"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "V_hv"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "V_inter_hv"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "Vht"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "Vin_hv"
+      },
+      {
+        "netclass": "Analogique",
+        "pattern": "VREF_ADC_PREBUF"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "ESP32_ALERT_ISO"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "ESP32_SCL_ISO"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "ESP32_SDA_ISO"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "I2C_SCL"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "I2C_SCL_MCU"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "I2C_SDA"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "I2C_SDA_MCU"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "OLED_DC"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "OLED_RST"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "PWM_bias"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "PWM_ht"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "STUSB_SCL"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "STUSB_SDA"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "Stage_hv_PWM"
+      },
+      {
+        "netclass": "Rapide",
+        "pattern": "Stage_inter_hv_PWM"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "BOOT_SEL"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "CC1"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "CC2"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "Discharge_MCU"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "HV_EN_MCU"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "PWM_EN"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "STUSB_ADD0"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "STUSB_ALERT"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "STUSB_DISCH"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "STUSB_VBUS_VS_DISCH"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "Stage1_EN_MCU"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "Stage2_EN_MCU"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "Stage_hv_EN"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "Stage_inter_hv_EN"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "U7_A"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "VBUS_EN_SNK"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "Vht_EN"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "Vhv_EN"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "nFAULT"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "~{Discharge_hv}"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "~{FAULT_MCU}"
+      },
+      {
+        "netclass": "Default",
+        "pattern": "~{RESET}"
       }
     ]
   },
@@ -1129,7 +1473,7 @@
         "uuid": "3e79b37e-13ed-4a43-b954-3b2f3b716c2c"
       }
     ],
-    "used_designators": "C1-23,C29-36,C42-54,C59-61,C71-73,C101-146,D1-56,J1-9,J11-12,R1-34,R58,R101-146,H1-4,FL1-4,JP1-3,U1-3,U8",
+    "used_designators": "C1-23,C27-86,D1-48,D57-61,J1-4,J7-10,J13-21,R1-67,H1-4,FL3-4,JP1-3,U1-8,U10-13,LED1-2,PF1,Q1",
     "variants": []
   },
   "sheets": [
@@ -1176,6 +1520,10 @@
     [
       "c6a522a8-8e6f-497b-8a31-2bcb5b43e987",
       "Connecteur_HT"
+    ],
+    [
+      "6c864dd7-6a76-4549-8b2a-5c161f2d31f2",
+      "3V3_ISO"
     ]
   ],
   "text_variables": {},

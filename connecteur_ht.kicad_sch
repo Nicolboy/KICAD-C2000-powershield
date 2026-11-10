@@ -1177,7 +1177,7 @@
 		)
 		(uuid "f90f56b7-698d-4f59-a982-8aae94b8abdf")
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_HT"
 		(shape bidirectional)
 		(at 198.12 121.92 90)
 		(fields_autoplaced yes)
@@ -1225,7 +1225,7 @@
 			)
 		)
 	)
-	(global_label "3V3_ISO"
+	(global_label "3V3_ISO_HT"
 		(shape bidirectional)
 		(at 37.14 59.68 180)
 		(fields_autoplaced yes)
@@ -1270,6 +1270,30 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+			)
+		)
+	)
+	(global_label "GND"
+		(shape bidirectional)
+		(at 43.942 41.656 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "14b9b749-3a9a-4d93-91c8-fe571167254a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 51.909 41.656 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 	)
@@ -1585,7 +1609,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_HT"
 		(shape bidirectional)
 		(at 248.92 127.254 90)
 		(fields_autoplaced yes)
@@ -1729,7 +1753,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_HT"
 		(shape bidirectional)
 		(at 250.19 75.184 90)
 		(fields_autoplaced yes)
@@ -1825,7 +1849,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_HT"
 		(shape bidirectional)
 		(at 198.882 74.676 90)
 		(fields_autoplaced yes)
@@ -1862,6 +1886,30 @@
 		(uuid "9ccff63b-8b1d-4232-96ed-815544030b43")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 37.14 97.78 180)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
+	(global_label "3V3_ISO_HT"
+		(shape bidirectional)
+		(at 36.322 41.656 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "b39cf68a-bafd-466a-a111-e21af8679f6c")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 36.322 41.656 180)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1969,7 +2017,7 @@
 			)
 		)
 	)
-	(global_label "3V3_PROT"
+	(global_label "3V3_ISO_HT"
 		(shape bidirectional)
 		(at 127.762 68.58 90)
 		(fields_autoplaced yes)
@@ -3554,6 +3602,87 @@
 			(project "shield"
 				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/c6a522a8-8e6f-497b-8a31-2bcb5b43e987"
 					(reference "D45")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 40.132 41.656 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "f4efe9fb-d332-4195-be83-b3837fbb2853")
+		(property "Reference" "C74"
+			(at 38.354 38.354 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "100nF"
+			(at 43.434 45.72 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 40.132 41.656 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 40.132 41.656 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 40.132 41.656 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "fc950da9-03c0-4327-ba77-f8c44c662cf3")
+		)
+		(pin "2"
+			(uuid "97fccfb5-10e4-4454-8b2a-779e3a45d8cc")
+		)
+		(instances
+			(project "shield"
+				(path "/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/c6a522a8-8e6f-497b-8a31-2bcb5b43e987"
+					(reference "C74")
 					(unit 1)
 				)
 			)

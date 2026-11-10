@@ -1,22 +1,41 @@
 (version 1)
 
-# Barriere d'isolement primaire/secondaire (NCM3S1205MC x2, dc.kicad_sch)
+# Barriere d'isolement GND / GND_PRI (NCM3S1205MC x2, dc.kicad_sch)
 #
-# Clearance datasheet-driven, pas une table generique : 8mm = creepage/
-# clearance recommande par Murata pour le NCM3S1205MC, UL62368-1,
-# isolation renforcee / 2 MOPP a 250Vrms (KDC_NCM3_A01, table "Isolation
-# Characteristics"). Les classes Isole_Primaire / Isole_Secondaire sont
-# assignees par nom de net dans shield.kicad_pro (net_settings.
-# netclass_patterns) : VIN_PWR/GND_PRI cote primaire, le reste (3V3_ISO,
-# 5V_C2000, 5V_ESP32, 5V_ISO, 5V_ISO_SW, 5V_NUM, GND) cote secondaire.
-# Les deux classes gardent la clearance par defaut (0.3mm) : seule la
-# paire primaire/secondaire est contrainte, pas l'interieur d'un domaine.
+# 4mm = valeur PROJET (utilisateur, 2026-11-09), pas une valeur datasheet.
+# Remplace l'ancienne regle "isolement_primaire_secondaire" qui imposait
+# 8mm entre TOUTES les classes Isole_Primaire/Isole_Secondaire (VIN_PWR,
+# GND_PRI, 3V3_ISO, 5V_xxx, GND...) - ce 8mm venait de Murata
+# (NCM3S1205MC, UL62368-1, isolation renforcee / 2 MOPP a 250Vrms,
+# KDC_NCM3_A01 table "Isolation Characteristics").
 #
-# Reutilisation sur un futur projet : copier la regle, changer uniquement
-# la valeur en mm d'apres le datasheet du composant d'isolement utilise -
-# jamais une estimation. Voir KICAD.md.
+# Decision explicite (2026-11-09) : la contrainte dediee ne porte plus
+# que sur les DEUX PLANS DE MASSE (GND vs GND_PRI, classes dediees dans
+# shield.kicad_pro net_settings.netclass_patterns). Les autres paires
+# primaire/secondaire (VIN_PWR, "Vin", 3V3_ISO, 5V_xxx...) n'ont plus de
+# regle dediee et retombent sur la clearance normale de leur classe
+# (Isole_Primaire/Isole_Secondaire : 0.2mm ; Default/Alim/Analogique :
+# 0.1mm) - donc PAS d'isolation renforcee 8mm pour ces nets-la avec cette
+# regle seule. A netoyer/revisiter si une revue de securite ulterieure
+# re-exige le seuil datasheet complet.
+#
+# Seuil ramene de 4mm a 3mm (2026-11-09, meme jour) : le ISO1640BD (U6,
+# isolateur I2C, boitier SOIC-8, "isolation basique" 3000VRMS) a ses
+# broches GND1/GND2 figees par le boitier a 3.0mm de cuivre a cuivre -
+# aucun placement ne peut l'augmenter. Plutot que d'exclure ce composant
+# de la regle, decision utilisateur : aligner le seuil general sur ce
+# qui est physiquement atteignable (3mm), pas de cas particulier par
+# composant. Donc 3mm vaut aussi pour tout le reste (cuivre, autres
+# composants, trous de montage) - verifier qu'aucun nouvel isolateur
+# choisi plus tard n'ait un pas de broches encore plus serre.
+#
+# Reutilisation sur un futur projet : copier la regle, changer la valeur
+# en mm selon le besoin reel (datasheet si c'est un isolement de securite,
+# sinon valeur projet documentee comme telle, et verifiee atteignable par
+# les boitiers des composants d'isolement reellement utilises). Voir
+# KICAD.md.
 
-(rule "isolement_primaire_secondaire"
-	(condition "(A.NetClass == 'Isole_Primaire' && B.NetClass == 'Isole_Secondaire') || (A.NetClass == 'Isole_Secondaire' && B.NetClass == 'Isole_Primaire')")
-	(constraint clearance (min 8mm))
+(rule "isolement_gnd_gndpri"
+	(condition "(A.NetClass == 'GND' && B.NetClass == 'GND_PRI') || (A.NetClass == 'GND_PRI' && B.NetClass == 'GND')")
+	(constraint clearance (min 3mm))
 )

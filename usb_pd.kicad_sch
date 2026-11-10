@@ -2793,7 +2793,7 @@
 			)
 		)
 	)
-	(global_label "VBUS_IN"
+	(global_label "VIN_PWR"
 		(shape bidirectional)
 		(at 81.026 153.67 0)
 		(fields_autoplaced yes)
@@ -2865,7 +2865,7 @@
 			)
 		)
 	)
-	(global_label "VBUS_IN"
+	(global_label "VIN_PWR"
 		(shape bidirectional)
 		(at 33.02 27.686 270)
 		(fields_autoplaced yes)
@@ -3129,7 +3129,7 @@
 			)
 		)
 	)
-	(global_label "VBUS_IN"
+	(global_label "VIN_PWR"
 		(shape bidirectional)
 		(at 81.026 152.4 0)
 		(fields_autoplaced yes)
@@ -3225,7 +3225,7 @@
 			)
 		)
 	)
-	(global_label "VBUS_IN"
+	(global_label "VIN_PWR"
 		(shape bidirectional)
 		(at 81.026 154.94 0)
 		(fields_autoplaced yes)
@@ -3369,7 +3369,7 @@
 			)
 		)
 	)
-	(global_label "VBUS_IN"
+	(global_label "VIN_PWR"
 		(shape bidirectional)
 		(at 70.612 119.634 90)
 		(fields_autoplaced yes)
@@ -3489,7 +3489,7 @@
 			)
 		)
 	)
-	(global_label "VBUS_IN"
+	(global_label "VIN_PWR"
 		(shape bidirectional)
 		(at 30.734 95.758 90)
 		(fields_autoplaced yes)
@@ -4065,7 +4065,7 @@
 			)
 		)
 	)
-	(global_label "VBUS_IN"
+	(global_label "VIN_PWR"
 		(shape bidirectional)
 		(at 26.67 76.2 180)
 		(fields_autoplaced yes)
@@ -4113,7 +4113,7 @@
 			)
 		)
 	)
-	(global_label "VBUS_IN"
+	(global_label "VIN_PWR"
 		(shape bidirectional)
 		(at 38.862 96.012 90)
 		(fields_autoplaced yes)
@@ -4401,7 +4401,7 @@
 			)
 		)
 	)
-	(global_label "VBUS_IN"
+	(global_label "VIN_PWR"
 		(shape bidirectional)
 		(at 104.648 32.512 90)
 		(fields_autoplaced yes)
@@ -4665,7 +4665,7 @@
 			)
 		)
 	)
-	(global_label "VBUS_IN"
+	(global_label "VIN_PWR"
 		(shape bidirectional)
 		(at 211.836 129.794 180)
 		(fields_autoplaced yes)
@@ -4713,7 +4713,7 @@
 			)
 		)
 	)
-	(global_label "VBUS_IN"
+	(global_label "VIN_PWR"
 		(shape bidirectional)
 		(at 26.67 78.74 180)
 		(fields_autoplaced yes)
@@ -7783,7 +7783,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Z3SMCxxx"
+		(property "Value" "Z3SMC24"
 			(at 41.656 101.0919 90)
 			(show_name no)
 			(do_not_autoplace no)
