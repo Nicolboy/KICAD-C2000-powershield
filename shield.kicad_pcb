@@ -53552,7 +53552,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "Z3SMCxxx"
+		(property "Value" "Z3SMC24"
 			(at 0 -4.2 0)
 			(layer "B.Fab")
 			(uuid "83b07d07-50b1-43c6-8d05-70fc4b8c469a")
@@ -61441,7 +61441,7 @@
 		)
 	)
 	(gr_text "USBC-PD\n100W\n"
-		(at 43.2 77.63 0)
+		(at 41.84 77.27 0)
 		(layer "F.SilkS")
 		(uuid "f1aecf45-b479-45af-98b4-4c607ba4d9f6")
 		(effects
