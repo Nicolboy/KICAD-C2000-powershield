@@ -955,7 +955,7 @@
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "6" (effects (font (size 1.27 1.27))))
       )
-      (pin no_connect line (at -22.86 5.08 0) (length 5.08)
+      (pin passive line (at -22.86 5.08 0) (length 5.08)
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "7" (effects (font (size 1.27 1.27))))
       )
