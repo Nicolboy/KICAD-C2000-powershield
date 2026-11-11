@@ -1,5 +1,15 @@
 # KICAD-C2000-powershield
 
+- **100W / 20V / 5A** — USB-C Power Delivery (STUSB4531QTR) feeds the
+  daughter cards in daisy chain, independent from the 11-25V main input
+- **5 dedicated LDOs** — isolated 3.3V reference distributed per board
+  group instead of one shared regulator, removing a single point of failure
+- PCB **routed 100% on 4 layers**, DRC clean
+
+Isolation, power-supply, and interconnect shield for a TMS320 C2000 digital
+power-converter controller, supervised by an ESP32-C6 for Wi-Fi, FOTA, and
+an OLED status display, designed in KiCad 10.
+
 Shield d'isolation, alimentation et interconnexion pour TMS320 C2000, conçu
 sous KiCad 10.
 
