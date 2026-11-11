@@ -304,6 +304,10 @@
   "erc": {
     "erc_exclusions": [
       [
+        "lib_symbol_mismatch|2428240|640080|b2f62423-c4c0-40a2-88da-de7cd12ce4b9|00000000-0000-0000-0000-000000000000|||",
+        ""
+      ],
+      [
         "pin_to_pin|1320940|1094740|d04e9a69-486d-4556-a2df-e6359a643ef5|781c6fa5-069e-419d-9aa7-80448c7fc031|/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/abe5d1bc-da16-43aa-81b9-daaf0e685605|/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/abe5d1bc-da16-43aa-81b9-daaf0e685605|/3e79b37e-13ed-4a43-b954-3b2f3b716c2c/abe5d1bc-da16-43aa-81b9-daaf0e685605",
         "masses de sortie des convertisseurs isolés connectées"
       ]
@@ -1478,7 +1482,7 @@
         "uuid": "3e79b37e-13ed-4a43-b954-3b2f3b716c2c"
       }
     ],
-    "used_designators": "C1-23,C27-86,D1-48,D57-61,J1-4,J7-10,J13-21,R1-67,R70,H1-4,FL3-4,JP1-3,U1-8,U10-13,LED1-2,PF1,Q1,TP1-14",
+    "used_designators": "C1-23,C27-86,D1-48,D57-61,J1-4,J7-10,J13-21,R1-67,R70,H1-4,FL3-4,JP1-3,U1-8,U10-13,LED1-2,PF1,Q1,TP1-16",
     "variants": []
   },
   "sheets": [
