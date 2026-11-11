@@ -109,29 +109,35 @@ Travail en cours:
   alimentation, alimentation USB-C PD des cartes filles, connecteurs dédiés
   carte HV et carte Filament, quatre feuilles de chaînes de protection).
   Toutes les broches réelles portent une empreinte. L'ERC reste à quelques
-  dizaines de violations, de la même famille que le reste de l'atelier
-  (`pin_not_connected`, `isolated_pin_label` sur des réserves non pilotées)
-  — pas corrigées d'office, voir `doc/decisions.md`.
-- **PCB** — 207 empreintes importées depuis le schéma, routage **commencé,
-  environ 10 %**. Le placement et le routage demandent des choix de
-  conception qui n'ont pas leur place dans un script.
+  centaines de violations, de la même famille que le reste de l'atelier
+  (`pin_not_connected`, `isolated_pin_label` sur des réserves non pilotées,
+  `endpoint_off_grid`) — pas corrigées d'office, voir `doc/decisions.md`.
+- **PCB** — **routé à 100 % sur 4 couches**. `3V3_ISO` distribué sur cinq
+  régulateurs dédiés (un par groupe de nappes, décision #29 et suivantes)
+  plutôt qu'un LDO unique partagé. DRC propre (quelques dizaines de
+  violations résiduelles, catégorisées et justifiées — `lib_footprint_mismatch`
+  attendu, `courtyards_overlap` mesuré et accepté). 14 points de test posés
+  sur les rails d'alimentation, le bus I2C et la paire de référence ADC,
+  étiquetés par nom de net sur `F.Silkscreen`.
 - **Connecteur devkit C2000/ESP32, nappes DC/DC, embase OLED** — brochage
   figé, labels vérifiés par ERC contre les coordonnées réelles des broches.
 
-Points laissés ouverts — modèle de LDO 3,3V, référence du connecteur
-11-25V, budget de courant des rails 5V — sont
-listés en fin de [`doc/decisions.md`](doc/decisions.md). Ils attendent une
-lecture de datasheet ou une mesure, pas une estimation.
+Points encore laissés ouverts (référence exacte de certains connecteurs,
+budget de courant détaillé) listés en fin de
+[`doc/decisions.md`](doc/decisions.md). Ils attendent une lecture de
+datasheet ou une mesure, pas une estimation.
 
 ---
 
 ## Décisions à ne pas défaire
 
-Quinze décisions documentées dans [`doc/decisions.md`](doc/decisions.md),
+Trente décisions documentées dans [`doc/decisions.md`](doc/decisions.md),
 chacune avec sa raison et ce qui casse si on la défait. Héritées de
-`KICAD-C2000-devkit` (#1 à #12) ou propres à ce dépôt (#13 à #15 : migration
+`KICAD-C2000-devkit` (#1 à #12) ou propres à ce dépôt (#13 à #30 : migration
 de la conversion isolée sur le shield, renumérotation des nappes, embase
-OLED et assignation des empreintes).
+OLED et assignation des empreintes, connecteurs dédiés carte HV et carte
+Filament, alimentation USB-C Power Delivery des cartes filles, isolation
+numérique ESP32 ↔ STUSB4531, suiveur de référence ADC bufferisé).
 
 ---
 
