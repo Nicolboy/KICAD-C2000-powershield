@@ -86,8 +86,7 @@ pour ce dépôt).
 
 Les schémas ne contiennent aucun fil : toute la connectivité passe par des
 étiquettes globales posées exactement sur la broche concernée — convention
-commune à tous les projets KiCad de l'atelier, documentée dans
-[`../KICAD.md`](../KICAD.md).
+commune à tous les projets KiCad de l'atelier.
 
 ---
 
